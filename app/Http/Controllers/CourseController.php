@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\University;
 use Illuminate\Http\Request;
 use DataTables;
+use App\Models\CourseRecruitments;
 
 class CourseController extends Controller
 {
@@ -93,9 +94,12 @@ class CourseController extends Controller
         $Course=Course::find($id);
         $university=University::all();
         $university_selected=$request->input('university');
+        $course_requirements=CourseRecruitments::where("course_id",$id)
+        ->where("status","status")
+        ->get();
         if(isset($university))
         {
-            return view('course.edit',compact('university_selected','university','Course'));
+            return view('course.edit',compact('university_selected','university','Course','course_requirements'));
         }
         else
         {

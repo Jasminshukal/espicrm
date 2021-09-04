@@ -43,8 +43,11 @@
             <option @if($Course->status=="de-active") selected @endif value="de-active">De-Active</option>
         </select>
     </div>
-
-
-
+</div>
+    <h2>Course Requirements</h2>
+    @foreach($course_requirements as $course_requirement)
+        <div class="row">
+        </div>
+    @endforeach
 
 </div>
