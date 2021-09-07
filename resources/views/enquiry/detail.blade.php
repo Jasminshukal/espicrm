@@ -336,73 +336,73 @@ Enquiry Detail
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Photographs</label>
-                                    <input type="file" name="photographs" class="form-control">
+                                    <input type="file" name="photographs" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Passport</label>
-                                    <input type="file" name="Passport" class="form-control">
+                                    <input type="file" name="Passport" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">10th Documents</label>
-                                    <input type="file" name="10TH" class="form-control">
+                                    <input type="file" name="10TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">12th Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Diploma Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Bachlor Degree Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Master Degree Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">PhD / Doctorate Degree Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">SOP</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Marksheets (IELTS/TOFEL/PTE/GRE/GMAT/SAT)</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Transcript Document(University)</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Work Experience Documents</label>
-                                    <input type="file" name="12TH" class="form-control">
+                                    <input type="file" name="12TH" class="form-control lfm">
                                 </div>
                             </div>
                         </div>
@@ -445,4 +445,10 @@ Enquiry Detail
 
     }
 </script>
+
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script>
+    $('.lfm').filemanager('Files');
+</script>
+
 @endsection

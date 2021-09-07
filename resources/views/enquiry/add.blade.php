@@ -4,6 +4,7 @@
 Enquiries
 @endsection
 
+
 @section('js')
 <script>
     $("#country").change(function(){
