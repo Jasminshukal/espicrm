@@ -45,10 +45,11 @@
 </div>
 
 <div class="col-md-12">
-<span class="input-group-btn">
-                                    <input  type="file" name="filename[]" accept="application/pdf" data-input="thumbnail{{$CourseRecruitment->id}}" data-preview="holder" class="lfm btn btn-primary">
-                                </span>
-                                <input required id="thumbnail{{$CourseRecruitment->id}}" class="form-control" type="hidden" name="filepath[]" class="form-control">
+    <div class="form-group">
+        <label>Course Image</label>
+        <input  type="file" name="filename" accept="application/pdf" data-input="thumbnail" data-preview="holder" class="form-control lfm btn btn-primary">
+        <input required id="thumbnail" class="form-control" type="hidden" name="filepath" class="form-control">
+    </div>
 </div>
 
 <div class="col-md-12">

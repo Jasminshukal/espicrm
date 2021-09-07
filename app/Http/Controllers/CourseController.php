@@ -66,6 +66,8 @@ class CourseController extends Controller
      */
     public function store(Addcourse $addcourse)
     {
+        dd($addcourse);
+
         $validated = $addcourse->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
@@ -136,7 +138,7 @@ class CourseController extends Controller
      */
     public function update(Editcourse $request,$course)
     {
-        //dd($course);
+        
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
