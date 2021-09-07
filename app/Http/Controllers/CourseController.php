@@ -24,10 +24,15 @@ class CourseController extends Controller
             $data = Course::orderBy("id","desc")->select('*')->with('University');
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('imagesrc', function($row){
+                        $imagesrc=$row->image;
+                        return $imagesrc;
+                    })
                     ->addColumn('action', function($row){
                         $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
                             return $btn;
                     })
+                    
                     ->rawColumns(['action'])
                     ->make(true);
         }
@@ -66,11 +71,18 @@ class CourseController extends Controller
      */
     public function store(Addcourse $addcourse)
     {
-        dd($addcourse);
-
         $validated = $addcourse->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
+        if(isset($addcourse->image))
+        {
+            $string =$addcourse->image;
+            $prefix = "files/";
+            $index = strpos($string, $prefix) + strlen($prefix);
+            $FileName = substr($string, $index);
+            $validated["image"]=$FileName;
+        }
+        
         $course=Course::create($validated);
 
         $totdocuments=count($addcourse->documents);
@@ -142,6 +154,14 @@ class CourseController extends Controller
         $validated = $request->validated();
         $validated['added_by']=\Auth::user()->id;
         $validated['company_id']=\Auth::user()->company_id;
+        if(isset($request->image)){
+            $string =$request->image;
+            $prefix = "files/";
+            $index = strpos($string, $prefix) + strlen($prefix);
+            $FileName = substr($string, $index);
+            $validated["image"]=$FileName;
+        }
+
         $courses=Course::where("id",$course)->update($validated);
         
         if(isset($request->course_recruitment_id))

@@ -49,7 +49,7 @@
             columns: [
                 {data: 'name', name: 'name'},
                 {data: 'course_level', name: 'course_level'},
-                {data: 'image', name: 'image'},
+                {data: 'imagesrc',name:'imagesrc'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
         });

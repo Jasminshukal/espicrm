@@ -46,9 +46,20 @@
 </div>
 
 <div class="col-md-12">
+    <div class="form-group">
+        <label>Course Image</label>
+        <input  type="file" name="filename" accept="application/pdf" data-input="thumbnail" data-preview="holder" class="form-control lfm btn btn-primary">
+        <input required id="thumbnail" class="form-control" type="hidden" name="image" class="form-control">
+        <a href="{{asset('storage/files/'.$Course->image)}}" target="_blank"><img class="img img-responsive" height="100px" src="{{asset('storage/files/'.$Course->image)}}"></a>
+    </div>
+</div>
+
+
+<div class="col-md-12">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-      <table class="table table-bordered" id="tbl_posts">
+<div class="table-responsive">
+    <table class="table table-bordered table-striped mb-4" id="tbl_posts">
         <thead>
           <tr>
             <th>#</th>
@@ -95,13 +106,19 @@
         @endforeach  
         </tbody>
         <tfoot>
-            <td colspan="5"><div class="well clearfix text-right">
-        <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add More Document</a>
- </div></td>
+            <td colspan="5">
+                <div class="well clearfix text-right">
+                    <a class="btn btn-primary pull-right add-record" data-added="0">
+                        <i class="glyphicon glyphicon-plus"></i> Add More Document
+                    </a>
+                </div>
+            </td>
         </tfoot>
       </table>
+    
+
     </div> 
-  
+</div>  
   <div style="display:none;">
     <table id="sample_table">
       <tr id="">
@@ -133,6 +150,12 @@
    </table>
  </div>
  
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script>
+    $('.lfm').filemanager('Files');
+</script>
+
+
 <script>
     jQuery(document).delegate('a.add-record', 'click', function(e) {
      e.preventDefault();    

@@ -14,7 +14,8 @@ class Course extends Model
         'course_level',
         'university_id',
         'company_id',
-        'added_by'
+        'added_by',
+        "image",
     ];
 
     public function University()

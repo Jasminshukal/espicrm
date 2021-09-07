@@ -48,7 +48,7 @@
     <div class="form-group">
         <label>Course Image</label>
         <input  type="file" name="filename" accept="application/pdf" data-input="thumbnail" data-preview="holder" class="form-control lfm btn btn-primary">
-        <input required id="thumbnail" class="form-control" type="hidden" name="filepath" class="form-control">
+        <input required id="thumbnail" class="form-control" type="hidden" name="image" class="form-control">
     </div>
 </div>
 
