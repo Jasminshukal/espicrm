@@ -42,16 +42,19 @@
             <option value="active">Active</option>
         </select>
     </div>
+</div>
 
-
-
-
+<div class="col-md-12">
+<span class="input-group-btn">
+                                    <input  type="file" name="filename[]" accept="application/pdf" data-input="thumbnail{{$CourseRecruitment->id}}" data-preview="holder" class="lfm btn btn-primary">
+                                </span>
+                                <input required id="thumbnail{{$CourseRecruitment->id}}" class="form-control" type="hidden" name="filepath[]" class="form-control">
 </div>
 
 <div class="col-md-12">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-      <table class="table table-bordered" id="tbl_posts">
+    <table class="table table-bordered" id="tbl_posts">
         <thead>
           <tr>
             <th>#</th>
@@ -65,12 +68,14 @@
       
         </tbody>
         <tfoot>
-            <td colspan="5"><div class="well clearfix text-right">
-        <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add More Document</a>
- </div></td>
+            <td colspan="5">
+                <div class="well clearfix text-right">
+                    <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add More Document</a>
+                </div>
+            </td>
         </tfoot>
-      </table>
-    </div> 
+    </table>
+</div> 
   
   <div style="display:none;">
     <table id="sample_table">
@@ -103,6 +108,12 @@
    </table>
  </div>
  
+@section('js')
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script>
+    $('.lfm').filemanager('Files');
+</script>
+
 <script>
     jQuery(document).delegate('a.add-record', 'click', function(e) {
      e.preventDefault();    
@@ -148,4 +159,6 @@
 });
 
 </script>
+@endsection
+
 </div>
