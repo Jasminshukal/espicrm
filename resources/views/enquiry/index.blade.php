@@ -281,7 +281,7 @@ Enquires index
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>counsellor_name</th>
+                    <th>Counsellor Name</th>
                     <th>Preferred Country</th>
                     <th>Date</th>
                     <th width="100px">Action</th>
