@@ -116,8 +116,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         return view('user.profile');
     });
 
-});
+    Route::get('email-test', function(){
+        $details = App\Models\Enquiry::find(1);
+        dispatch(new App\Jobs\WelcomeEmailJob($details));
+        dd('done');
+    });
 
+});
 
 
 Route::get('demo',function(){

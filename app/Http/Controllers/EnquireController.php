@@ -27,9 +27,9 @@ class EnquireController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('permission:view-enquiry');
-        // $this->middleware('permission:create-enquiry', ['only' => ['create','store','sendOtp']]);
-        // $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
+        $this->middleware('permission:view-enquiry');
+        $this->middleware('permission:create-enquiry', ['only' => ['create','store','sendOtp']]);
+        $this->middleware('permission:update-enquiry', ['only' => ['edit','update']]);
         // $this->middleware('permission:destroy-enquiry', ['only' => ['destroy']]);
     }
     /**
@@ -43,7 +43,7 @@ class EnquireController extends Controller
 
             $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor');
 
-            if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
+            if(in_array("counsellor",\Auth::user()->roles->pluck('name')->toArray()))
             {
                 $data->where('counsellor_id',\Auth::user()->id);
             }

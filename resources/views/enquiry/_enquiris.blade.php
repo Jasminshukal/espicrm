@@ -28,9 +28,9 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="email" class="mandatory">Middle Name</label>
+        <label for="email" class="">Middle Name</label>
         <input type="text" name="middle_name" id="middle_name" value="{{ old('middle_name') }}"
-            class="@error('middle_name') is-invalid @enderror form-control" required>
+            class="@error('middle_name') is-invalid @enderror form-control">
     </div>
     @error('middle_name')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -50,9 +50,9 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="email" class="mandatory">Passport No</label>
+        <label for="email" class="">Passport No</label>
         <input type="text" name="passport_number" id="passport_number" value="{{ old('passport_number') }}"
-            class="@error('passport_number') is-invalid @enderror form-control" required>
+            class="@error('passport_number') is-invalid @enderror form-control">
     </div>
     @error('passport_number')
         <div class="alert alert-danger">{{ $message }}</div>
