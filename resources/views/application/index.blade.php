@@ -58,7 +58,7 @@
                 {data: 'enquiry.name', name: 'enquiry.name', orderable: false, searchable: false},
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
-                { data: 'university.country.name', name: 'university.country.name' },
+                { data: 'university.country.name', name: 'university.country.name' , orderable: false, searchable: false },
                 {data: 'status', name: 'status'},
                 {data: 'date', name: 'date'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -199,7 +199,7 @@ Application
                 <th>Student Email</th>
                 <th>University</th>
                 <th>Course</th>
-                <th>Contry</th>
+                <th>Country</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th width="200px">Action</th>

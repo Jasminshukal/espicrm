@@ -43,7 +43,7 @@ class UniversityController extends Controller
                            $btn .= ' <a href="'.route('course.detail',$row->id).'" title="View Course" class="btn btn-primary btn-sm" data-row="'.route('course.detail',$row->id).'">Course</a>';
                         }
                         if(Auth::user()->hasAnyPermission(['update-university'])){
-                           $btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-primary btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Edit</a>';
+                           $btn .= '<a href="'.route('University.edit',$row->id).'" title="Edit University" class="edit btn btn-dark btn-sm mt-2"  data-row="'.route('University.edit',$row->id).'">Edit</a>';
                         }
                         if(Auth::user()->hasAnyPermission(['destroy-university'])){
                             $url=route('University.destroy',$row->id);

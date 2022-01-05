@@ -28,20 +28,20 @@
                 <td>{{ $message->dob }}</td>
                 <th scope="row">Gender</th>
                 <td>{{ $message->gender }}</td>
-                <th scope="row">Marital Status</th>
-                <td>{{ $message->marital_status }}</td>
-              </tr>
-                <tr>
                 <th scope="row">Preferred Country</th>
                 <td>{{ $message->preferred_country }}</td>
+              </tr>
+                <tr>
+
                 <th scope="row">Postal Code</th>
                 <td>{{ $message->postal_code }}</td>
                 <th scope="row">Address</th>
                 <td>{{ $message->address }}</td>
-              </tr>
-              <tr>
                 <th scope="row">Reference Source</th>
                 <td>{{ $message->reference_source }}</td>
+              </tr>
+              <tr>
+
                 <th scope="row">Remarks</th>
                 <td colspan="3">{{ $message->remarks }}</td>
               </tr>
@@ -55,7 +55,7 @@
                 <tr>
                     <th scope="row">Passport</th>
                     <td><span class="badge badge-primary">{{ $message->details->data->passport ?? 'Not Set Yet' }}</span></td>
-                    <th scope="row">Country Intrusted</th>
+                    <th scope="row">Country Interested</th>
                     <td>
                         @foreach ($message->details->data->country_intrusted as $item)
                         <span class="badge badge-primary">{{ $item }}</span>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Annual Income</th>
-                    <td>{{ $message->details->data->annual_income }}</td>
+                    <td>{{ $message->details->data->annual_income ?? "0" }}</td>
                     <th scope="row">Last Education</th>
                     <td>{{ $message->details->data->last_education }}</td>
                 </tr>
@@ -104,10 +104,10 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th scope="row">work_company</th>
-                    <th scope="row">work_from</th>
-                    <th scope="row">to_work_from</th>
-                    <th scope="row">work_profile</th>
+                    <th scope="row">Work Company</th>
+                    <th scope="row">Work From</th>
+                    <th scope="row">To Work From</th>
+                    <th scope="row">Work Profile</th>
                 </tr>
                 @foreach ($message->details->data->work_company as $item)
                     <tr>

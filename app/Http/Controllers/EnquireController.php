@@ -8,6 +8,7 @@ use App\Http\Requests\enquire\AddEnquireRequest;
 use App\Http\Requests\enquire\EditEnquireRequest;
 use Mail;
 use App\Events\PushNotification;
+use App\Jobs\WelcomeEmailJob;
 use Event;
 use Illuminate\Support\Facades\Log;
 use DataTables;
@@ -15,6 +16,7 @@ use App\Models\EnquiryDetail;
 use App\Mail\AddEnquiry;
 use App\Models\User;
 use App\Mail\EnquiryOtpMailsendWhenImport;
+use App\Mail\WelcomMail;
 use Auth;
 use App\Models\University;
 use App\Models\Course;
@@ -179,6 +181,8 @@ class EnquireController extends Controller
             $NotificationBody="New Enquiry Added By ".\Auth::user()->name;
             Event::dispatch(new PushNotification($admin->id,'New Enquiry Generate',$NotificationBody));
         }
+
+        dispatch(new WelcomeEmailJob($enq));
 
         return redirect()->route("Enquires.index")->with('success_msg',$enq->enquiry_id);
     }

@@ -112,7 +112,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
     Route::get('inquiry/FollowUp/{id?}',[FollowUpController::class,'ListByEnquiry']);
 
-
+    Route::get("/Profile", function(){
+        return view('user.profile');
+    });
 
 });
 
