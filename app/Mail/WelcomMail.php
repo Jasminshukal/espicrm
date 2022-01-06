@@ -32,5 +32,6 @@ class WelcomMail extends Mailable
     {
         $detail=$this->detail;
         return $this->view('emails.welcome',compact('detail'));
+        //->attach(asset('Brochure.pdf'));
     }
 }

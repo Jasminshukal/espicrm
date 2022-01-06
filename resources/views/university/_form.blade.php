@@ -165,6 +165,15 @@ University General Requirement
     </div>
 </div>
 
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="application_form">Application Form (PDF)</label>
+        <input type="file" name="application_form" id="application_form" class="form-control" accept=".pdf">
+    </div>
+</div>
+
+
+
 <div class="col-md-12">
     <hr>
     <h5>

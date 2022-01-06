@@ -37,5 +37,10 @@ class WelcomeEmailJob implements ShouldQueue
     {
         $email = new WelcomMail($this->details);
         Mail::to($this->details['email'])->send($email);
+        // Mail::send('emails.welcome', $data, function ($message) {
+        //     //
+
+        //     $message->attach($pathToFile);
+        // });
     }
 }
