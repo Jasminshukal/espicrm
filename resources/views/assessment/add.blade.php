@@ -123,6 +123,7 @@ Add Assessment
                         </table>
                         {{-- <a href="" class="btn btn-info align-self-center">Add More </a> --}}
                         <div class="col-md-12 text-center">
+                            <textarea name="cc_mail" id="" class="form-control mb-2"></textarea>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                 Add More
                             </button>

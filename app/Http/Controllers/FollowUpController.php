@@ -132,6 +132,6 @@ class FollowUpController extends Controller
         $FollowUp=FollowUp::find($id);
         $FollowUp->is_resolved=$status;
         $FollowUp->save();
-        return redirect()->back()->withSuccess("Ture");
+        return redirect()->back()->withSuccess("Status");
     }
 }

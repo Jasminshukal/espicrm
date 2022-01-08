@@ -14,7 +14,7 @@ return [
         'case_insensitive' => true,
         'use_wildcards'    => false,
         'starts_with'      => false,
-        'country_interested' => ['Canada','USA','UK','Australia','New Zealand','Europe','Finland','Netherland','Poland','Germany','France','Switzerland'],
+        'country_interested' => ['Canada','USA','UK','Australia'],
         'document_list' => [
             '10th' => '10th Result',
             '12th' => '12th Result',

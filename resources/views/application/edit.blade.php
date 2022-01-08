@@ -70,8 +70,30 @@ Edit Application
 
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="status">Processor</label>
+                                    <select name="processor_id" id="" class="form-control">
+                                        @foreach ($processor as $item)
+                                        <option value="{{ $item->id }}"
+                                        @if ($Application->processor_id==$item->id)
+                                        selected
+                                        @endif
+                                        >{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">Associated</label>
+                                    <input type="text" name="associated_with" id="" class="form-control" value="{{ $Application->associated_with }}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="status">Remark</label>
-                                    <textarea name="remark" class="form-control">{{ $Application->remark }}</textarea>
+                                    <textarea name="remark" class="form-control" required>{{ $Application->remark }}</textarea>
                                 </div>
                             </div>
 

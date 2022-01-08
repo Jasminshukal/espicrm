@@ -281,14 +281,19 @@ class AssessmentController extends Controller
         // ->whereHas('Assessment', function ($query) {
         //     $query->Enquiry('status','NOT','apply');
         // })->where('id',$enquiry_id)->get();
+        $cc=array();
+        if(isset($request->cc_mail))
+        {
+            $cc=explode(',',$request->cc_mail);
+        }
+
         if(isset($Enquiry->email))
         {
-            Mail::to($Enquiry->email)->send(new AddAssessments($Enquiry,$Assessment));
+            Mail::to($Enquiry->email)->cc($cc)->send(new AddAssessments($Enquiry,$Assessment));
             return redirect()->back()->withSuccess('Send Mail SuccessFully');
         }
         else
         {
-
             return false;
         }
     }

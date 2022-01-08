@@ -44,6 +44,9 @@ class ApplicationController extends Controller
                     ->addColumn('details_url', function($user) {
                         return url('admin/inquiry/FollowUp/'.$user->enquiry_id);
                     })
+                    ->addColumn('processor_id', function($user) {
+                        return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
+                    })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = '<div><a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm mb-1">Change Status</a>';
@@ -54,7 +57,7 @@ class ApplicationController extends Controller
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','processor_id'])
                     ->make(true);
         }
         return view('application.index');
@@ -70,7 +73,8 @@ class ApplicationController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        return view('application.add',compact('enquiry','university','course','intake'));
+        $processor=\App\Models\User::role('Processor')->get();
+        return view('application.add',compact('enquiry','university','course','intake','processor'));
     }
 
     /**
@@ -179,7 +183,8 @@ class ApplicationController extends Controller
             array_push($status,'Rejected');
         }
         $documents=ApplicationDocument::where('application_id',$Application->id)->get();
-        return view('application.edit',compact('university','country','course','intact','status','Application','documents'));
+        $processor=\App\Models\User::role('Processor')->get();
+        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor'));
     }
 
     /**
@@ -194,11 +199,15 @@ class ApplicationController extends Controller
         $request->validate([
             'remark' => 'required',
             'status' => 'required',
+            'associated_with' => 'required',
+            'processor_id' => 'required',
         ]);
 
         $application_list=Application::find($application);
         $application_list->status=$request->status;
         $application_list->remark=$request->remark;
+        $application_list->associated_with=$request->associated_with;
+        $application_list->processor_id=$request->processor_id;
         $application_list->save();
         EnqActivity("Update Status Application",$application_list->enquiry_id);
         return redirect(route('Application.index'))->with('success','Application status change successfully!');;
@@ -247,6 +256,7 @@ class ApplicationController extends Controller
         $requirement=CourseRequirement::where('course_id',$Ass->course_id)->get();
         if($request->isMethod('post'))
         {
+
             $request_role=array();
             foreach($requirement as $req)
             {
@@ -262,6 +272,7 @@ class ApplicationController extends Controller
             //Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
             $assment=assessment::find($Ass->id)->toArray();
             $assment['application_id']=$this->generateUniqueCode();
+            $assment['processor_id']=$request->processor_id;
             $Application=Application::create($assment);
 
             foreach($requirement as $application_document)
@@ -286,8 +297,8 @@ class ApplicationController extends Controller
             return redirect(route('Application.index'))->with('success','Application');
         }
 
-
-        return view('application.confirm',compact('Ass','requirement'));
+        $processor=\App\Models\User::role('Processor')->get();
+        return view('application.confirm',compact('Ass','requirement','processor'));
     }
 
     public function QuickApplication(AddAssessment $request)

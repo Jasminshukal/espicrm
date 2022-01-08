@@ -18,7 +18,8 @@ class Application extends Model
         'intact_month_id',
         'added_by_id',
         'application_id',
-        'status'
+        'status',
+        'processor_id'
     ];
 
     protected static function booted()

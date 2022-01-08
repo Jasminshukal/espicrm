@@ -76,6 +76,7 @@ if (! function_exists('today_follow_up')) {
     function today_follow_up($role='counsellor') {
         return FollowUp::whereDate('date', date('Y-m-d'))
         ->where('assist_by',\Auth::user()->id)
+        ->where('is_resolved','0')
         ->get();
     }
 }
@@ -152,7 +153,7 @@ if (! function_exists('bootstrap_input_6')) {
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="labale'.$name.'" class="form-label">'.Str::ucfirst($label).'</label>
-                <input type="email" class="form-control" id="labale'.$name.'" name="'.$name.'" placeholder="name@example.com" value="'.$value.'">
+                <input type="text" class="form-control" id="labale'.$name.'" name="'.$name.'" placeholder="name@example.com" value="'.$value.'">
             </div>
         </div>';
     }

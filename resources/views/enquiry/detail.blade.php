@@ -362,6 +362,13 @@ div.progress.visible {
             </div>
         </div>
 
+        <div class="col-md-6 hide_col " id="overall_band_div_@{{ id }}">
+            <div class="form-group">
+                <label for="name">Overall Bands</label>
+                <input type="text" name="overall_band" id="overall_band" class="form-control">
+            </div>
+        </div>
+
         <div class="col-md-6 hide_col " id="exam_math_div_@{{ id }}">
             <div class="form-group">
                 <label for="name">Math</label>
