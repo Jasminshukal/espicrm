@@ -51,6 +51,9 @@ class EnquireController extends Controller
                     ->addColumn('details_url', function($user) {
                         return url('admin/inquiry/FollowUp/'.$user->id);
                     })
+                    ->addColumn('counsellor_name', function($user) {
+                        return $user->Counsellor->name ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
+                    })
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
@@ -81,7 +84,7 @@ class EnquireController extends Controller
                            }
                            return $btn;
                     })
-                    ->rawColumns(['action','enq'])
+                    ->rawColumns(['action','enq','counsellor_name'])
                     ->make(true);
         }
         return view('enquiry.index');
@@ -138,6 +141,7 @@ class EnquireController extends Controller
         $validated["first_name"]=$request->first_name;
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
+        $validated["alternate"]=$request->alternate;
 
         $enq=Enquiry::create($validated);
         //$enq=Enquiry::find(23);

@@ -69,12 +69,21 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="alternate" class="">Alternate Phone</label>
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{ old('alternate') }}" name="alternate"
+            id="alternate" class="@error('alternate') is-invalid @enderror form-control">
+    </div>
+    @error('alternate')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
 
-<div class="col-md-6">
+<div class="col-md-3">
     <div class="form-group">
         <label for="education" class="mandatory">Current Education Status</label>
         <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
-            <option value="">Current Education Status</option>
             <option @if (old('education') == '10th') selected @endif value="10th">10th</option>
             <option @if (old('education') == 'diploma') selected @endif value="diploma">Diploma</option>
             <option @if (old('education') == '12th') selected @endif value="12th">12th</option>

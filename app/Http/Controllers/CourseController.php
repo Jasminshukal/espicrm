@@ -75,6 +75,7 @@ class CourseController extends Controller
         $validated['company_id']=\Auth::user()->company_id;
         $validated['duration']=$addcourse->duration;
         $validated['application_fees']=$addcourse->application_fees;
+        $validated['tuition_fees']=$addcourse->tuition_fees;
         $validated['course_link']=$addcourse->course_link;
 
         $validated['ten_req']=$addcourse->ten_req;

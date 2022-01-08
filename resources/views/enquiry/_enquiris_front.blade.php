@@ -248,6 +248,16 @@
     </div>
 </div>
 
+<div class="col-md-6" id="ref_phone_div">
+    <div class="form-group">
+        <label id="ref_phone_label">Are You interested for Coaching at ESPI ?</label>
+        <select name="coaching" class="form-control">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+</div>
+
 
 <div class="col-md-6">
     <div class="form-group">

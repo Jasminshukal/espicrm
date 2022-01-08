@@ -36,7 +36,9 @@ class Enquiry extends Model
         'gender',
         'middle_name',
         'passport_no',
-        'passport_image',
+        'education',
+        'alternate',
+        'status'
     ];
 
     protected static function booted()
@@ -108,6 +110,11 @@ class Enquiry extends Model
     public function FollowUp()
     {
         return $this->hasMany(FollowUp::class);
+    }
+
+    public function getStatusAttribute($value)
+    {
+        return ucfirst($value);
     }
 
 

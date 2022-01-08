@@ -37,4 +37,12 @@ return [
         're_apply' => 'Re-Apply',
         'fail' => 'Fail',
     ],
+    'currency_list' => [
+        'AUD' => 'Australia Dollar (AUD)',
+        'USD' => 'United States Dollar (USD)',
+        'SGD' => 'Singapore Dollar (SGD)',
+        'CAD' => 'Canada Dollar (CAD)',
+        'SYP' => 'Syria Pound (SYP)',
+        'INR' => 'India Rupee (INR)',
+    ],
 ];

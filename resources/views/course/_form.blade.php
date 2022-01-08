@@ -29,7 +29,6 @@
     <div class="form-group">
         <label for="course_level">Level</label>
         <select name="course_level" id="course_level" class="level form-control" required>
-            <option value="#" selected disabled>Course Level</option>
             <option value="under-graduate">Under Graduate</option>
             <option value="diploma">Diploma</option>
             <option value="advance-diploma">Advance Diploma</option>
@@ -43,8 +42,7 @@
     <div class="form-group">
         <label for="status">Status</label>
         <select name="status" id="status" class="form-control" required>
-            <option value="#" selected disabled>Status</option>
-            <option value="active">Active</option>
+            <option value="active" selected>Active</option>
             <option value="de-active">De-Active</option>
         </select>
     </div>
@@ -65,6 +63,13 @@
     <div class="form-group">
         <label for="course_duration">Application Fees</label>
         <input type="text" name="application_fees" id="application_fees" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="tuition_fees">Tuition Fees</label>
+        <input type="text" name="tuition_fees" id="tuition_fees" class="form-control">
     </div>
 </div>
 

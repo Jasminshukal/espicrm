@@ -94,7 +94,7 @@ Edit Application
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
-                <div class="card-header">Documnet</div>
+                <div class="card-header">Documents</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">

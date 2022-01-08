@@ -42,6 +42,14 @@ Conform Application
             {!! bootstrap_input_6('gender','Gender',$Ass->Enquiry->gender) !!}
 
             {!! bootstrap_input_6('Postal Code','Postal Code',$Ass->Enquiry->postal_code) !!}
+
+            @if ($Ass->Enquiry->reference_source=="Agent")
+                <div class="col-md-6"></div>
+                {!! bootstrap_input_6('Agent Name','Agent Name',$Ass->Enquiry->reference_name) !!}
+                {!! bootstrap_input_6('Agent Phone','Agent Phone',$Ass->Enquiry->reference_phone) !!}
+                {!! bootstrap_input_6('Agent Code','Agent Code',$Ass->Enquiry->reference_code) !!}
+            @endif
+
             <div class="col-md-12">
                 <form action="{{ route('Assessment.ApplySubmit',[$Ass->id]) }}" method="POST" enctype="multipart/form-data">
                 <br>

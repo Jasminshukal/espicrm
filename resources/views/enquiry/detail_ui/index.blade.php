@@ -71,12 +71,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if($active=='7') active @endif" id="border-comment-tab" data-toggle="tab" href="#border-comment" role="tab" aria-controls="border-comment" aria-selected="false">
+                        <a class="nav-link @if($active=='7') active @endif" href="{{ route('detail.nav',['Enquire' => $enquiry->id ,'Active'=>'7']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Comment
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if($active=='8') active @endif" id="border-comment-tab" data-toggle="tab" href="#border-follw-up" role="tab" aria-controls="border-follw-up" aria-selected="false">
+                        <a class="nav-link @if($active=='8') active @endif" href="{{ route('detail.nav',['Enquire' => $enquiry->id ,'Active'=>'8']) }}">
+                        {{-- <a class="nav-link @if($active=='8') active @endif" id="border-comment-tab" data-toggle="tab" href="#border-follw-up" role="tab" aria-controls="border-follw-up" aria-selected="false"> --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-merge"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg> Follow Up
                         </a>
                     </li>

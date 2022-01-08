@@ -41,9 +41,10 @@
                 <td>{{ $message->reference_source }}</td>
               </tr>
               <tr>
-
-                <th scope="row">Remarks</th>
-                <td colspan="3">{{ $message->remarks }}</td>
+                <th scope="row">Student Remarks</th>
+                <td colspan="2">{{ $message->remarks }}</td>
+                <th scope="row">Counsellor Remarks</th>
+                <td colspan="2">{{ $message->details->remark }}</td>
               </tr>
             </tbody>
         </table>
@@ -57,16 +58,18 @@
                     <td><span class="badge badge-primary">{{ $message->details->data->passport ?? 'Not Set Yet' }}</span></td>
                     <th scope="row">Country Interested</th>
                     <td>
-                        @foreach ($message->details->data->country_intrusted as $item)
-                        <span class="badge badge-primary">{{ $item }}</span>
-                        @endforeach
+                        @isset($message->details->data->country_intrusted)
+                            @foreach ($message->details->data->country_intrusted as $item)
+                                <span class="badge badge-primary">{{ $item }}</span>
+                            @endforeach
+                        @endisset
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Annual Income</th>
                     <td>{{ $message->details->data->annual_income ?? "0" }}</td>
                     <th scope="row">Last Education</th>
-                    <td>{{ $message->details->data->last_education }}</td>
+                    <td>{{ ucfirst($message->details->data->last_education) }}</td>
                 </tr>
             </tbody>
         </table>
@@ -92,10 +95,17 @@
                     <td scope="row">{{ $message->details->data->hsc_backlog ?? 'Not Set Yet' }}</td>
                 </tr>
                 <tr>
-                    <td scope="row">Master</td>
-                    <td scope="row">{{ $message->details->data->master_pass_percentage ?? 'Not Set Yet' }}</td>
-                    <td scope="row">{{ $message->details->data->master_passing ?? 'Not Set Yet' }}</td>
-                    <td scope="row">{{ $message->details->data->master_backlog ?? 'Not Set Yet' }}</td>
+                    <td scope="row">Graduate ( {{ $message->details->data->degree_name ?? '' }} )</td>
+                    <td scope="row">{{ $message->details->data->degree_pass_percentage ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->degree_passing ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->degree_backlog ?? 'Not Set Yet' }}</td>
+                </tr>
+
+                <tr>
+                    <td scope="row">Master ( {{ $message->details->data->master_degree_name ?? '' }} ) </td>
+                    <td scope="row">{{ $message->details->data->master_degree_pass_percentage ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->master_degree_passing ?? 'Not Set Yet' }}</td>
+                    <td scope="row">{{ $message->details->data->master_degree_backlog ?? 'Not Set Yet' }}</td>
                 </tr>
             </tbody>
         </table>

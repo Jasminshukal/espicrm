@@ -95,8 +95,9 @@
                 {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
-                {data: 'counsellor.name', name: 'counsellor_name'},
+                {data: 'counsellor_name', name: 'counsellor_name'},
                 {data: 'preferred_country', name: 'preferred_country'},
+                {data: 'status', name: 'status'},
                 {data: 'date', name: 'date',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -283,6 +284,7 @@ Enquires index
                     <th>Phone</th>
                     <th>Counsellor Name</th>
                     <th>Preferred Country</th>
+                    <th>Status</th>
                     <th>Date</th>
                     <th width="100px">Action</th>
                 </tr>

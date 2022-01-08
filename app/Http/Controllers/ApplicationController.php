@@ -86,9 +86,13 @@ class ApplicationController extends Controller
         $validated['added_by_id'] = \Auth::user()->id;
         $validated['status'] = 'Applied';
 
+        // applied
 
-
-        Application::create($validated);
+        $application=Application::create($validated);
+        $enquiry=Enquiry::find($application->enquiry_id);
+        $enquiry->status="applied";
+        $enquiry->save();
+        // enquiry_id
         return redirect(route('Application.index'))->with('success','Application created successfully!');
     }
 
@@ -237,6 +241,9 @@ class ApplicationController extends Controller
     public function ApplyApplication($Ass,Request $request)
     {
         $Ass=assessment::find($Ass);
+        $enquiry=Enquiry::find($Ass->enquiry_id);
+        $enquiry->status="applied";
+        $enquiry->save();
         $requirement=CourseRequirement::where('course_id',$Ass->course_id)->get();
         if($request->isMethod('post'))
         {
@@ -274,11 +281,6 @@ class ApplicationController extends Controller
                 $document->type=$file->getClientOriginalExtension();
                 $document->save();
             }
-
-
-
-
-
 
             EnqActivity("Apply Application",$Application->enquiry_id);
             return redirect(route('Application.index'))->with('success','Application');
