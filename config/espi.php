@@ -26,7 +26,15 @@ return [
             'Resume' => 'Resume Documents',
             'lor' => 'LOR Documents',
             'other' => 'Other Documents',
-            ]
+        ],
+        'education_level' => [
+            '10' => '10th',
+            '12' => '12th',
+            'diploma' => 'Diploma',
+            'bachelor' => 'Bachelor',
+            'master' => 'Master',
+            'phd' => 'Phd',
+        ],
     ],
     'follow_up_status' => [
         'coaching_enroll' => 'Coaching Enroll',
@@ -45,4 +53,5 @@ return [
         'SYP' => 'Syria Pound (SYP)',
         'INR' => 'India Rupee (INR)',
     ],
+
 ];

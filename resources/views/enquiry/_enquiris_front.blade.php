@@ -79,14 +79,10 @@
     <div class="form-group">
         <label for="education" class="mandatory">Current Education Status</label>
         <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
-            <option value="">Current Education Status</option>
-            <option @if (old('education') == '10th') selected @endif value="10th">10th</option>
-            <option @if (old('education') == 'diploma') selected @endif value="diploma">Diploma</option>
-            <option @if (old('education') == '12th') selected @endif value="12th">12th</option>
-            <option @if (old('education') == 'Under-Graduate') selected @endif value="Under-Graduate">Under-Graduate</option>
-            <option @if (old('education') == 'Graduate') selected @endif value="Graduate">Graduate</option>
-            <option @if (old('education') == 'Post-Graduate') selected @endif value="Post-Graduate">Post-Graduate</option>
-            <option @if (old('education') == 'PHD/Doctorate') selected @endif value="PHD/Doctorate">PHD/Doctorate</option>
+            <option disabled selected>Please Select</option>
+            @foreach (config('espi.enquires_detail.education_level') as $item)
+                <option @if (old('education') == $item) selected @endif value="{{ $item }}">{{ $item }}</option>
+            @endforeach
         </select>
     </div>
     @error('education')
