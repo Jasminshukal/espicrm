@@ -13,7 +13,7 @@
                 </tr>
                 <tr>
                     <th>Counsellor</th>
-                    <td>{{ $enquiry->Counsellor->name }} </td>
+                    <td>{{ $enquiry->Counsellor->name ?? 'Not Set Yet' }} </td>
                 </tr>
                 <tr>
                     <th>DOB</th>

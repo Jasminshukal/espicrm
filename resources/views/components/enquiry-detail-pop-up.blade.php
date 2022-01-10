@@ -20,8 +20,8 @@
                 <td>{{ $message->email }}</td>
                 <th scope="row">Phone</th>
                 <td>{{ $message->phone }}</td>
-                <th scope="row">First Language</th>
-                <td>{{ $message->first_language }}</td>
+                <th scope="row">Alternate Number</th>
+                <td>{{ $message->alternate }}</td>
               </tr>
               <tr>
                 <th scope="row">DOB</th>
@@ -41,8 +41,10 @@
                 <td>{{ $message->reference_source }}</td>
               </tr>
               <tr>
+                <th scope="row">First Language</th>
+                <td>{{ $message->first_language }}</td>
                 <th scope="row">Student Remarks</th>
-                <td colspan="2">{{ $message->remarks }}</td>
+                <td>{{ $message->remarks }}</td>
                 <th scope="row">Counsellor Remarks</th>
                 <td colspan="2">{{ $message->details->remark }}</td>
               </tr>

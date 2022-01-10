@@ -71,7 +71,7 @@
 </div>
 <div class="col-md-3">
     <div class="form-group">
-        <label for="alternate" class="">Alternate Phone</label>
+        <label for="alternate" class="">Alternate Number</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{ old('alternate') }}" name="alternate"
             id="alternate" class="@error('alternate') is-invalid @enderror form-control">
     </div>
@@ -275,6 +275,17 @@
         <label id="ref_phone_label">Reference Phone</label>
         <input type="number" min="1111111111" max="9999999999" maxlength="10" name="reference_phone"
             value="{{ old('reference_phone') }}" id="ref_phone" class="form-control">
+    </div>
+</div>
+
+<div class="col-md-6" id="ref_phone_div">
+    <div class="form-group">
+        <label id="ref_phone_label">Are You interested for Coaching at ESPI ?</label>
+        <select name="coaching" class="form-control" required>
+            <option selected disabled>Please Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
     </div>
 </div>
 

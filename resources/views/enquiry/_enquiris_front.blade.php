@@ -64,7 +64,18 @@
     @enderror
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="alternate">Alternate Number</label>
+        <input type="number" min="1111111111" max="9999999999" maxlength="10" value="{{ old('alternate') }}" name="alternate"
+            id="alternate" class="@error('alternate') is-invalid @enderror form-control">
+    </div>
+    @error('alternate')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="col-md-3">
     <div class="form-group">
         <label for="education" class="mandatory">Current Education Status</label>
         <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
@@ -181,9 +192,9 @@
         <label for="gender" class="mandatory">Gender</label>
         <select name="gender" value="{{ old('gender') }}" id="gender"
             class="form-control @error('gender') is-invalid @enderror" required>
-            <option value="">Select Gender</option>
-            <option value="female">Female</option>
+            <option disabled>Select Gender</option>
             <option value="male">Male</option>
+            <option value="female">Female</option>
         </select>
     </div>
     @error('gender')
@@ -251,7 +262,8 @@
 <div class="col-md-6" id="ref_phone_div">
     <div class="form-group">
         <label id="ref_phone_label">Are You interested for Coaching at ESPI ?</label>
-        <select name="coaching" class="form-control">
+        <select name="coaching" class="form-control" required>
+            <option selected disabled>Please Select</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
