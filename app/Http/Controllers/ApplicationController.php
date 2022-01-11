@@ -267,7 +267,7 @@ class ApplicationController extends Controller
                 $validated = $request->validate($request_role);
             }
 
-            $Ass->status="apply";
+            $Ass->status="Applied";
             $Ass->save();
             //Mail::to($assessment->Enquiry->email)->send(new ReConformMailToStudent($assessment->Enquiry));
             $assment=assessment::find($Ass->id)->toArray();

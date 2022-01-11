@@ -65,7 +65,7 @@
 
         <div class="col-md-6 hide_col" id="overall_band_div">
             <div class="form-group">
-                <label for="name">Overall Band</label>
+                <label for="name">Overall Score</label>
                 <input type="text" name="overall_band" id="overall_band" class="form-control">
             </div>
         </div>

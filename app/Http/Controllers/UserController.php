@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function store(AddUser $request)
     {
-        //dd($request);
+        // dd($request);
         $user=new User();
         $user->name=$request->name;
         $user->email=$request->email;
@@ -127,6 +127,7 @@ class UserController extends Controller
      */
     public function update(EditUser $request, User $user)
     {
+        dd($request);
         $user->name=$request->name;
         $user->email=$request->email;
         $user->phone=$request->phone;
