@@ -40,7 +40,7 @@ Edit User
     </div>
 </div>
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
 <script>
     var firebaseConfig = {
@@ -52,10 +52,10 @@ Edit User
         appId: "1:291781615758:web:f8ae5478fbfe9983f969df",
         measurementId: "G-T0YPSL5YYH"
     };
-      
+
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
-  
+
     function initFirebaseMessagingRegistration() {
         $('#fcm_token').attr("value", "");
             messaging
@@ -65,13 +65,13 @@ Edit User
             })
             .then(function(token) {
                 console.log(token);
-   
+
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-  
+
                 $.ajax({
                     url: '{{ route("save-token") }}',
                     type: 'POST',
@@ -93,12 +93,12 @@ Edit User
                         console.log('User Chat Token Error'+ err);
                     },
                 });
-  
+
             }).catch(function (err) {
                 console.log('User Chat Token Error'+ err);
             });
-     }  
-      
+     }
+
     messaging.onMessage(function(payload) {
         const noteTitle = payload.notification.title;
         const noteOptions = {

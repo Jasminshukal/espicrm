@@ -33,6 +33,9 @@ class UserController extends Controller
             $data = User::select('*');
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('roles', function($row){
+                        return implode(',',$row->roles->pluck('name')->toArray()) ?? "Not Set Yet";
+                    })
                     ->addColumn('status', function($row){
                         if($row->status=="1")
                         {
@@ -127,7 +130,7 @@ class UserController extends Controller
      */
     public function update(EditUser $request, User $user)
     {
-        dd($request);
+
         $user->name=$request->name;
         $user->email=$request->email;
         $user->phone=$request->phone;
@@ -142,6 +145,16 @@ class UserController extends Controller
         $user->fcm_token=$request->notification ? $request->fcm_token : '';
         $user->save();
         $user->syncRoles($request->role);
+
+        if($request->has('is_counsellor'))
+        {
+            if($request->role!=Role::where('name','counsellor')->first()->id)
+            {
+                $roles=array($request->role,Role::where('name','counsellor')->first()->id);
+                $user->syncRoles($roles);
+
+            }
+        }
 
         return redirect()->route('users.index');
     }
