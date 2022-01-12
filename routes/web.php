@@ -124,6 +124,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         dd('done');
     });
 
+    Route::get('sync_enq', function(){
+        $details = App\Models\Enquiry::where('counsellor_id',"!=",'0')->get();
+
+        foreach($details AS $item)
+        {
+            $AssignCounsellor=App\Models\AssignCounsellor::firstOrNew(['counsellors_id'=>$item->counsellor_id,'enquiry_id'=>$item->id]);
+            $AssignCounsellor->added_by=$item->added_by_id;
+            $AssignCounsellor->save();
+        }
+        dd("updated");
+    });
+
 });
 
 
