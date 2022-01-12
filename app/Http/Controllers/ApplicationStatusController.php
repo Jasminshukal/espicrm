@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ApplicationStatus;
 use Illuminate\Http\Request;
+use DataTables;
+use Illuminate\Support\Facades\Redirect;
 
 class ApplicationStatusController extends Controller
 {
@@ -12,9 +14,23 @@ class ApplicationStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = ApplicationStatus::select('*')->with('Country');
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                            return "<a class='btn btn-info' onclick='edit_status(".$row->id.");'>Edit</a> <a class='btn btn-danger' onclick='delet_status(".$row->id.")'>Delete</a>";
+                    })
+                    ->addColumn('date', function($model) {
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
+                    })
+                    ->rawColumns(['action','processor_id'])
+                    ->make(true);
+        }
+        return view('ApplicationStatus.index');
     }
 
     /**
@@ -35,7 +51,16 @@ class ApplicationStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'status' => 'required',
+            'countries_id' => 'required',
+        ]);
+        $applicationStatus= new ApplicationStatus();
+        $applicationStatus->company_id=\Auth::user()->company_id;
+        $applicationStatus->status=$request->status;
+        $applicationStatus->countries_id=$request->countries_id;
+        $applicationStatus->save();
+        return redirect()->back()->withSuccess('Application Status.');
     }
 
     /**
@@ -44,9 +69,9 @@ class ApplicationStatusController extends Controller
      * @param  \App\Models\ApplicationStatus  $applicationStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(ApplicationStatus $applicationStatus)
+    public function show($id)
     {
-        //
+        return ApplicationStatus::find($id);
     }
 
     /**
@@ -67,9 +92,18 @@ class ApplicationStatusController extends Controller
      * @param  \App\Models\ApplicationStatus  $applicationStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ApplicationStatus $applicationStatus)
+    public function update(Request $request,$applicationStatus)
     {
-        //
+        $request->validate([
+            'status' => 'required',
+            'countries_id' => 'required',
+        ]);
+        $applicationStatus=ApplicationStatus::find($applicationStatus);
+        $applicationStatus->company_id=\Auth::user()->company_id;
+        $applicationStatus->status=$request->status;
+        $applicationStatus->countries_id=$request->countries_id;
+        $applicationStatus->save();
+        return redirect()->back()->withInfo('Updated Aplication Status.');
     }
 
     /**
@@ -78,8 +112,9 @@ class ApplicationStatusController extends Controller
      * @param  \App\Models\ApplicationStatus  $applicationStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ApplicationStatus $applicationStatus)
+    public function destroy($applicationStatus)
     {
-        //
+        ApplicationStatus::find($applicationStatus)->delete();
+        return json_encode(['active'=>1]);
     }
 }

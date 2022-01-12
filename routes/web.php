@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ApplicationStatusController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnquireController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\FrontendController;
+use App\Models\ApplicationStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +125,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         dispatch(new App\Jobs\WelcomeEmailJob($details));
         dd('done');
     });
+
+    Route::resource('ApplicationStatus',ApplicationStatusController::class);
 
 });
 

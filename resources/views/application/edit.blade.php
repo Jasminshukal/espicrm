@@ -58,11 +58,11 @@ Edit Application
                                     <label for="status">Status</label>
                                     <select name="status" id="" class="form-control">
                                         @foreach ($status as $item)
-                                        <option value="{{ $item }}"
+                                        <option value="{{ $item->id }}"
                                         @if ($Application->status==$item)
                                         selected
                                         @endif
-                                        >{{ $item }}</option>
+                                        >{{ $item->status }}</option>
                                         @endforeach
                                     </select>
                                 </div>

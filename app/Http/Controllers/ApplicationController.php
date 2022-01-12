@@ -13,6 +13,7 @@ use App\Models\CourseRequirement;
 use App\Models\Enquiry;
 use App\Models\Intact;
 use App\Models\University;
+use App\Models\ApplicationStatus;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Mail;
@@ -139,63 +140,9 @@ class ApplicationController extends Controller
         $university=University::find($Application->university_id);
         $intact=Intact::find($Application->intact_month_id);
         $country=$university->Country->name;
-        $status=array('Applied');
-        if(strtolower($country)=="canada")
-        {
-            array_push($status,'Process');
-            array_push($status,'IELTS & Academic');
-            array_push($status,'Process In University');
-            array_push($status,'Receive Offer');
-            array_push($status,'Medical');
-            array_push($status,'Open GIC A/C');
-            array_push($status,'Fees Payment');
-            array_push($status,'Visa Documents');
-            array_push($status,'Visa Application');
-        }
-        elseif(strtolower($country)=="australia")
-        {
-            array_push($status,'IELTS + Academic');
-            array_push($status,'Application For Admission');
-            array_push($status,'Offer Letter');
-            array_push($status,'GTE Preparation');
-            array_push($status,'Interview Preparation');
-            array_push($status,'Finance');
-            array_push($status,'Fees Payment');
-            array_push($status,'Medical');
-            array_push($status,'Visa Lodgement Online Application');
-            array_push($status,'Get Visa Stamping Or E-Visa');
-        }
-        elseif(strtolower($country)=="usa")
-        {
-            array_push($status,'Admission And I-20');
-            array_push($status,'Visa Fees');
-            array_push($status,'Service Fees');
-            array_push($status,'Interview Appointment');
-            array_push($status,'DS 160');
-            array_push($status,'Interview Preparation');
-            array_push($status,'Tuition Fees Payment');
-        }
-        elseif(strtolower($country)=="uk")
-        {
-            array_push($status,'Assessment For Course & University');
-            array_push($status,'Application Process-University');
-            array_push($status,'Interview Preparation');
-            array_push($status,'Offer Letter');
-            array_push($status,'Conditional Offer Letter');
-            array_push($status,'Interview');
-            array_push($status,'Unconditional Offer Letter');
-            array_push($status,'Fees Payment');
-            array_push($status,'Apply For Medical');
-            array_push($status,'Fund Show');
-            array_push($status,'Interview Preparation For CAS');
-            array_push($status,'Submit Documents For CAS');
-            array_push($status,'Cas Received');
-            array_push($status,'Visa File Submission');
-        }
-        else
-        {
-            array_push($status,'Rejected');
-        }
+        // dd($university->country_id);
+
+        $status=ApplicationStatus::where('countries_id',$university->country_id)->get();
         $documents=ApplicationDocument::where('application_id',$Application->id)->get();
         $processor=\App\Models\User::role('Processor')->get();
         return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor'));
