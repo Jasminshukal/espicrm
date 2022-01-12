@@ -22,6 +22,7 @@ use App\Models\University;
 use App\Models\Course;
 use App\Models\Intact;
 use App\Models\assessment;
+use App\Models\AssignCounsellor;
 
 class EnquireController extends Controller
 {
@@ -45,14 +46,19 @@ class EnquireController extends Controller
 
             if(in_array("counsellor",\Auth::user()->roles->pluck('name')->toArray()))
             {
-                $data->where('counsellor_id',\Auth::user()->id);
+                $data->whereIn('id',AssignCounsellor::where('counsellors_id',\Auth::user()->id)->pluck('enquiry_id'));
             }
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('admin/inquiry/FollowUp/'.$user->id);
                     })
                     ->addColumn('counsellor_name', function($user) {
-                        return $user->Counsellor->name ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
+                        $user_names="";
+                        foreach($user->Counsellor as $users)
+                        {
+                            $user_names.='<a href="#" class="badge badge-info">'.$users->Detail->name.'</a> ';
+                        }
+                        return $user_names ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
                     })
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {
@@ -125,7 +131,6 @@ class EnquireController extends Controller
      */
     public function store(AddEnquireRequest $request)
     {
-
         $validated = $request->validated();
         $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
         $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
@@ -142,9 +147,14 @@ class EnquireController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
         $validated["alternate"]=$request->alternate;
+        unset($validated['counsellor_id']);
 
         $enq=Enquiry::create($validated);
-        //$enq=Enquiry::find(23);
+        $assigncounsellor=new AssignCounsellor();
+        $assigncounsellor->enquiry_id=$enq->id;
+        $assigncounsellor->counsellors_id=$request->counsellor_id;
+        $assigncounsellor->added_by=\Auth::user()->id;
+        $assigncounsellor->save();
         $admin=get_user(1);
 
         $counsellor=get_user($request->counsellor_id);
@@ -357,9 +367,26 @@ class EnquireController extends Controller
 
     public function SendEnquire($Enq,Request $request)
     {
-        $Enquiry=Enquiry::find($Enq);
-        $Enquiry->counsellor_id=$request->counsellor_id;
-        $Enquiry->save();
-        return redirect(route('Enquires.index'))->withSuccess('Move Send Enquiry SuccessFully.');
+        if(\Auth::user()->id!='1')
+        {
+            AssignCounsellor::where('enquiry_id',$Enq)->where('counsellors_id',\Auth::user()->id)->delete();
+        }
+
+        $AssignCounsellor=AssignCounsellor::firstOrNew(['counsellors_id'=>$request->counsellor_id,'enquiry_id'=>$Enq]);
+        $AssignCounsellor->added_by=\Auth::user()->id;
+        $AssignCounsellor->save();
+
+        return redirect(route('Enquires.index'))->withSuccess('Move Enquiry.');
+    }
+
+    public function CopyEnquire($Enq,Request $request)
+    {
+        // $Enquiry=Enquiry::find($Enq);
+        // $Enquiry->counsellor_id=$request->counsellor_id;
+        // $Enquiry->save();
+        $AssignCounsellor=AssignCounsellor::firstOrNew(['counsellors_id'=>$request->counsellor_id,'enquiry_id'=>$Enq]);
+        $AssignCounsellor->added_by=\Auth::user()->id;
+        $AssignCounsellor->save();
+        return redirect(route('Enquires.index'))->withSuccess('Copy Enquiry.');
     }
 }

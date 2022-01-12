@@ -67,6 +67,25 @@
                 </div>
             </div>
         </form>
+        <hr>
+        <h3 class="label label-info">Copy An Enquiry</h3>
+        <form method="POST" action="{{ url('admin/copy-enquire') }}/@{{ id }}" id="copy-enquiry-@{{ id }}">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control" name="counsellor_id">
+                            @foreach (my_team_member() as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-info">Submit</button>
+                </div>
+            </div>
+        </form>
     </script>
 
 

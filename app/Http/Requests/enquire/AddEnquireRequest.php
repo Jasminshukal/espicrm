@@ -50,7 +50,7 @@ class AddEnquireRequest extends FormRequest
             'postal_code' => 'required|max:6|min:6',
             'address' => 'required',
             'gender' => 'required|'.Rule::in(['male', 'female']),
-            'counsellor_id' => 'required',
+
 
         ];
     }

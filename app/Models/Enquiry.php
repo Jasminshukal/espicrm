@@ -63,7 +63,7 @@ class Enquiry extends Model
 
     public function Counsellor()
     {
-        return $this->belongsTo(User::class,'counsellor_id');
+        return $this->hasMany(AssignCounsellor::class);
     }
 
     public function Details()
