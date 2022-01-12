@@ -62,7 +62,10 @@ class ApplicationController extends Controller
                             $btn = '<div><a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm mb-1">Change Status</a>';
                         }
                         // $btn .= ' <a href="'.route('Application.edit',$row->id).'" class="edit btn btn-dark btn-sm mb-1">Add Follow Up</a></div>';
-                           $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->Enquiry->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
+                        if(\Auth::user()->roles->pluck('name')->first()=="counsellor" || \Auth::user()->roles->pluck('name')->first()=="super-admin")
+                        {
+                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->Enquiry->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
+                        }
                             return $btn;
                     })
                     ->addColumn('date', function($model) {
