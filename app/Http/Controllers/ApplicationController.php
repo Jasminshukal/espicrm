@@ -36,10 +36,17 @@ class ApplicationController extends Controller
     {
         if ($request->ajax()) {
             $data = Application::select('*')->with('University','Course','Enquiry','University.country');
+
             if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
                 $data->where('added_by_id',\Auth::user()->id);
             }
+
+            if(\Auth::user()->roles->pluck('name')->first()=="Processor")
+            {
+                $data->where('processor_id',\Auth::user()->id);
+            }
+
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('admin/inquiry/FollowUp/'.$user->enquiry_id);
@@ -49,8 +56,12 @@ class ApplicationController extends Controller
                     })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                           $btn = '<div><a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm mb-1">Change Status</a>';
-                        //    $btn .= ' <a href="'.route('Application.edit',$row->id).'" class="edit btn btn-dark btn-sm mb-1">Add Follow Up</a></div>';
+                        $btn="";
+                        if(\Auth::user()->roles->pluck('name')->first()=="Processor" || \Auth::user()->roles->pluck('name')->first()=="super-admin")
+                        {
+                            $btn = '<div><a href="'.route('Application.edit',$row->id).'" class="edit btn btn-primary btn-sm mb-1">Change Status</a>';
+                        }
+                        // $btn .= ' <a href="'.route('Application.edit',$row->id).'" class="edit btn btn-dark btn-sm mb-1">Add Follow Up</a></div>';
                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->Enquiry->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
                             return $btn;
                     })

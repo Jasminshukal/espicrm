@@ -13,7 +13,11 @@
                 </tr>
                 <tr>
                     <th>Counsellor</th>
-                    <td>{{ $enquiry->Counsellor->name ?? 'Not Set Yet' }} </td>
+                    <td>
+                    @foreach ($enquiry->Counsellor as $item)
+                        <span class="badge badge-primary">{{$item->Detail->name}}</span>
+                    @endforeach
+                    </td>
                 </tr>
                 <tr>
                     <th>DOB</th>
