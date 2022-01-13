@@ -14,7 +14,7 @@
     </nav>
 
     <div id="compact_submenuSidebar" class="submenu-sidebar">
-
+        @canany(['view-application_status','view-assets'])
         <div class="submenu show" id="more">
             <ul class="submenu-list" data-parent-element="#more">
                 @can(["view-application_status"])
@@ -29,8 +29,11 @@
                 @endcan
             </ul>
         </div>
+        @endcan
+
+        @canany(['view-user','view-role','view-university','view-course'])
         <div class="submenu show" id="setting">
-            <ul class="submenu-list" data-parent-element="#more">
+            <ul class="submenu-list" data-parent-element="#setting">
                 @can(["view-user"])
                     <li>
                         <a href="{{ route('users.index') }}"> User </a>
@@ -53,6 +56,7 @@
                 @endcan
             </ul>
         </div>
+        @endcan
         <div class="submenu" id="dashboard">
             <ul class="submenu-list" data-parent-element="#dashboard">
                 <li class="active">

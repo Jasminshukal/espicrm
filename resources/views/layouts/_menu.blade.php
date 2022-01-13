@@ -157,7 +157,7 @@
 @endcan --}}
 
 
-
+@canany(['view-user','view-role','view-university','view-course'])
 <li class="menu">
     <a href="#setting" data-active="false" class="menu-toggle">
         <div class="base-menu">
@@ -169,7 +169,9 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
+@endcan
 
+@canany(['view-application_status','view-assets'])
 <li class="menu">
     <a href="#more" data-active="false" class="menu-toggle">
         <div class="base-menu">
@@ -181,6 +183,7 @@
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 </li>
+@endcan
 
 {{-- <li class="menu @if(\Request::route()->getName()=='asset.index') active @endif menu-single">
     <a href="{{ route('Asset.index') }}" @if(\Request::route()->getName()=='asset.index') data-active="true" @else data-active="false" @endif class="menu-toggle">
