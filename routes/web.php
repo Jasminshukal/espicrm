@@ -92,6 +92,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Enquires', EnquireController::class);
     Route::post('send-enquire/{Enquire}',[EnquireController::class,'SendEnquire'])->name('Enquires.send');
     Route::post('copy-enquire/{Enquire}',[EnquireController::class,'CopyEnquire'])->name('Enquires.copy');
+    Route::get('Coaching',[EnquireController::class,'Coaching'])->name('Enquires.Coaching');
+    Route::get('Failed',[EnquireController::class,'Failed'])->name('Enquires.Failed');
+    Route::get('ChangeStatus/{Enquire}/{Status}',[EnquireController::class,'ChangeStatus'])->name('Enquires.ChangeStatus');
+
     Route::resource('Application', ApplicationController::class);
     Route::get('Application/Add/{Enquiry}', [ApplicationController::class,'create'])->name('Application.Add');
     Route::resource('University', UniversityController::class);

@@ -23,6 +23,7 @@ use App\Models\Course;
 use App\Models\Intact;
 use App\Models\assessment;
 use App\Models\AssignCounsellor;
+use Illuminate\Auth\Events\Failed;
 
 class EnquireController extends Controller
 {
@@ -42,7 +43,7 @@ class EnquireController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor');
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor')->where('status','!=','Coaching')->where('status','!=','Failed');
 
             if(in_array("counsellor",\Auth::user()->roles->pluck('name')->toArray()))
             {
@@ -88,6 +89,7 @@ class EnquireController extends Controller
                                $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm mb-1">Add Detail Enquiry</a>';
 
                            }
+                           $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Failed']).'" class="btn btn-danger btn-sm mb-1">Failed Enquiry</a>';
                            return $btn;
                     })
                     ->rawColumns(['action','enq','counsellor_name'])
@@ -147,6 +149,10 @@ class EnquireController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
         $validated["alternate"]=$request->alternate;
+        if($request->coaching=='yes')
+        {
+            $validated["status"]='coaching';
+        }
         unset($validated['counsellor_id']);
 
         $enq=Enquiry::create($validated);
@@ -388,5 +394,100 @@ class EnquireController extends Controller
         $AssignCounsellor->added_by=\Auth::user()->id;
         $AssignCounsellor->save();
         return redirect(route('Enquires.index'))->withSuccess('Copy Enquiry.');
+    }
+
+    public function Coaching(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor')->where('status','Coaching');
+
+            return Datatables::of($data)
+                    ->addColumn('details_url', function($user) {
+                        return url('admin/inquiry/FollowUp/'.$user->id);
+                    })
+                    ->addColumn('counsellor_name', function($user) {
+                        $user_names="";
+                        foreach($user->Counsellor as $users)
+                        {
+                            $user_names.='<a href="#" class="badge badge-info">'.$users->Detail->name.'</a> ';
+                        }
+                        return $user_names ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
+                    })
+                    ->addIndexColumn()
+                    ->addColumn('date', function($model) {
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
+                    })
+                    ->addColumn('enq', function($row){
+                        if($data=$this->existdetail($row->id))
+                           {
+                            return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>';
+                           }
+                           else
+                           {
+                            return $row->name;
+                           }
+                    })
+                    ->addColumn('action', function($row){
+                           $btn = "";
+                           $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Failed']).'" class="btn btn-danger btn-sm mb-1">Failed Enquiry</a>';
+                           return $btn;
+                    })
+                    ->rawColumns(['action','enq','counsellor_name'])
+                    ->make(true);
+        }
+        return view('enquiry.Coaching');
+    }
+
+    public function Failed(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor')->where('status','Failed');
+
+            return Datatables::of($data)
+                    ->addColumn('details_url', function($user) {
+                        return url('admin/inquiry/FollowUp/'.$user->id);
+                    })
+                    ->addColumn('counsellor_name', function($user) {
+                        $user_names="";
+                        foreach($user->Counsellor as $users)
+                        {
+                            $user_names.='<a href="#" class="badge badge-info">'.$users->Detail->name.'</a> ';
+                        }
+                        return $user_names ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
+                    })
+                    ->addIndexColumn()
+                    ->addColumn('date', function($model) {
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
+                    })
+                    ->addColumn('enq', function($row){
+                        if($data=$this->existdetail($row->id))
+                           {
+                            return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>';
+                           }
+                           else
+                           {
+                            return $row->name;
+                           }
+                    })
+                    ->addColumn('action', function($row){
+                        $btn = "";
+                        $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Pending']).'" class="btn btn-success btn-sm mb-1">Activate Enquiry</a>';
+                        // $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm mb-1">Activate Enquiry</a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action','enq','counsellor_name'])
+                    ->make(true);
+        }
+        return view('enquiry.Failed');
+    }
+
+    public function ChangeStatus($id,$status)
+    {
+        $enquiri=Enquiry::find($id);
+        $enquiri->status=$status;
+        $enquiri->save();
+        return redirect()->back()->withInfo("Updated Status Successfully.");
     }
 }
