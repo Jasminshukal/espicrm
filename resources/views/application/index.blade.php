@@ -59,10 +59,10 @@
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
                 { data: 'university.country.name', name: 'university.country.name' , orderable: false, searchable: false },
-                {data: 'status', name: 'status'},
                 {data: 'date', name: 'date'},
                 {data: 'processor_id', name: 'processor_id'},
                 {data: 'associated_with', name: 'associated_with'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -202,10 +202,10 @@ Application
                 <th>University</th>
                 <th>Course</th>
                 <th>Country</th>
-                <th>Status</th>
                 <th>Date</th>
                 <th>Processor</th>
                 <th>Associate</th>
+                <th>Status</th>
                 <th width="200px">Action</th>
             </tr>
         </thead>

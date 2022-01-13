@@ -7,7 +7,7 @@
                <option @if($last->last_education == "10th") selected @endif value="10th">10th</option>
                <option @if($last->last_education == "diploma") selected @endif value="diploma">Diploma</option>
                <option @if($last->last_education == "12th") selected @endif value="12th">12th</option>
-               <option @if($last->last_education == "graduate") selected @endif value="graduate">Graduate</option>
+               <option @if($last->last_education == "graduate") selected @endif value="graduate">Bachelor</option>
                <option @if($last->last_education == "master") selected @endif value="master">Master</option>
 
            </select>
@@ -170,7 +170,7 @@
 
 <div class="education" id="degree_detail" style="display: none;">
     <div class="text-center">
-        <strong style="font-size: 35px;">Graduate Details</strong>
+        <strong style="font-size: 35px;">Bachelor Details</strong>
     </div>
     <div class="row">
         <div class="col-md-6">

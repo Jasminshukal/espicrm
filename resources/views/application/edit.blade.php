@@ -58,8 +58,8 @@ Edit Application
                                     <label for="status">Status</label>
                                     <select name="status" id="" class="form-control">
                                         @foreach ($status as $item)
-                                        <option value="{{ $item->id }}"
-                                        @if ($Application->status==$item)
+                                        <option value="{{ $item->status }}"
+                                        @if ($Application->status==$item->status)
                                         selected
                                         @endif
                                         >{{ $item->status }}</option>
@@ -85,7 +85,7 @@ Edit Application
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">Associated</label>
+                                    <label for="status">Forward To</label>
                                     <input type="text" name="associated_with" id="" class="form-control" value="{{ $Application->associated_with }}" required>
                                 </div>
                             </div>
