@@ -15,7 +15,7 @@
 
     <div id="compact_submenuSidebar" class="submenu-sidebar">
         @canany(['view-application_status','view-assets'])
-        <div class="submenu show" id="more">
+        <div class="submenu" id="more">
             <ul class="submenu-list" data-parent-element="#more">
                 @can(["view-application_status"])
                 <li>
@@ -32,7 +32,7 @@
         @endcan
 
         @canany(['view-user','view-role','view-university','view-course'])
-        <div class="submenu show" id="setting">
+        <div class="submenu" id="setting">
             <ul class="submenu-list" data-parent-element="#setting">
                 @can(["view-user"])
                     <li>

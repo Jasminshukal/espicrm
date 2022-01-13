@@ -430,6 +430,7 @@ class EnquireController extends Controller
                     })
                     ->addColumn('action', function($row){
                            $btn = "";
+                           $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
                            $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Failed']).'" class="btn btn-danger btn-sm mb-1">Failed Enquiry</a>';
                            return $btn;
                     })
