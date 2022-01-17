@@ -1,6 +1,7 @@
 @extends('layouts.theam')
 
 @section('css')
+<link href="{{ asset('assets/css/elements/tooltip.css') }}" rel="stylesheet" type="text/css" />
 <style>
     .bg-gray,.bg-gray table{
         background: #cccccc;
@@ -10,6 +11,8 @@
 
 
 @section('js')
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -121,6 +124,11 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
+                $('.bs-tooltip').tooltip();
+                $('.danger-lead').tooltip({
+                    template: '<div class="tooltip tooltip-danger" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>',
+                    title: "Primary"
+                });
                 this.api().columns().every(function () {
                     var column = this;
                     var input = document.createElement("input");
@@ -305,7 +313,7 @@ Enquires index
                     <th>Preferred Country</th>
                     <th>Status</th>
                     <th>Date</th>
-                    <th width="100px">Action</th>
+                    <th width="200px">Action</th>
                 </tr>
             </thead>
             <tbody>

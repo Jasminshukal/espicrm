@@ -28,12 +28,36 @@ class CourseController extends Controller
             $data = Course::orderBy("id","desc")->select('*')->with('University','University.Country')->orderBy('id', 'DESC');
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('University', function($row){
+                        if($row->University)
+                        {
+                            return $row->University->name;
+                        }
+                        else
+                        {
+                            return "Not Set Yet";
+                        }
+                    })
+                    ->addColumn('country', function($row){
+                        if($row->University)
+                        {
+                            return $row->University->country->name;
+                        }
+                        else
+                        {
+                            return "Not Set Yet";
+                        }
+                    })
                     ->addColumn('action', function($row){
                         $btn = ' <a href="'.route('Course.edit',$row->id).'" class="mb-2 edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
-                        $btn.= ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-success btn-sm" data-row="'.route('Course.edit',$row->id).'">Assessment</a>';
+                        if($row->University)
+                        {
+                            $btn.= ' <a href="'.route('Course.AddAssessment',$row->id).'" class="edit btn btn-success btn-sm" data-row="'.route('Course.AddAssessment',$row->id).'">Assessment</a>';
+                        }
+
                             return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','University'])
                     ->make(true);
         }
         $uni=0;
@@ -379,7 +403,10 @@ class CourseController extends Controller
 
     public function ApplyAssessment($course_id,Request $request)
     {
-
-        return view('course.AddAssessment',compact('course_id'));
+        $Course=Course::find($course_id);
+        $university=$Course->University;
+        $enquiry=\App\Models\Enquiry::where('status','!=','Failed')->get();
+        $intake=\App\Models\Intact::groupBy('month')->orderBy('id', 'asc')->get();
+        return view('course.AddAssessment',compact('course_id','Course','enquiry','intake'));
     }
 }

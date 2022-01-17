@@ -7,8 +7,8 @@
     <title>{{ config('app.name'); }} | @yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('logo.svg') }}"/>
     <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
+    <meta name="author" content="Jasmin shukla">
     {{-- <script src="{{ asset('assets/js/loader.js') }}"></script> --}}
-
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -152,7 +152,7 @@
                             </div>
                         </div>
                         <div class="dropdown-item">
-                            <a href="user_profile.html">
+                            <a href="user_profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span> Profile</span>
                             </a>
                         </div>
@@ -213,6 +213,9 @@
                     <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">ASC</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
+                    <a href="javascript:void(0);" class="btn btn-primary mb-3 rounded bs-tooltip" title="Tooltip using ANCHOR tag">
+                        Link
+                    </a>
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
                 </div>
             </div>
@@ -231,16 +234,19 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
-
-    @yield('js')
-
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script>
         $(document).ready(function() {
             App.init();
         });
     </script>
+    @yield('js')
+
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ asset('plugins/highlight/highlight.pack.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <script src="{{ asset('assets/js/elements/tooltip.js') }}"></script>
+    <script src="{{ asset('assets/js/scrollspyNav.js') }}"></script>
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     {{-- <script src="{{ asset('plugins/apex/apexcharts.min.js') }}"></script> --}}

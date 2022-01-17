@@ -1,12 +1,9 @@
 <div class="col-md-12">
-
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
     </div>
-
 </div>
-
 
 <div class="col-md-6">
     <div class="form-group">

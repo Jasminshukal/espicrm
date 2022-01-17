@@ -1,4 +1,7 @@
 <div class="p-2">
+    <div class="text-right">
+        <a href='{{ route('Enquires.edit',['Enquire'=>$enquiry]) }}' class='btn btn-info' id='NAME'>Edit Enquiry</a>
+    </div>
     <h1>Detail</h1>
     <div class="table-responsive">
         <table class="table table-bordered mb-4">

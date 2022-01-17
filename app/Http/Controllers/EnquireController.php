@@ -79,17 +79,18 @@ class EnquireController extends Controller
                            $btn = "";
                            if($data=$this->existdetail($row->id))
                            {
-                            $btn .='<a href="'.route('EnquiryDetail.Show',$row->id).'" class="assessment btn btn-success btn-sm mb-2">Show Detail Enquiry</a> ';
-                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning btn-sm mb-2">Add Assessment</a>';
-                            // $btn .='<a href="'.route('detail.nav',['Enquire'=>$row->id,'Active'=>'8']).'" class="btn btn-success btn-sm mb-1">List Follow Up</a>';
-                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
+
+                            $btn .='<a href="'.route('EnquiryDetail.Show',$row->id).'" class="assessment btn btn-success rounded-circle mb-2 mr-1 bs-tooltip" title="Show Enquiry Detail"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>';
+                            $btn .='<a href="'.route('Assessment.Add',$row->id).'" class="assessment btn btn-warning rounded-circle mb-2 mr-1 bs-tooltip" title="Add Assessment"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></a>';
+                            // $btn .='<a href="'.route('detail.nav',['Enquire'=>$row->id,'Active'=>'8']).'" class="btn btn-success rounded-circle mb-1">List Follow Up</a>';
+                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->id.');" class="btn btn-dark rounded-circle mb-2 mr-1 show_follow_up bs-tooltip" title="Add Follow Up"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-merge"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg></a>';
                            }
                            else
                            {
-                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info btn-sm mb-1">Add Detail Enquiry</a>';
+                               $btn .='<a href="'.route('EnquiryDetail.add',$row->id).'" class="assessment btn btn-info rounded-circle mb-2 mr-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg></a>';
 
                            }
-                           $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Failed']).'" class="btn btn-danger btn-sm mb-1">Failed Enquiry</a>';
+                           $btn .='<a href="'.route('Enquires.ChangeStatus',['Enquire'=>$row->id,'Status'=>'Failed']).'" class="btn btn-danger rounded-circle mb-2 mr-1 danger-lead" title="Failed Enquiry"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-slash"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg></a>';
                            return $btn;
                     })
                     ->rawColumns(['action','enq','counsellor_name'])
@@ -249,17 +250,26 @@ class EnquireController extends Controller
         $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
         $validated['company_id']=\Auth::user()->company_id;
         $validated['dob']=date("Y-m-d",strtotime($request->dob));
-        $validated['added_by_id'] = \Auth::user()->id;
         $validated["reference_source"]=$request->reference_source;
         $validated["reference_name"]=$request->reference_name;
         $validated["reference_phone"]=$request->reference_phone;
         $validated["reference_code"]=$request->reference_code;
+        $validated["passport_no"]=$request->passport_number;
         $validated["remarks"]=$request->remarks;
         $validated["preferred_country"]=$request->preferred_country;
+        $validated["first_name"]=$request->first_name;
+        $validated["middle_name"]=$request->middle_name;
+        $validated["last_name"]=$request->last_name;
+        $validated["alternate"]=$request->alternate;
+        if($request->coaching=='yes')
+        {
+            $validated["status"]='coaching';
+        }
+        unset($validated['coaching']);
         $enquiry=Enquiry::where("id",$enquiry)->update($validated);
         $enq=Enquiry::find($enquiry);
 
-        return view('success',compact('enq'));
+        return redirect()->route('Enquires.index')->withInfo("SuccessFully Updated Enquiry.");
     }
 
     /**
