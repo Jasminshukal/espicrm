@@ -45,8 +45,6 @@
                 { data: 'enquiry.name', name: 'Enquiry.name',orderable: true,searchable: false},
                 { data: 'enquiry.phone', name: 'university.country.name',orderable: false,searchable: false},
                 { data: 'enquiry.email', name: 'university.name', orderable: false,searchable: false},
-                { data: 'course.name', name: 'Course.name' , orderable: false,searchable: false},
-                { data: 'date', name: 'status' , orderable: true ,searchable: false},
                 { data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
@@ -122,8 +120,6 @@ Application
                 <th>Student Name</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th width="200px">Course</th>
-                <th width="200px">Date</th>
                 <th width="100px">Action</th>
 
             </tr>

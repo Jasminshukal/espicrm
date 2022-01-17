@@ -101,6 +101,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('University', UniversityController::class);
 
     Route::resource('Course', CourseController::class);
+    Route::get("Course/AddAssessment/{course?}",[CourseController::class,'ApplyAssessment'])->name('Course.AddAssessment');
     Route::get("courseDetail/edit/{course?}",[CourseController::class,'CourseDetail_edit']);
     Route::get('CourseDetail/{University?}',[CourseController::class,'CourseDetail'])->name("course.detail");
     Route::get('course/import/{University?}',[CourseController::class,'CourseImport'])->name("Course.import");

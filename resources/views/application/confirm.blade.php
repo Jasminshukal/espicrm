@@ -46,7 +46,6 @@ Conform Application
                     else {
                         $name_coundilar.=$item->Detail->name.",";
                     }
-
                 @endphp
             @endforeach
             {!! bootstrap_input_6('Counsellor','Counsellor',$name_coundilar ?? "") !!}
