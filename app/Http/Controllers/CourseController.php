@@ -29,7 +29,8 @@ class CourseController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $btn = ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
+                        $btn = ' <a href="'.route('Course.edit',$row->id).'" class="mb-2 edit btn btn-primary btn-sm" data-row="'.route('Course.edit',$row->id).'">Edit</a>';
+                        $btn.= ' <a href="'.route('Course.edit',$row->id).'" class="edit btn btn-success btn-sm" data-row="'.route('Course.edit',$row->id).'">Assessment</a>';
                             return $btn;
                     })
                     ->rawColumns(['action'])
@@ -374,5 +375,11 @@ class CourseController extends Controller
     public function getCourseDetails($course)
     {
         return Course::find($course);
+    }
+
+    public function ApplyAssessment($course_id,Request $request)
+    {
+
+        return view('course.AddAssessment',compact('course_id'));
     }
 }

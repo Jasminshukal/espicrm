@@ -34,6 +34,26 @@ Conform Application
 
             {!! bootstrap_input_6('email','Student Email',$Ass->Enquiry->email) !!}
 
+            @php
+                $name_coundilar="";
+            @endphp
+            @foreach ($Ass->Enquiry->Counsellor as $item)
+                @php
+                    if ($loop->last)
+                    {
+                        $name_coundilar.=$item->Detail->name;
+                    }
+                    else {
+                        $name_coundilar.=$item->Detail->name.",";
+                    }
+
+                @endphp
+            @endforeach
+            {!! bootstrap_input_6('Counsellor','Counsellor',$name_coundilar ?? "") !!}
+
+
+            {!! bootstrap_input_6('Country','Country',$Ass->University->Country->name) !!}
+
             {!! bootstrap_input_6('phone','Student Phone',$Ass->Enquiry->phone) !!}
 
             {!! bootstrap_input_6('First_language','Student First Language',$Ass->Enquiry->first_language) !!}
