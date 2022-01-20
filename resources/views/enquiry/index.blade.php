@@ -140,14 +140,14 @@ $(document).ready(function() {
                 });
             },
             fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                console.log(aData.status);
-                if (aData.status == "Pending") {
-                    $('td', nRow).css('background-color', '#fab1a0');
-                } else if (aData.status == "Assign") {
-                    $('td', nRow).css('background-color', '#74b9ff');
-                }else if (aData.status == "Applied") {
-                    $('td', nRow).css('background-color', '#fd79a8');
-                }
+                // console.log(aData.status);
+                // if (aData.status == "Pending") {
+                //     $('td', nRow).css('background-color', '#fab1a0');
+                // } else if (aData.status == "Assign") {
+                //     $('td', nRow).css('background-color', '#74b9ff');
+                // }else if (aData.status == "Applied") {
+                //     $('td', nRow).css('background-color', '#fd79a8');
+                // }
             }
         });
 
