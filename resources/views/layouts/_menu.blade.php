@@ -25,7 +25,7 @@
 </li>
 @endcan
 
-@can(["view-enquiry"])
+@can(["coaching-lead"])
 <li class="menu @if(\Request::route()->getName()=='Enquires.Coaching') active @endif menu-single">
     <a href="{{ route('Enquires.Coaching') }}" @if(\Request::route()->getName()=='Enquires.Coaching') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">
@@ -39,7 +39,7 @@
 </li>
 @endcan
 
-@can(["view-enquiry"])
+@can(["coaching-lead"])
 <li class="menu @if(\Request::route()->getName()=='Enquires.Failed') active @endif menu-single">
     <a href="{{ route('Enquires.Failed') }}" @if(\Request::route()->getName()=='Enquires.Failed') data-active="true" @else data-active="false" @endif class="menu-toggle">
         <div class="base-menu">

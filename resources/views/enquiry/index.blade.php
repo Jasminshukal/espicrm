@@ -93,8 +93,8 @@
 
 
 <script type="text/javascript">
-
-    $(function () {
+$(document).ready(function() {
+    // $(function () {
 
         var template = Handlebars.compile($("#details-template").html());
 
@@ -138,6 +138,16 @@
                         column.search(val ? val : '', true, false).draw();
                     });
                 });
+            },
+            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                console.log(aData.status);
+                if (aData.status == "Pending") {
+                    $('td', nRow).css('background-color', '#fab1a0');
+                } else if (aData.status == "Assign") {
+                    $('td', nRow).css('background-color', '#74b9ff');
+                }else if (aData.status == "Applied") {
+                    $('td', nRow).css('background-color', '#fd79a8');
+                }
             }
         });
 
@@ -182,6 +192,17 @@
             })
         }
         });
+
+        $('a.toggle-vis').on( 'click', function (e) {
+            //e.preventDefault();
+            var table = $('.data-table').DataTable();
+
+            // Get the column API object
+            var column = table.column( $(this).attr('data-column') );
+
+            // Toggle the visibility
+            column.visible( ! column.visible() );
+        } );
 
 </script>
 
@@ -299,6 +320,17 @@ Enquires index
                 </div>
             </form>
         </div>
+        <div style="display: none;">
+            <br>
+            <div class="col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center">
+                <div class="dt-buttons">
+                    <a class="dt-button btn btn-primary btn-sm toggle-vis mb-1" data-column="1" tabindex="0" aria-controls="show-hide-col"><span>Enquiry Id</span></a>
+                    <a class="dt-button btn btn-primary btn-sm toggle-vis mb-1" data-column="2" aria-controls="show-hide-col"><span>Name</span></a>
+                    <a class="dt-button btn btn-primary btn-sm toggle-vis mb-1" data-column="3" aria-controls="show-hide-col"><span>Email</span></a>
+                    <a class="dt-button btn btn-primary btn-sm toggle-vis mb-1" data-column="4" tabindex="0" aria-controls="show-hide-col"><span>Phone</span></a>
+                    <a class="dt-button btn btn-primary btn-sm toggle-vis mb-1" data-column="6" aria-controls="show-hide-col"><span>Prifaed Country</span></a> <button class="dt-button btn btn-primary btn-sm toggle-vis mb-1" tabindex="0" aria-controls="show-hide-col"><span>Salary</span></button> </div></div>
+                    {{-- <a class="toggle-vis" data-column="0">Name</a> - <a class="toggle-vis" data-column="1">Position</a> - <a class="toggle-vis" data-column="2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column="5">Salary</a> --}}
+        </div>
         <br>
 
         <table class="table table-bordered data-table">
@@ -313,7 +345,7 @@ Enquires index
                     <th>Preferred Country</th>
                     <th>Status</th>
                     <th>Date</th>
-                    <th width="200px">Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -323,9 +355,8 @@ Enquires index
 </div>
 
 <script>
-    function show_follow_up(params) {
-            console.log(params);
-
+    function show_follow_up(params)
+    {
             $("#exampleModal").modal('show');
             // url='url("api/admin/inquiry/FollowUp/'+params+'")';
             let data=[];

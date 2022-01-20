@@ -154,6 +154,8 @@
         });
 
 
+
+
         function initTable(tableId, data) {
             $('#' + tableId).DataTable({
                 processing: false,
