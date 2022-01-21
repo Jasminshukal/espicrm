@@ -404,7 +404,7 @@ Enquires index
                     <th>Status</th>
                     <th>Date</th>
                     <th>Enrolled</th>
-                    <th>Action</th>
+                    <th with="350px;">Action</th>
                 </tr>
             </thead>
             <tbody>
