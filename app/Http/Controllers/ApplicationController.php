@@ -55,6 +55,20 @@ class ApplicationController extends Controller
                     ->addColumn('processor_id', function($user) {
                         return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
                     })
+                    ->addColumn('agent_detail', function($date) {
+                        $colum_row="";
+                        if($date->Enquiry->reference_code)
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-info">#';
+                            $colum_row.=$date->Enquiry->reference_code;
+                        }
+                        else
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-warning" style="text-transform:uppercase;">#';
+                            $colum_row.=get_company_by_id($date->Enquiry->company_id)->name;
+                        }
+                        return $colum_row."</span>";
+                    })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn="";
@@ -72,7 +86,7 @@ class ApplicationController extends Controller
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
-                    ->rawColumns(['action','processor_id'])
+                    ->rawColumns(['action','processor_id','agent_detail'])
                     ->make(true);
         }
         return view('application.index');

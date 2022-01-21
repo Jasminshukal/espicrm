@@ -63,6 +63,7 @@
                 {data: 'processor_id', name: 'processor_id'},
                 {data: 'associated_with', name: 'associated_with'},
                 {data: 'status', name: 'status'},
+                {data: 'agent_detail', name: 'agent_detail'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -206,6 +207,7 @@ Application
                 <th>Processor</th>
                 <th>Associate</th>
                 <th>Status</th>
+                <th>Agent Detail</th>
                 <th width="200px">Action</th>
             </tr>
         </thead>
