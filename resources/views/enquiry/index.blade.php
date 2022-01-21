@@ -121,6 +121,7 @@ $(document).ready(function() {
                 {data: 'preferred_country', name: 'preferred_country'},
                 {data: 'status', name: 'status'},
                 {data: 'date', name: 'date',orderable: false, searchable: false},
+                {data: 'is_enrolled', name: 'is_enrolled',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -320,6 +321,63 @@ Enquires index
                 </div>
             </form>
         </div>
+        <div class="modal fade" id="add_transactions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form method="POST" action="#" enctype="multipart/form-data" id="add_transactions_form">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Transactions</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                @csrf
+                                <input type="hidden" name="title" value="Enrolled">
+                                <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="price" class="mandatory">Price</label>
+                                                <input type="number" name="price" id="price" value="{{ old('price') }}"
+                                                    class="@error('price') is-invalid @enderror form-control" required>
+                                            </div>
+                                            @error('price')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="payment_mode" class="mandatory">Payment Mode</label>
+                                                    <select name="payment_mode" id="payment_mode" class="@error('payment_mode') is-invalid @enderror form-control" required>
+                                                        @foreach (config('espi.payment_mode') as $key=>$item)
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                        @endforeach
+                                                    </select>
+                                            </div>
+                                            @error('status')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="note" class="mandatory">Note</label>
+                                                <textarea name="note" id="note" class="form-control"></textarea>
+                                            </div>
+                                            @error('note')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" style="background-color:var(--danger); color:#fff;" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div style="display: none;">
             <br>
             <div class="col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center">
@@ -345,6 +403,7 @@ Enquires index
                     <th>Preferred Country</th>
                     <th>Status</th>
                     <th>Date</th>
+                    <th>Enrolled</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -403,7 +462,14 @@ Enquires index
                     $('#followUp-model tbody').append('</tr>');
                 }
             });
-        }
+    }
+    function add_transactions(params) {
+        $("#add_transactions").modal('show');
+        url="{{url('admin/Transactions/Add/') }}/"+params;
+        $('#add_transactions_form').attr('action', url);
+        return false;
+
+    }
 </script>
 
 

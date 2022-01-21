@@ -20,6 +20,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\TransactionController;
 use App\Models\ApplicationStatus;
 
 /*
@@ -120,6 +121,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
     Route::get('inquiry/FollowUp/{id?}',[FollowUpController::class,'ListByEnquiry']);
     Route::get('FollowUp/resolved/{FollowUp}/{status}',[FollowUpController::class,'resolved'])->name('FollowUp.resolved');
+
+    Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
 
     Route::get("/Profile", function(){
         return view('user.profile');

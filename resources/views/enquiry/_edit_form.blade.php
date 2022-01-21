@@ -60,9 +60,9 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="education" class="mandatory">Current Education Status</label>
+        <label for="education" class="mandatory">Current / Last Education</label>
         <select name="education" id="education" class="form-control" required>
-            <option value="">Current Education Status</option>
+            <option value="">Current / Last Education</option>
             <option @if($enquiry->education == "10th") selected @endif value="10th">10th</option>
             <option @if($enquiry->education == "diploma") selected @endif value="diploma">Diploma</option>
             <option @if($enquiry->education == "12th") selected @endif value="12th">12th</option>

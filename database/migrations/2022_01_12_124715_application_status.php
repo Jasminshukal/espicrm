@@ -28,8 +28,8 @@ class ApplicationStatus extends Migration
     public function down()
     {
         Schema::table('application_statuses', function (Blueprint $table) {
-            // $table->dropColumn('status');
-            // $table->dropColumn('seq');
+             $table->dropColumn('status');
+             $table->dropColumn('seq');
         });
     }
 }

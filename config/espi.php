@@ -53,5 +53,10 @@ return [
         'SYP' => 'Syria Pound (SYP)',
         'INR' => 'India Rupee (INR)',
     ],
+    'payment_mode' => [
+        'CASE' => 'Case Payment',
+        'ONLINE' => 'Online Payment',
+        'CHECK' => 'Check Payment',
+    ],
 
 ];
