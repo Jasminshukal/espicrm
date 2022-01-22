@@ -117,6 +117,11 @@ class Enquiry extends Model
         return ucfirst($value);
     }
 
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 
 
 }

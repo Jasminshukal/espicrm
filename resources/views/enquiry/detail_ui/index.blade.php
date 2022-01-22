@@ -70,6 +70,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Document
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link @if($active=='7') active @endif" href="{{ route('detail.nav',['Enquire' => $enquiry->id ,'Active'=>'7']) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Comment
@@ -77,8 +78,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if($active=='8') active @endif" href="{{ route('detail.nav',['Enquire' => $enquiry->id ,'Active'=>'8']) }}">
-                        {{-- <a class="nav-link @if($active=='8') active @endif" id="border-comment-tab" data-toggle="tab" href="#border-follw-up" role="tab" aria-controls="border-follw-up" aria-selected="false"> --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-merge"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg> Follow Up
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if($active=='9') active @endif" id="border-transaction-tab" data-toggle="tab" href="#border-transaction" role="tab" aria-controls="border-transaction" aria-selected="false">
+                            <?xml version="1.0" encoding="UTF-8" standalone="no"?><svg style="height: 20px;" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns1="http://sozi.baierouge.fr" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg3611" sodipodi:docname="Indian_Rupee_symbol.svg" viewBox="0 0 169.76 250.39" version="1.1" inkscape:version="0.47 r22583" > <sodipodi:namedview id="base"  inkscape:pageshadow="2" inkscape:window-y="-4" pagecolor="#ffffff" inkscape:window-height="712" inkscape:window-maximized="1" inkscape:zoom="5.3091607" inkscape:window-x="-4" showgrid="false" borderopacity="1.0" inkscape:current-layer="layer1" inkscape:cx="94.062924" inkscape:cy="212.24797" inkscape:window-width="1280" inkscape:pageopacity="0.0" inkscape:document-units="px"/> <g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer" transform="translate(0 -801.97)" > <path id="path4158" sodipodi:nodetypes="cccccccccccccccccccc" style="" d="m99.017 1052.3-90.577-113.33 0.5232-22.46c42.51 2.93 75.559-1.57 83.248-41.78l-90.578-0.52 14.66-24.55 72.253 1.04c-11.009-22.88-41.286-25.7-88.484-24.02l16.231-24.03 153.41-0.22927-15.184 23.731h-42.409c7.7512 8.1823 13.424 17.597 13.613 25.591l43.98-0.52226-15.184 23.502-29.32 0.52229c-4.5772 35.058-36.787 55.815-77.489 60.584l91.184 116.44-39.874 0.022v0.0004z"/> </g > <metadata > <rdf:RDF > <cc:Work > <dc:format >image/svg+xml</dc:format > <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/> <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/> <dc:publisher > <cc:Agent rdf:about="http://openclipart.org/" > <dc:title >Openclipart</dc:title > </cc:Agent > </dc:publisher > <dc:title >Indian Rupee Symbol</dc:title > <dc:date >2010-07-23T08:59:26</dc:date > <dc:description >The clipart was generated as draft based on the Symbol of Indian Rupee approved by the Union Cabinet on 15 July 2010. The Design for the symbol was submitted by D Udaya Kumar.&#13;\nSource :http://pib.nic.in/archieve/others/2010/jul/d2010071501.pdf</dc:description > <dc:source >https://openclipart.org/detail/74431/indian-rupee-symbol-by-netalloy</dc:source > <dc:creator > <cc:Agent > <dc:title >netalloy</dc:title > </cc:Agent > </dc:creator > <dc:subject > <rdf:Bag > <rdf:li >Indian Rupee Symbol</rdf:li > </rdf:Bag > </dc:subject > </cc:Work > <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/" > <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/> <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/> <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/> </cc:License > </rdf:RDF > </metadata ></svg> Transaction
                         </a>
                     </li>
                 </ul>
@@ -109,6 +114,9 @@
                    </div>
                     <div class="tab-pane fade @if($active=='8') show active @endif" id="border-follw-up" role="tabpanel" aria-labelledby="border-follw-up-tab">
                         @include('enquiry.detail_ui.follow_up')
+                   </div>
+                    <div class="tab-pane fade @if($active=='9') show active @endif" id="border-transaction" role="tabpanel" aria-labelledby="border-transaction-tab">
+                        @include('enquiry.detail_ui.transaction')
                    </div>
                 </div>
 
