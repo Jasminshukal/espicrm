@@ -70,8 +70,8 @@ Add Assessment
                         </table>
                         <hr>
                         <div class="col-md-12 ">
-                            <h1 for="tocc">To CC</h1>
-                            <textarea name="cc_mail" id="tocc" class="form-control mb-2" placeholder="exampale@gmail.com,exampale1@gmail.com,exampale3@yahoo.com"></textarea>
+                            <h1 for="skill-input">To CC</h1>
+                            <textarea name="cc_mail" id="skill-input"class="form-control mb-2" placeholder="exampale@gmail.com,exampale1@gmail.com,exampale3@yahoo.com"></textarea>
                             <div class="cen text-center">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     Add More
@@ -94,9 +94,28 @@ Add Assessment
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('js')
+<script src="{{ asset('plugins/tagInput/tags-input.js') }}"></script>
 <script>
-    function ShowDetail(ID) {
-        $(ID).show();
+    var instance = new TagsInput({
+        selector: 'skill-input'
+    });
+    instance.addData(['mr.jasmin.shukal@gmail.com'])
+function ShowDetail(ID) {
+    $(ID).show();
+}
+</script>
+@endsection
+
+@section('css')
+<link href="{{ asset('plugins/tagInput/tags-input.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .tags-input-wrapper input
+    {
+        width: 100%!important;
     }
-    </script>
+</style>
 @endsection

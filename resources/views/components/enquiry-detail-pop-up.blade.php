@@ -44,9 +44,9 @@
                 <th scope="row">First Language</th>
                 <td>{{ $message->first_language }}</td>
                 <th scope="row">Student Remarks</th>
-                <td>{{ $message->remarks }}</td>
+                <td>{{ $message->remarks ?? " " }}</td>
                 <th scope="row">Counsellor Remarks</th>
-                <td colspan="2">{{ $message->details->remark }}</td>
+                <td colspan="2">{{ $message->details->remark ?? "" }}</td>
               </tr>
             </tbody>
         </table>

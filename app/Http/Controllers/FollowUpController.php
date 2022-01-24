@@ -79,6 +79,13 @@ class FollowUpController extends Controller
         $followUp->company_id=\Auth::user()->company_id;
         $followUp->assist_by=\Auth::user()->id;
         $followUp->save();
+
+        if($followUp->status=="Fail")
+        {
+            $Enquire->status="Failed";
+            $Enquire->save();
+
+        }
         return redirect()->back()->withSuccess('Follow Up.');
     }
 

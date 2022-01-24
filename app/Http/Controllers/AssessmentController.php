@@ -128,7 +128,12 @@ class AssessmentController extends Controller
         $course=Course::all();
         $intake=Intact::groupBy('month')->orderBy('id', 'asc')->get();
         $assessment=assessment::where('enquiry_id',$enquiry)->with('AddedBy')->get();
-        $enquiry_detail=Enquiry::with('Details')->where('id',$enquiry)->first();
+        $enquiry_detail=Enquiry::with('Details')->has('Details')->where('id',$enquiry)->first();
+        if(empty($enquiry_detail))
+        {
+            return redirect()->route('EnquiryDetail.add',['id'=>$enquiry])->withError("Details doesn't exist. Please fill the details.");
+            abort(401, 'Page not found');
+        }
         return view('assessment.add',compact('enquiry','university','course','intake','assessment','enquiry_detail'));
     }
 
@@ -140,7 +145,6 @@ class AssessmentController extends Controller
      */
     public function store(AddAssessment $AddAssessment)
     {
-
         if(isset($AddAssessment->country_id))
         {
             $totassesment=count($AddAssessment->country_id);
@@ -161,6 +165,7 @@ class AssessmentController extends Controller
                         'duration'=>$AddAssessment->duration[$i],
                         'app_fee'=>$AddAssessment->app_fee[$i],
                         'tution_fee'=>$AddAssessment->tution_fee[$i],
+                        'program_link'=>$AddAssessment->course_link[$i],
                         'remarks'=>$AddAssessment->remarks,
                         'type'=>"default",
                         'location'=>"default",

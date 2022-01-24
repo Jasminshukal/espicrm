@@ -13,7 +13,7 @@ try {
       ======================================
   */
 
-  
+
 // Total Visits
 
 var spark1 = {
@@ -152,7 +152,7 @@ var spark2 = {
   }
   ]
 }
-  
+
 
   /*
       ===================================
@@ -178,14 +178,14 @@ var spark2 = {
       offsetX: 0,
       offsetY: -10,
     },
-    colors: ['#d6b007', '#5c1ac3'],
-    
+    colors: ['#e75159', '#1abc9c'],
+
     series: [{
-      name: 'Organic',
+      name: 'Assessment',
       type: 'column',
       data: [4400, 5050, 4140, 6710, 2270, 4130, 2010, 3520, 7520, 3200, 2570, 1600]
     }, {
-      name: 'Direct',
+      name: 'Application',
       type: 'line',
       data: [230, 420, 350, 270, 430, 220, 170, 310, 220, 220, 120, 160]
     }],
@@ -200,13 +200,13 @@ var spark2 = {
     },
     yaxis: [{
       title: {
-        text: 'Organic',
+        text: 'Application',
       },
-  
+
     }, {
       opposite: true,
       title: {
-        text: 'Direct'
+        text: 'Assessment'
       }
     }],
 
@@ -217,7 +217,7 @@ var spark2 = {
           title: {
             text: undefined,
           },
-      
+
         }, {
           opposite: true,
           title: {
@@ -226,11 +226,11 @@ var spark2 = {
         }],
       },
     }]
-  
+
   }
-  
-  
-  
+
+
+
 
   /*
       ==============================
@@ -334,7 +334,7 @@ var spark2 = {
     }
   }
 
-  
+
 
 
   /*

@@ -19,7 +19,7 @@ Add Assessment
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
-                <div class="card-header">{{ __('Apply Assesment') }}</div>
+                <div class="card-header">{{ __('Apply Assessment') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -71,10 +71,14 @@ Add Assessment
                                 <label for="selectyear">Remarks</label>
                                 <input class="form-control" type="text" name="tution_fee[]" id="" value="{{ $Course->tution_fee }}">
                             </div>
+                            <div class="col-md-6">
+                                <label for="selectyear">Course Link</label>
+                                <input class="form-control" type="text" name="tution_fee[]" id="" value="{{ $Course->course_link }}">
+                            </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="labale" class="form-label">Select Student</label>
-                                <select class="form-control tagging" name="enquiry_id" id="preferred_country">
+                                <select class="form-control tagging" name="enquiry_id" id="preferred_country" required>
                                     <option selected disabled>Please Select Student</option>
                                     @forelse ($enquiry as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>

@@ -48,7 +48,12 @@ class EnquiryDetailController extends Controller
 
     public function detail($id,$active=1)
     {
-        $enquiry=Enquiry::with('Details','Application','Assessment','Transaction')->where('id',$id)->first();
+        $enquiry=Enquiry::with('Details','Application','Assessment','Transaction')->has('Details')->where('id',$id)->first();
+        if(empty($enquiry))
+        {
+            return redirect()->route('EnquiryDetail.add',['id'=>$id])->withError("Details doesn't exist. Please fill the details.");
+            abort(401, 'Page not found');
+        }
         $enquiry->Details->data=$enquiry->Details->data;
         return view('enquiry.detail_ui.index',compact('enquiry','active'));
     }

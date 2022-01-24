@@ -92,7 +92,9 @@ Thanks,<br>
                                         <br>
                                         <span style="color:#757575; font-size:14px;"> <strong> Remarks: </strong> {{ $item->remarks }} </span>
                                         <br>
-                                        <a href="{{ $item->Course->course_link }}" target="_blank">View in Detail</a>
+                                        @if ($item->program_link)
+                                            <a href="{{ $item->program_link }}" target="_blank">View in Detail</a>
+                                        @endif
 
 
                                 </td>

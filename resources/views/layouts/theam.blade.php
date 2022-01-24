@@ -49,10 +49,10 @@
                     <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
                         <div class="notification-scroll">
 
+                            @foreach (today_follow_up() as $item)
                             <div class="dropdown-item">
                                 <div class="media server-log">
                                     <div class="media-body">
-                                        @foreach (today_follow_up() as $item)
                                             <div class="data-info">
                                                 <a href='{{ route('detail.nav',$item->enquiry_id) }}/8'><h6 class="">{{ $item->note }} </h6></a>
                                                 <p class="">{{ $item->status }}</p>
@@ -62,10 +62,10 @@
                                                     <svg style="color:#ffff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                 </a>
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
-                                </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </li>
