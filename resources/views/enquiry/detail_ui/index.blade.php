@@ -41,14 +41,14 @@
                 <ul class="nav nav-tabs mt-3" id="border-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link  @if($active=='1') active @endif" id="border-summary-tab" data-toggle="tab" href="#border-summary" role="tab" aria-controls="border-summary" aria-selected="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Summary
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Details
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link @if($active=='2') active @endif" id="border-detail-tab" data-toggle="tab" href="#border-detail" role="tab" aria-controls="border-detail" aria-selected="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Detail
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link @if($active=='3') active @endif" id="border-update-tab" data-toggle="tab" href="#border-update" role="tab" aria-controls="border-update" aria-selected="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-ccw"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg> Update
@@ -91,9 +91,9 @@
                     <div class="tab-pane fade  @if($active=='1') show active @endif" id="border-summary" role="tabpanel" aria-labelledby="border-summary-tab">
                         @include('enquiry.detail_ui.summary')
                     </div>
-                    <div class="tab-pane fade @if($active=='2') show active @endif" id="border-detail" role="tabpanel" aria-labelledby="border-detail-tab">
+                    {{-- <div class="tab-pane fade @if($active=='2') show active @endif" id="border-detail" role="tabpanel" aria-labelledby="border-detail-tab">
                         @include('enquiry.detail_ui.detail')
-                    </div>
+                    </div> --}}
                     <div class="tab-pane fade @if($active=='3') show active @endif" id="border-update" role="tabpanel" aria-labelledby="border-update-tab">
                         @include('enquiry.detail_ui.update')
                     </div>

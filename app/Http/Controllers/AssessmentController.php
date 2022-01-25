@@ -277,9 +277,12 @@ class AssessmentController extends Controller
 
     public function EmailNotifyAssessment($enquiry_id,Request $request)
     {
+        $request->validate([
+            'cc_mail' => 'required',
+            'assessment_id' => 'required'
+        ]);
         $Enquiry = Enquiry::where('id',$enquiry_id)->first();
-        $Assessment=assessment::where('enquiry_id',$enquiry_id)->where('status','!=','apply')->get();
-
+        $Assessment=assessment::where('enquiry_id',$enquiry_id)->whereIn('id',$request->assessment_id)->where('status','!=','apply')->get();
         //$enquiry=Enquiry::find($enquiry_id);
 
         // $enquiry = Enquiry::with('Assessment')
