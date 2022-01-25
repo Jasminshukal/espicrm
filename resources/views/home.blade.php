@@ -403,6 +403,9 @@
   var d_1C_7 = new ApexCharts(document.querySelector("#hybrid_followers3"), d_1options5);
   d_1C_7.render()
 
+  var assesmenet_summary_chart = JSON.parse("{!! Get_Assessment_Charts() !!}");
+var application_summary_chart = JSON.parse("{!! Get_Application_Charts() !!}");
+
   var d_1options1 = {
     chart: {
       height: 350,
@@ -426,11 +429,11 @@
     series: [{
       name: 'Assessment',
       type: 'column',
-      data: [4400, 5050, 4140, 6710, 2270, 4130, 2010]
+      data: assesmenet_summary_chart
     }, {
       name: 'Application',
       type: 'line',
-      data: [230, 420, 350, 270, 430, 220, 170]
+      data: application_summary_chart
     }],
     stroke: {
       show: true,
