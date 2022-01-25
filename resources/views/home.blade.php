@@ -34,7 +34,7 @@
 
                         </div>
                         <div class="">
-                            <p class="w-value">{{ count(\App\Models\Assessment::all()) }}</p>
+                            <p class="w-value">{{ count(\App\Models\assessment::all()) }}</p>
                             <h5 class="">Assessment</h5>
                         </div>
                     </div>
