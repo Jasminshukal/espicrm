@@ -1,11 +1,14 @@
 <?php
 
 use App\Models\Activity;
+use App\Models\Application;
+use App\Models\assessment;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Enquiry;
 use App\Models\FollowUp;
 use App\Models\ReferralCode;
 use App\Models\User;
@@ -78,6 +81,54 @@ if (! function_exists('today_follow_up')) {
         ->where('assist_by',\Auth::user()->id)
         ->where('is_resolved','0')
         ->get();
+    }
+}
+
+if (! function_exists('get_Inquiry_charts')) {
+    function get_Inquiry_charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Enquiry::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
+    }
+}
+
+if (! function_exists('Get_Assessment_Charts')) {
+    function Get_Assessment_Charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Assessment::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
+    }
+}
+
+if (! function_exists('Get_Application_Charts')) {
+    function Get_Application_Charts() {
+        $array=array();
+        $stop_date = date('Y-m-d');
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -7 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -6 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -5 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -4 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -3 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -2 day')))->count());
+        array_push($array,Application::whereDate('created_at','=',date('Y-m-d', strtotime($stop_date . ' -1 day')))->count());
+        // array_pu
+        return json_encode($array);
     }
 }
 

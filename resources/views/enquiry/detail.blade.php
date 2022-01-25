@@ -4,6 +4,10 @@
 Enquiry Detail
 @endsection
 
+@section('css')
+<link href="{{ asset('assets/css/tables/table-basic.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')

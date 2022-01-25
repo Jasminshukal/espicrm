@@ -147,7 +147,7 @@
                                 <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
                                     <h5>{{ Auth::user()->name ?? "Admin" }}</h5>
-                                    <p>{{ Auth::user()->roles->pluck('name')[0] }}</p>
+                                    <p>{{ Auth::user()->roles->pluck('name')[0] ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
             </div>
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">ASC</a>, All rights reserved.</p>
+                    <p class="">Copyright © 2021 <a target="_blank" href="https://designreset.com">ASC</a>, All rights reserved. {{ get_Inquiry_charts() }}</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>

@@ -286,8 +286,199 @@
 @endsection
 
 @section('js')
+
 <script src="{{ asset('plugins/apex/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/dashboard/dash_1.js') }}"></script>
+
+<script>
+      // Followers
+  var array_d_1options3 = JSON.parse("{!! get_Inquiry_charts() !!}");
+
+//     alert(array_d_1options3);
+//   console.log(array_d_1options3);
+
+  var d_1options3 = {
+    chart: {
+      id: 'sparkline1',
+      type: 'area',
+      height: 160,
+      sparkline: {
+        enabled: true
+      },
+    },
+    stroke: {
+        curve: 'smooth',
+        width: 2,
+    },
+    series: [{
+      name: 'Inquiry',
+      data: array_d_1options3
+    }],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
+    yaxis: {
+      min: 0
+    },
+    colors: ['#4361ee'],
+    tooltip: {
+      x: {
+        show: false,
+      }
+    },
+  }
+
+  var d_1C_5 = new ApexCharts(document.querySelector("#hybrid_followers"), d_1options3);
+  d_1C_5.render()
+
+  var array_d_1options4 = JSON.parse("{!! Get_Assessment_Charts() !!}");
+
+  var d_1options4 = {
+    chart: {
+      id: 'sparkline1',
+      type: 'area',
+      height: 160,
+      sparkline: {
+        enabled: true
+      },
+    },
+    stroke: {
+        curve: 'smooth',
+        width: 2,
+    },
+    series: [{
+      name: 'Assessment',
+      data: array_d_1options4
+    }],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
+    yaxis: {
+      min: 0
+    },
+    colors: ['#e7515a'],
+    tooltip: {
+      x: {
+        show: false,
+      }
+    }
+  }
+
+  var d_1C_6 = new ApexCharts(document.querySelector("#hybrid_followers1"), d_1options4);
+  d_1C_6.render()
+
+
+
+  var array_d_1options5 = JSON.parse("{!! Get_Application_Charts() !!}");
+
+
+  var d_1options5 = {
+    chart: {
+      id: 'sparkline1',
+      type: 'area',
+      height: 160,
+      sparkline: {
+        enabled: true
+      },
+    },
+    stroke: {
+        curve: 'smooth',
+        width: 2,
+    },
+    fill: {
+      opacity: 1,
+    },
+    series: [{
+      name: 'Aplication',
+      data: array_d_1options5
+    }],
+    labels: ['1', '2', '3', '4', '5', '6', '7'],
+    yaxis: {
+      min: 0
+    },
+    colors: ['#1abc9c'],
+    tooltip: {
+      x: {
+        show: false,
+      }
+    }
+  }
+
+  var d_1C_7 = new ApexCharts(document.querySelector("#hybrid_followers3"), d_1options5);
+  d_1C_7.render()
+
+  var d_1options1 = {
+    chart: {
+      height: 350,
+      type: 'line',
+      toolbar: {
+        show: false,
+      }
+    },
+    plotOptions: {
+      bar: {
+          horizontal: false,
+          columnWidth: '55%',
+      },
+    },
+    legend: {
+      offsetX: 0,
+      offsetY: -10,
+    },
+    colors: ['#e75159', '#1abc9c'],
+
+    series: [{
+      name: 'Assessment',
+      type: 'column',
+      data: [4400, 5050, 4140, 6710, 2270, 4130, 2010]
+    }, {
+      name: 'Application',
+      type: 'line',
+      data: [230, 420, 350, 270, 430, 220, 170]
+    }],
+    stroke: {
+      show: true,
+      curve: 'smooth',
+      width: [0, 4],
+      lineCap: 'square'
+    },
+    xaxis: {
+      categories: ['1', '2', '3', '4', '5', '6', '7'],
+    },
+    yaxis: [{
+      title: {
+        text: 'Application',
+      },
+
+    }, {
+      opposite: true,
+      title: {
+        text: 'Assessment'
+      }
+    }],
+
+    responsive: [{
+      breakpoint: 576,
+      options: {
+        yaxis: [{
+          title: {
+            text: undefined,
+          },
+
+        }, {
+          opposite: true,
+          title: {
+            text: undefined
+          }
+        }],
+      },
+    }]
+
+  }
+
+  var d_1C_3 = new ApexCharts(
+      document.querySelector("#uniqueVisits"),
+      d_1options1
+  );
+  d_1C_3.render();
+
+</script>
 @endsection
 
 @section('title')

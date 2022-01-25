@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\University;
 use App\Models\Course;
 use App\Models\Intact;
+use Carbon\Carbon;
 use GuzzleHttp\RetryMiddleware;
 
 class HomeController extends Controller
@@ -23,10 +24,6 @@ class HomeController extends Controller
     }
     public function index()
     {
-        // if(\Auth::user()->roles[0]->name!="super-admin" && \Auth::user()->roles[0]!="admin")
-        // {
-        //     return redirect()->route('Enquires.create');
-        // }
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
