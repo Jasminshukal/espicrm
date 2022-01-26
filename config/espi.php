@@ -43,6 +43,9 @@ return [
         'visa_granted' => 'Visa Granted',
         'visa_rejected' => 'Visa Rejected',
         're_apply' => 'Re-Apply',
+        'enrol_coaching' => 'Enrol coaching',
+        'enrol_counselling' => 'Enrol counselling',
+        'enrol_visa' => 'Enrol Visa',
         'fail' => 'Fail',
     ],
     'currency_list' => [

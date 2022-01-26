@@ -45,6 +45,7 @@
                 { data: 'enquiry.name', name: 'Enquiry.name',orderable: true,searchable: false},
                 { data: 'enquiry.phone', name: 'university.country.name',orderable: false,searchable: false},
                 { data: 'enquiry.email', name: 'university.name', orderable: false,searchable: false},
+                { data: 'agent_detail', name: 'agent_detail',orderable:'false', searchable: true },
                 { data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
@@ -81,6 +82,8 @@
                     { data: 'course.name', name: 'course.name' },
                     {data: 'date', name: 'status'},
                     { data: 'user.name', name: 'user.name',orderable:'false', searchable: true },
+
+
                 ]
             })
         }
@@ -120,6 +123,7 @@ Application
                 <th>Student Name</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Agent Detail</th>
                 <th width="100px">Action</th>
 
             </tr>

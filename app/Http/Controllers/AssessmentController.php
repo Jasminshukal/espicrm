@@ -49,6 +49,20 @@ class AssessmentController extends Controller
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
+                    ->addColumn('agent_detail', function($date) {
+                        $colum_row="";
+                        if($date->Enquiry->reference_code)
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-info">#';
+                            $colum_row.=$date->Enquiry->reference_code;
+                        }
+                        else
+                        {
+                            $colum_row.='<span class="badge badge-pill badge-warning" style="text-transform:uppercase;">#';
+                            $colum_row.=get_company_by_id($date->Enquiry->company_id)->name;
+                        }
+                        return $colum_row;
+                    })
                     ->addColumn('assign_to', function($row){
                         if(empty($row->assign_id))
                         {
@@ -111,7 +125,7 @@ class AssessmentController extends Controller
                     ->addColumn('assign', function($row){
 
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','agent_detail'])
                     ->make(true);
         }
         return view('assessment.index');
