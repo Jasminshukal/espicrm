@@ -136,6 +136,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::resource('ApplicationStatus',ApplicationStatusController::class);
 
+    Route::post('AddApplicationRemark/{id}',[ApplicationController::class,'ApplicationStatusRemark'])->name('Application.StatusRemark');
+
 });
 
 

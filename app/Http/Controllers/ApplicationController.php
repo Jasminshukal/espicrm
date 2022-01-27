@@ -14,6 +14,7 @@ use App\Models\Enquiry;
 use App\Models\Intact;
 use App\Models\University;
 use App\Models\ApplicationStatus;
+use App\Models\ApplicationRemark;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Mail;
@@ -159,7 +160,22 @@ class ApplicationController extends Controller
         $status=ApplicationStatus::where('countries_id',$university->country_id)->get();
         $documents=ApplicationDocument::where('application_id',$Application->id)->get();
         $processor=\App\Models\User::role('Processor')->get();
-        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor'));
+        $remarkRow=ApplicationRemark::where('application_id',$Application->id)->get();
+        $remark=array();
+        foreach($remarkRow as $remarkloop)
+        {
+            $this_data=$remarkloop->toArray();
+            // $this_data['id']=$remarkloop->id;
+            // $this_data['remark']=$remarkloop->remark;
+            $this_data['user']=$remarkloop->user->name;
+            // $this_data['row']=$remarkloop->toArray();
+            $remark[$remarkloop->status_id]=$this_data;
+
+
+        }
+        //dd($remark);
+        // remarks
+        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark'));
     }
 
     /**
@@ -172,17 +188,19 @@ class ApplicationController extends Controller
     public function update(Request $request,$application)
     {
         $request->validate([
-            'remark' => 'required',
-            'status' => 'required',
             'associated_with' => 'required',
             'processor_id' => 'required',
         ]);
 
         $application_list=Application::find($application);
-        $application_list->status=$request->status;
-        $application_list->remark=$request->remark;
-        $application_list->associated_with=$request->associated_with;
-        $application_list->processor_id=$request->processor_id;
+        if($application_list->associated_with!="")
+        {
+            $application_list->associated_with=$request->associated_with;
+        }
+        if($application_list->processor_id!="")
+        {
+            $application_list->processor_id=$request->processor_id;
+        }
         $application_list->save();
         EnqActivity("Update Status Application",$application_list->enquiry_id);
         return redirect(route('Application.index'))->with('success','Application status change successfully!');;
@@ -279,5 +297,21 @@ class ApplicationController extends Controller
     public function QuickApplication(AddAssessment $request)
     {
         # code...
+    }
+
+    public function ApplicationStatusRemark(Request $request,$application_id)
+    {
+        $request->validate([
+            'remark' => 'required'
+        ]);
+        $ApplicationRemark=new ApplicationRemark();
+        $ApplicationRemark->remark=$request->remark;
+        $ApplicationRemark->application_id=$application_id;
+        $ApplicationRemark->status_id=$request->status_id;
+        $ApplicationRemark->is_not_applicable=$request->is_not_applicable;
+        $ApplicationRemark->user_id=\Auth::user()->id;
+        $ApplicationRemark->company_id=\Auth::user()->company_id;
+        $ApplicationRemark->save();
+        return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Added Remark successfully.");
     }
 }
