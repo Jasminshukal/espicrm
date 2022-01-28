@@ -46,6 +46,17 @@ return [
         'enroll_visa' => 'Enroll Visa',
         'fail' => 'Fail',
     ],
+    'application_follow_up_status' => [
+        "application_given"=>"Application Given",
+        "application_submitted"=>"Application Submitted",
+        "unconditional_offer_received"=>"Unconditional Offer Received",
+        "conditional_offer_received"=>"Conditional Offer Received",
+        "fees_paid"=>"Fees Paid",
+        "visa_file_submitted"=>"Visa File Submitted",
+        "visa_grant"=>"Visa Grant",
+        "visa_rejected"=>"Visa Rejected",
+        "refund_applied"=>"Refund Applied",
+    ],
     'currency_list' => [
         'AUD' => 'Australia Dollar (AUD)',
         'USD' => 'United States Dollar (USD)',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ApplicationFollowUpsController;
 use App\Http\Controllers\ApplicationStatusController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TransactionController;
+use App\Models\ApplicationFollowUps;
 use App\Models\ApplicationStatus;
 
 /*
@@ -137,6 +139,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('ApplicationStatus',ApplicationStatusController::class);
 
     Route::post('AddApplicationRemark/{id}',[ApplicationController::class,'ApplicationStatusRemark'])->name('Application.StatusRemark');
+
+    Route::post('ApplicationFollowUp/store/{Application}',[ApplicationFollowUpsController::class,'store'])->name('ApplicationFollowUp.store');
+    Route::post('ApplicationFollowUp/reschedule/{Application}',[ApplicationFollowUpsController::class,'reschedule'])->name('ApplicationFollowUp.Reschedule');
+    Route::get('Application/ApplicationFollowUp/{id?}',[ApplicationFollowUpsController::class,'ListByEnquiry']);
+    Route::get('ApplicationFollowUp/resolved/{ApplicationFollowUp}/{status}',[ApplicationFollowUpsController::class,'resolved'])->name('ApplicationFollowUp.resolved');
 
 });
 

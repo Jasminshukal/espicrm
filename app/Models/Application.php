@@ -42,4 +42,15 @@ class Application extends Model
     {
         return $this->hasOne(Course::class,'id','course_id');
     }
+
+    public function FollowUp()
+    {
+        return $this->FollowUpRow();
+    }
+
+    public function FollowUpRow() {
+        return $this->hasMany(ApplicationFollowUps::class);
+
+    }
+
 }

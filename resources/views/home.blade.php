@@ -134,7 +134,7 @@
     <div class="widget widget-chart-three">
         <div class="widget-heading">
             <div class="">
-                <h5 class="">Assesment and Applications Summury.</h5>
+                <h5 class="">Assesment and Applications Summary.</h5>
             </div>
 
             <div class="dropdown ">

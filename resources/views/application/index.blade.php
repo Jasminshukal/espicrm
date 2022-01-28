@@ -136,7 +136,7 @@ Application
     <h1>Application</h1>
 
     <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST" action="#" enctype="multipart/form-data" id="add_follow_ups">
+        <form method="POST" action="#" enctype="multipart/form-data" id="add_status_follow_ups">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -164,7 +164,7 @@ Application
                                         <div class="form-group">
                                             <label for="status" class="mandatory">Status</label>
                                                 <select name="status" id="status" class="@error('status') is-invalid @enderror form-control" required>
-                                                    @foreach (config('espi.follow_up_status') as $key=>$item)
+                                                    @foreach (config('espi.application_follow_up_status') as $key=>$item)
                                                         <option value="{{ $item }}">{{ $item }}</option>
                                                     @endforeach
                                                 </select>
@@ -220,8 +220,9 @@ Application
 <script>
     function add_follow_up(params) {
         $("#exampleModal01").modal('show');
-        url="{{url('admin/FollowUp/store/') }}/"+params;
-        $('#add_follow_ups').attr('action', url);
+        url="{{url('admin/ApplicationFollowUp/store/') }}/"+params;
+        $('#add_status_follow_ups').attr('action', url);
+        return false;
         return false;
             $("#exampleModal").modal('show');
             let data=[];

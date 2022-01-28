@@ -116,6 +116,9 @@ Edit Application
     </div>
 </div>
 <br>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
 <div class="col-md-12 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -177,6 +180,58 @@ Edit Application
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
+                <div class="card-header">Follow Ups</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-condensed mb-4">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                    <th>Assist By</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($Application->FollowUp as $item)
+                                <tr>
+                                    <td>{{ date('d-M-Y',strtotime($item->date)) }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->note }}</td>
+                                    <td>{{ $item->User->name }}</td>
+                                    <td class="text-center">
+                                        @if ($item->is_resolved==0)
+                                            <a href="{{ route('ApplicationFollowUp.resolved',['ApplicationFollowUp'=>$item->id,'status'=>1]) }}" class="btn btn-danger">Done</a>
+                                            <a href="javascript:void(0);" class="btn btn-info resadule" data-item="{{ $item }}">Re Scadule</a>
+                                        @else
+                                            <span class="text-success"> Complete  </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Responsible Person</th>
+                                    <th>Note</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+        <div class="card">
                 <div class="card-header">Documents</div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -190,7 +245,7 @@ Edit Application
                     @endif
 
                     @foreach ($documents as $item)
-                        <div class="card component-card_6">
+                        <div class="card component-card_6 mb-2">
                             <div class="card-body ">
                                 <div class="">
                                     <h4 class="card-text">{{ $item->name }} </h4>
@@ -239,6 +294,51 @@ Edit Application
           </div>
       </div>
   </form>
+
+  <div class="modal fade" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form method="POST" action="#" enctype="multipart/form-data" id="add_status_follow_ups">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reschedule Follow Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="parent_id" id="parent_id_label">
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="date" class="mandatory">Next Follow-Ups Date</label>
+                                        <input type="date" name="date" id="date" value="{{ old('date') }}"
+                                            class="@error('date') is-invalid @enderror form-control" required>
+                                    </div>
+                                    @error('date')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="note" class="mandatory">Note</label>
+                                        <textarea name="note" id="note" class="form-control"></textarea>
+                                    </div>
+                                    @error('note')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" style="background-color:var(--danger); color:#fff;" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 @endsection
 
 @section('js')
@@ -253,6 +353,15 @@ Edit Application
             $("#statusLabel").val($(this).data('item').id);
             $("#applicableLabel").val(1);
             $("#ChangeStatusModel").modal("show");
+        });
+        $(".resadule").click(function() {
+            // exampleModal01
+            $("#note").html($(this).data('item').note);
+            url="{{url('admin/ApplicationFollowUp/reschedule/') }}/"+$(this).data('item').application_id;
+            $('#add_status_follow_ups').attr('action', url);
+            $("#exampleModal01").modal("show");
+            $("#parent_id_label").val($(this).data('item').id);
+
         });
     </script>
 @endsection

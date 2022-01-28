@@ -51,7 +51,7 @@ class ApplicationController extends Controller
 
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
-                        return url('admin/inquiry/FollowUp/'.$user->enquiry_id);
+                        return url('admin/Application/ApplicationFollowUp/'.$user->id);
                     })
                     ->addColumn('processor_id', function($user) {
                         return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
@@ -80,7 +80,7 @@ class ApplicationController extends Controller
                         // $btn .= ' <a href="'.route('Application.edit',$row->id).'" class="edit btn btn-dark btn-sm mb-1">Add Follow Up</a></div>';
                         if(\Auth::user()->roles->pluck('name')->first()=="counsellor" || \Auth::user()->roles->pluck('name')->first()=="super-admin" || \Auth::user()->roles->pluck('name')->first()=="Admin")
                         {
-                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->Enquiry->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
+                            $btn .='<a href="javascript:void(0);" onclick="add_follow_up('.$row->id.');" class="btn btn-dark btn-sm mb-1 show_follow_up">Add Follow Up</a>';
                         }
                             return $btn;
                     })
@@ -174,7 +174,9 @@ class ApplicationController extends Controller
 
         }
         //dd($remark);
-        // remarks
+        // remarksFollowUp
+        // dd($Application->FollowUp);
+
         return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark'));
     }
 
