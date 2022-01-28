@@ -213,6 +213,7 @@ Edit Application
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>Date</th>
                                     <th>Name</th>
                                     <th>Responsible Person</th>
                                     <th>Note</th>
