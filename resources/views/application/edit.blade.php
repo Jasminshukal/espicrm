@@ -214,9 +214,9 @@ Edit Application
                             <tfoot>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Name</th>
-                                    <th>Responsible Person</th>
+                                    <th>Status</th>
                                     <th>Note</th>
+                                    <th>Assist By</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </tfoot>
