@@ -131,6 +131,7 @@ Edit Application
                                 <tr>
                                     <th>Name</th>
                                     <th>Responsible Person</th>
+                                    <th>date</th>
                                     <th>Note</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -140,6 +141,12 @@ Edit Application
                                 <tr>
                                     <td>{{ $item->status }}</td>
                                     <td>{{ $remark[$item->id]['user'] ?? "Not Set Yet" }}</td>
+                                    {{-- <td>{{ date('D-m-y',strtotime($remark[$item->id]['created_at'])) ?? "Not Set Yet" }}</td> --}}
+                                    @if (isset($remark[$item->id]['created_at']))
+                                        <td>{{ date('d-M-Y',strtotime($remark[$item->id]['created_at'])) ?? "Not Set Yet" }}</td>
+                                    @else
+                                        <td>Not Set Yet</td>
+                                    @endif
                                     <td>{{ $remark[$item->id]['remark'] ?? "Not Set Yet" }}</td>
                                     <td class="text-center">
                                         @if(isset($remark[$item->id]))

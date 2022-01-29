@@ -206,7 +206,7 @@ Application
                 <th>Date</th>
                 <th>Processor</th>
                 <th>Associate</th>
-                <th>Status</th>
+                <th>Followup Status</th>
                 <th>Agent Detail</th>
                 <th width="200px">Action</th>
             </tr>

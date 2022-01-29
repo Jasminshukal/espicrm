@@ -114,7 +114,6 @@ $(document).ready(function() {
                 "data":           null,
                 "defaultContent": ''
                 },
-                {data: 'enquiry_id', name: 'enquiry_id'},
                 {data: 'enq', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
@@ -391,12 +390,10 @@ Enquires index
                     {{-- <a class="toggle-vis" data-column="0">Name</a> - <a class="toggle-vis" data-column="1">Position</a> - <a class="toggle-vis" data-column="2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column="5">Salary</a> --}}
         </div>
         <br>
-<div class="table-responsive">
     <table class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>#</th>
-                <th>EnqId</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -411,7 +408,6 @@ Enquires index
         <tbody>
         </tbody>
     </table>
-</div>
     </div>
 </div>
 

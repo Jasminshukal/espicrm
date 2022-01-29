@@ -168,6 +168,7 @@ class ApplicationController extends Controller
             // $this_data['id']=$remarkloop->id;
             // $this_data['remark']=$remarkloop->remark;
             $this_data['user']=$remarkloop->user->name;
+            $this_data['date']=$remarkloop->created_at->format('d-m-y');
             // $this_data['row']=$remarkloop->toArray();
             $remark[$remarkloop->status_id]=$this_data;
 
