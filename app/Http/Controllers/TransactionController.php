@@ -12,7 +12,8 @@ class TransactionController extends Controller
         $request->validate([
             'payment_mode'=>'required',
             'price'=>'required|numeric',
-            'note'=>'required'
+            'note'=>'required',
+            'title'=>'required'
         ]);
         $transaction=new Transaction();
         $transaction->price=$request->price;

@@ -35,6 +35,9 @@
                 <h5>
                     Phone : {{ $enquiry->phone }}
                 </h5>
+                <h5>
+                    Enquiry : {{ $enquiry->enquiry_id }}
+                </h5>
                 <hr>
             </div>
             <div class="col-md-12">

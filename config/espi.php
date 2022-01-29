@@ -63,9 +63,14 @@ return [
         'INR' => 'India Rupee (INR)',
     ],
     'payment_mode' => [
-        'CASE' => 'Case Payment',
+        'CASE' => 'Cash Payment',
         'ONLINE' => 'Online Payment',
         'CHECK' => 'Check Payment',
+    ],
+    'payment_title' => [
+        'enroll_coaching' => 'Enroll coaching',
+        'enroll_counselling' => 'Enroll counselling',
+        'enroll_visa' => 'Enroll Visa',
     ],
 
 ];

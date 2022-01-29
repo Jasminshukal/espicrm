@@ -333,7 +333,6 @@ Enquires index
                         </div>
                         <div class="modal-body">
                                 @csrf
-                                <input type="hidden" name="title" value="Enrolled">
                                 <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -342,6 +341,19 @@ Enquires index
                                                     class="@error('price') is-invalid @enderror form-control" required>
                                             </div>
                                             @error('price')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="payment_title" class="mandatory">Perpose Of Payment</label>
+                                                    <select name="title" id="payment_title" class="@error('payment_title') is-invalid @enderror form-control" required>
+                                                        @foreach (config('espi.payment_title') as $key=>$item)
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                        @endforeach
+                                                    </select>
+                                            </div>
+                                            @error('payment_title')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

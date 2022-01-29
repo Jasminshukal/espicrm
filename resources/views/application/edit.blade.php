@@ -89,8 +89,8 @@ Edit Application
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">Forward To</label>
-                                    <input type="text" name="associated_with" id="" class="form-control" value="{{ $Application->associated_with }}" required>
+                                    <label for="status">Apply Through</label>
+                                    <input type="text" name="associated_with" id="status" class="form-control" value="{{ $Application->associated_with }}" required>
                                 </div>
                             </div>
 
