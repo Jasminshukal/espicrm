@@ -157,7 +157,7 @@ class ApplicationController extends Controller
         $country=$university->Country->name;
         // dd($university->country_id);
 
-        $status=ApplicationStatus::where('countries_id',$university->country_id)->get();
+        $status=ApplicationStatus::where('countries_id',$university->country_id)->where('visibility','1')->get();
         $documents=ApplicationDocument::where('application_id',$Application->id)->get();
         $processor=\App\Models\User::role('Processor')->get();
         $remarkRow=ApplicationRemark::where('application_id',$Application->id)->get();

@@ -32,9 +32,11 @@
             columns: [
                 {data: 'status', name: 'status'},
                 {data: 'country.name', name: 'country.name', orderable: false, searchable: false},
+                {data: 'visibility', name: 'visibility', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
+                $('.bs-tooltip').tooltip();
                 this.api().columns().every(function () {
                     var column = this;
                     var input = document.createElement("input");
@@ -211,6 +213,7 @@ Application Status
             <tr>
                 <th>Status</th>
                 <th>Country</th>
+                <th>Visibility</th>
                 <th width="200px">Action</th>
             </tr>
         </thead>
