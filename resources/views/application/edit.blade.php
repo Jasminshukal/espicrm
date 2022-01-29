@@ -170,6 +170,7 @@ Edit Application
                                 <tr>
                                     <th>Name</th>
                                     <th>Responsible Person</th>
+                                    <th>date</th>
                                     <th>Note</th>
                                     <th class="text-center">Action</th>
                                 </tr>
