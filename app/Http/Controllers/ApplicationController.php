@@ -37,7 +37,7 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Application::select('*')->with('University','Course','Enquiry','University.country');
+            $data = Application::select('*')->with('University','Course','Enquiry','University.country','LastFollowUp');
 
             if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
@@ -70,6 +70,13 @@ class ApplicationController extends Controller
                         }
                         return $colum_row."</span>";
                     })
+                    ->addColumn('last_follow_up', function($date) {
+                        $data_status=$date->LastFollowUp->pluck('status')->toArray();
+                        if(count($data_status)>0)
+                            return $data_status[count($data_status)-1];
+                        else
+                            return " ";
+                    })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn="";
@@ -87,7 +94,7 @@ class ApplicationController extends Controller
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
-                    ->rawColumns(['action','processor_id','agent_detail'])
+                    ->rawColumns(['action','processor_id','agent_detail','last_follow_up'])
                     ->make(true);
         }
         return view('application.index');

@@ -48,6 +48,11 @@ class Application extends Model
         return $this->FollowUpRow();
     }
 
+    public function LastFollowUp()
+    {
+        return $this->FollowUpRow()->orderby('id','desc');
+    }
+
     public function FollowUpRow() {
         return $this->hasMany(ApplicationFollowUps::class);
 

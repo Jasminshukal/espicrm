@@ -63,12 +63,35 @@ class EnquireController extends Controller
                         return $user_names ?? '<a href="#" class="badge badge-success">Not Assign Yet</a>';
                     })
                     ->addColumn('is_enrolled', function($user) {
-                        $transition=\App\Models\Transaction::where('title','Enrolled')->where('enquiry_id',$user->id)->first();
-                        if($transition)
+                        $transition=\App\Models\Transaction::where('enquiry_id',$user->id)->get();
+                        $transition_label="";
+                        if(count($transition)>0)
                         {
-                            return '<a href="#" class="badge badge-success">Yes</a>';
+                            foreach($transition as $tr)
+                            {
+                                // if($tr->title=="Enrolled")
+                                // {
+                                //     $transition_label.='<a href="#" class="badge badge-success mb-2">';
+                                //     $transition_label.="Enr ".$tr->created_at->format('d-m-Y');
+                                //     $transition_label.="Enr ".$tr->created_at->format('d-m-Y');
+                                //     $transition_label.='</a>';
+
+                                // }
+                                $stringtoarray=explode(" ",$tr->title);
+                                $transition_label.='<a href="#" class="badge badge-success mb-2 mr-1 bs-tooltip" title="'.$tr->title.'">';
+                                $transition_label.=strtoupper(substr($stringtoarray[0], 0, 1));
+                                if(isset($stringtoarray[1]))
+                                {
+                                    $transition_label.=strtoupper(substr($stringtoarray[1], 0, 4));
+                                }
+                                $transition_label.=" ".$tr->created_at->format('d-m-Y');
+                                $transition_label.='</a>';
+                            }
+                            return $transition_label;
+                            //return '<a href="#" class="badge badge-success">Yes</a>';
                         }
-                        return '<a href="#" class="badge badge-danger">No</a>';
+                        $transition_label.='<a href="#" class="badge badge-danger">No</a>';
+                        return $transition_label;
                     })
                     ->addIndexColumn()
                     ->addColumn('date', function($model) {

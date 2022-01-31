@@ -62,7 +62,7 @@
                 {data: 'date', name: 'date'},
                 {data: 'processor_id', name: 'processor_id'},
                 {data: 'associated_with', name: 'associated_with'},
-                {data: 'status', name: 'status'},
+                {data: 'last_follow_up', name: 'last_follow_up'},
                 {data: 'agent_detail', name: 'agent_detail'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
