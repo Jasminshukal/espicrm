@@ -205,6 +205,16 @@ $(document).ready(function() {
             column.visible( ! column.visible() );
         } );
 
+        function areyousure(params) {
+            let text = "Are you sure you want to transfer this thing into the Fail Lead?\n Either OK or Cancel.";
+            if (confirm(text) == true) {
+                text = "You pressed OK!";
+                window.location.href = params;
+            } else {
+                text = "You Lead Is Safe!";
+                return false;
+            }
+        }
 </script>
 
 @endsection

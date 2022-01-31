@@ -54,7 +54,6 @@
                 "data":           null,
                 "defaultContent": ''
                 },
-                {data: 'application_id', name: 'application_id'},
                 {data: 'enquiry.name', name: 'enquiry.name', orderable: false, searchable: false},
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
@@ -198,7 +197,6 @@ Application
         <thead>
             <tr>
                 <th>#</th>
-                <th>Application Ref #</th>
                 <th>Student Name</th>
                 <th>University</th>
                 <th>Course</th>
