@@ -262,9 +262,10 @@
                 <input type="text" name="hsc_education" class="form-control">
             </div>
             <div class="form-group">
-                <label>Backlogs</label>
-                <input type="text" name="hsc_backlog" class="form-control">
+                <label>English Marks</label>
+                <input type="text" name="hsc_english_mark" class="form-control">
             </div>
+
         </div>
         <div class="col md-6">
             <div class="form-group">
@@ -281,6 +282,10 @@
                 <input type="text" name="hsc_board" class="form-control">
             </div>
 
+            <div class="form-group">
+                <label>Backlogs</label>
+                <input type="text" name="hsc_backlog" class="form-control">
+            </div>
         </div>
     </div>
 </div>

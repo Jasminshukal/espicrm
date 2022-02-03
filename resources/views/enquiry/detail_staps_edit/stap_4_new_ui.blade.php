@@ -5,14 +5,15 @@
                 <th class="text-center">#</th>
                 <th>Exam Name</th>
                 <th>Status</th>
-                <th>Exam Date</th>
-                <th class="text-center">Marks</th>
+                <th>Date</th>
+                <th>Marks</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($enquiry->ExamDetail as $item)
+            @forelse ($enquiry->ExamDetail as $item)
             <tr>
-                <td class="text-center">1</td>
+                <td class="text-center">{{ $loop->index+1 }}</td>
                 <td>{{ $item->type_exam }}</td>
                 <td>
                     {{ $item->status }}
@@ -25,8 +26,8 @@
                         $exam=json_decode($item->exam_pattern_value);
                         $i=0;
                     @endphp
-                        @foreach(json_decode($item->exam_pattern) as $item)
-                                                <a href="#" class="badge badge-success">{{ str_replace("_"," ",ucfirst($item)) }} : {{ $exam[$i] ?? "-" }}</a>
+                        @foreach(json_decode($item->exam_pattern) as $item_pet)
+                                                <a href="#" class="badge badge-success">{{ str_replace("_"," ",ucfirst($item_pet)) }} : {{ $exam[$i] ?? "-" }}</a>
                                                 @php
                                                   $i++;
                                                 @endphp
@@ -36,11 +37,21 @@
                             <a href="#" class="badge badge-info">Not attempted</a>
 
                         @endif
-                    {{-- <a href="javascript:void(0);"  data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a> --}}
+                </td>
+                <td class="text-center">
+                         {{-- <a href="javascript:void(0);"  data-toggle="tooltip" data-placement="top" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a> --}}
+                    <a href="{{ route('OnlineExam.remove',['id'=> $item->id]) }}" data-toggle="tooltip bs-tooltip" data-placement="top" title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a>
                 </td>
             </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td class="text-center">#</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
@@ -122,6 +133,7 @@
 
 @section('child_js')
 <script>
+    $('.bs-tooltip').tooltip();
     $( document ).ready(function() {
         var listofstuff = @json(config("espi.online_exam_pattern"), JSON_PRETTY_PRINT);
         $("#ESDFRFTGTH").change(function(e){
@@ -207,7 +219,6 @@
     }
 
     function storeExam() {
-        alert("storeFire");
 // console.log("Actul_string");
 // console.log(JSON.stringify({ type_exam:$("#exam_type_pop_model_jess").val(), status:$("#ESDFRFTGTH").val(),exam_date:$("#list_content #exam_date_model_popup_jess").val(),enquiry_id:'{{ $enquiry->id }}'}));
 

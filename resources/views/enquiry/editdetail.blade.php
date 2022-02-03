@@ -4,8 +4,12 @@
 Enquiry Detail
 @endsection
 
-
+@section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
+
+
+
 @section('content')
 <div class="col-lg-6">
     <div class="alert alert-success" role="alert">
@@ -64,14 +68,15 @@ Enquiry Detail
     </form>
 </div>
 
+@yield('child_model')
 @endsection
 
-@yield('child_model')
 
 
 
 @section('js')
     @yield('child_js')
+
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
     <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>

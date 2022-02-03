@@ -43,4 +43,11 @@ class OnlineExamController extends Controller
 //        response()->json(['message' => $error], Response::HTTP_BAD_REQUEST)
 
     }
+
+    public function remove($id)
+    {
+        $exam=EnquiryOnlineExam::findOrFail($id);
+        $exam->delete();
+        return redirect()->back()->withInfo('Remove Exam Detail Successfully.');;
+    }
 }

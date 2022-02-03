@@ -262,9 +262,10 @@
                 <input type="text" name="hsc_education" class="form-control" value="{{ $last->hsc_education }}">
             </div>
             <div class="form-group">
-                <label>Backlogs</label>
-                <input type="text" name="hsc_backlog" class="form-control" value="{{ $last->hsc_backlog }}">
+                <label>English Marks</label>
+                <input type="text" name="hsc_english_mark" class="form-control" value="{{ $last->hsc_english_mark ?? "" }}">
             </div>
+
         </div>
         <div class="col md-6">
             <div class="form-group">
@@ -279,6 +280,10 @@
             <div class="form-group">
                 <label>Board</label>
                 <input type="text" name="hsc_board" class="form-control" value="{{ $last->hsc_board }}">
+            </div>
+            <div class="form-group">
+                <label>Backlogs</label>
+                <input type="text" name="hsc_backlog" class="form-control" value="{{ $last->hsc_backlog }}">
             </div>
 
         </div>

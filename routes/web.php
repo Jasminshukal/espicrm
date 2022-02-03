@@ -141,6 +141,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('ApplicationStatus/UpdateVisibility/{id}',[ApplicationStatusController::class,'UpdateVisibility'])->name('ApplicationStatus.UpdateVisibility');
 
     Route::post('AddApplicationRemark/{id}',[ApplicationController::class,'ApplicationStatusRemark'])->name('Application.StatusRemark');
+    Route::get('StartApplicationRemark/StartWorkStatus/{Application}/{status}',[ApplicationController::class,'StartWorkStatus'])->name('Application.StartWorkStatus');
 
     Route::post('ApplicationFollowUp/store/{Application}',[ApplicationFollowUpsController::class,'store'])->name('ApplicationFollowUp.store');
     Route::post('ApplicationFollowUp/reschedule/{Application}',[ApplicationFollowUpsController::class,'reschedule'])->name('ApplicationFollowUp.Reschedule');
@@ -148,7 +149,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('ApplicationFollowUp/resolved/{ApplicationFollowUp}/{status}',[ApplicationFollowUpsController::class,'resolved'])->name('ApplicationFollowUp.resolved');
 
     Route::post('OnlineExam/store',[OnlineExamController::class,'store'])->name('OnlineExam.store');
-
+    Route::get('OnlineExam/{id}',[OnlineExamController::class,'remove'])->name('OnlineExam.remove');
+    // OnlineExam.remove
 });
 
 

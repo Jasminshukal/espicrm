@@ -5,11 +5,11 @@ Enquiry Detail
 @endsection
 
 @section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link href="{{ asset('assets/css/tables/table-basic.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 
-<meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 <div class="col-lg-6">
     <div class="alert alert-success" role="alert">
@@ -62,9 +62,9 @@ Enquiry Detail
     </form>
 </div>
 
+@yield('child_model')
 @endsection
 
-@yield('child_model')
 
 
 

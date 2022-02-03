@@ -175,6 +175,7 @@ class ApplicationController extends Controller
             // $this_data['id']=$remarkloop->id;
             // $this_data['remark']=$remarkloop->remark;
             $this_data['user']=$remarkloop->user->name;
+            $this_data['start_date']=$remarkloop->start_date;
             $this_data['date']=$remarkloop->created_at->format('d-m-y');
             // $this_data['row']=$remarkloop->toArray();
             $remark[$remarkloop->status_id]=$this_data;
@@ -314,14 +315,44 @@ class ApplicationController extends Controller
         $request->validate([
             'remark' => 'required'
         ]);
+        $ApplicationRemark=ApplicationRemark::where('application_id',$application_id)->where('status_id',$request->status_id)->first();
+        if(isset($ApplicationRemark))
+        {
+            $ApplicationRemark->remark=$request->remark ?? "-";
+            // $ApplicationRemark->application_id=$application_id;
+            // $ApplicationRemark->status_id=$request->status_id;
+            $ApplicationRemark->is_not_applicable=$request->is_not_applicable;
+            $ApplicationRemark->completed_date=date('Y-m-d');
+            $ApplicationRemark->user_id=\Auth::user()->id;
+            $ApplicationRemark->company_id=\Auth::user()->company_id;
+            $ApplicationRemark->save();
+        }
+        else
+        {
+            $newStatus=new ApplicationRemark();
+            $newStatus->remark=$request->remark;
+            $newStatus->application_id=$application_id;
+            $newStatus->status_id=$request->status_id;
+            $newStatus->is_not_applicable=$request->is_not_applicable;
+            $newStatus->completed_date=date('Y-m-d');
+            $newStatus->user_id=\Auth::user()->id;
+            $newStatus->company_id=\Auth::user()->company_id;
+            $newStatus->save();
+
+        }
+        return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Added Remark successfully.");
+    }
+
+
+    public function StartWorkStatus(Request $request,$application_id,$status_id)
+    {
         $ApplicationRemark=new ApplicationRemark();
-        $ApplicationRemark->remark=$request->remark;
         $ApplicationRemark->application_id=$application_id;
-        $ApplicationRemark->status_id=$request->status_id;
-        $ApplicationRemark->is_not_applicable=$request->is_not_applicable;
+        $ApplicationRemark->status_id=$status_id;
+        $ApplicationRemark->start_date=date('Y-m-d');
         $ApplicationRemark->user_id=\Auth::user()->id;
         $ApplicationRemark->company_id=\Auth::user()->company_id;
         $ApplicationRemark->save();
-        return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Added Remark successfully.");
+        return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Start Work on Remark successfully.");
     }
 }
