@@ -123,7 +123,7 @@ Edit Application
         <div class="card">
                 <div class="card-header">Application Status</div>
                 <div class="card-body">
-                    <h3> Application Process is {{ $process }}% done. </h3>
+                    <h3> Application Process is {{ number_format($process,2) }}% done. </h3>
                     <div class="progress mb-4 progress-bar-stack br-30">
                         <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ $process }}%" aria-valuenow="{{ $process }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
