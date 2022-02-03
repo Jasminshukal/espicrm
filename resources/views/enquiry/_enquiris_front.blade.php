@@ -77,7 +77,7 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="education" class="mandatory" title="Select last education.">Current / Last Education </label>
+        <label for="education" class="mandatory bs-tooltip" title="Select last education.">Current / Last Education </label>
         <select name="education" id="education" class="@error('education') is-invalid @enderror form-control" required>
             <option disabled selected>Please Select</option>
             @foreach (config('espi.enquires_detail.education_level') as $item)
