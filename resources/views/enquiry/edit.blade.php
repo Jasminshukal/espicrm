@@ -8,7 +8,6 @@ Update Enquiry
 @section('js')
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
-    <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>

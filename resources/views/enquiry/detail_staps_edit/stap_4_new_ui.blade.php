@@ -129,8 +129,6 @@
     </div>
 </div>
 
-</form>
-
 @section('child_js')
 <script>
     $('.bs-tooltip').tooltip();
