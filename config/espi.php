@@ -133,7 +133,7 @@ return [
             'Writing',
             'Overall Score',
         ],
-        'DULINGO' => [
+        'DUOLINGO' => [
             'Overall Score',
             'Analytical Writing',
             'Literacy',
