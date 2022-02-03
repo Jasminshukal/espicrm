@@ -9,6 +9,9 @@
 @endsection
 
 @section('css')
+<link href="{{ asset('assets/css/components/timeline/custom-timeline.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/css/components/tabs-accordian/custom-accordions.css') }}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')

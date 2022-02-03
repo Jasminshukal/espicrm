@@ -13,4 +13,9 @@ class ApplicationRemark extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function status()
+    {
+        return $this->belongsTo(ApplicationStatus::class);
+    }
 }

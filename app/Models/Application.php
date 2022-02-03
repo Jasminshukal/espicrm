@@ -55,7 +55,11 @@ class Application extends Model
 
     public function FollowUpRow() {
         return $this->hasMany(ApplicationFollowUps::class);
+    }
 
+    public function Remarks()
+    {
+        return $this->hasMany(ApplicationRemark::class);
     }
 
 }
