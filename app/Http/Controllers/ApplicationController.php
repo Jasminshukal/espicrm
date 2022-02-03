@@ -183,10 +183,13 @@ class ApplicationController extends Controller
 
         }
         //dd($remark);
-        // remarksFollowUp
-        // dd($Application->FollowUp);
-
-        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark'));
+        //remarksFollowUp
+        //dd($Application->FollowUp);
+        // dd(count($status));
+        // dd(count($remarkRow));
+        $process=0;
+        $process=count($remarkRow)/count($status)*100;
+        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark','process'));
     }
 
     /**

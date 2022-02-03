@@ -116,15 +116,18 @@ Edit Application
     </div>
 </div>
 <br>
-<div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
+
 <div class="col-md-12 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
         <div class="card">
                 <div class="card-header">Application Status</div>
                 <div class="card-body">
+                    <h3> Application Process is {{ $process }}% done. </h3>
+                    <div class="progress mb-4 progress-bar-stack br-30">
+                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ $process }}%" aria-valuenow="{{ $process }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <hr>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-condensed mb-4">
                             <thead>
