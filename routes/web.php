@@ -22,6 +22,7 @@ use App\Http\Controllers\FcmTokenController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\OnlineExamController;
 use App\Models\ApplicationFollowUps;
 use App\Models\ApplicationStatus;
 
@@ -145,6 +146,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('ApplicationFollowUp/reschedule/{Application}',[ApplicationFollowUpsController::class,'reschedule'])->name('ApplicationFollowUp.Reschedule');
     Route::get('Application/ApplicationFollowUp/{id?}',[ApplicationFollowUpsController::class,'ListByEnquiry']);
     Route::get('ApplicationFollowUp/resolved/{ApplicationFollowUp}/{status}',[ApplicationFollowUpsController::class,'resolved'])->name('ApplicationFollowUp.resolved');
+
+    Route::post('OnlineExam/store',[OnlineExamController::class,'store'])->name('OnlineExam.store');
 
 });
 

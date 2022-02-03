@@ -122,6 +122,9 @@ class Enquiry extends Model
         return $this->hasMany(Transaction::class);
     }
 
-
+    public function ExamDetail()
+    {
+        return $this->hasMany(EnquiryOnlineExam::class);
+    }
 
 }

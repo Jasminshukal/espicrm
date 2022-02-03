@@ -46,7 +46,7 @@ Enquiry Detail
                     </section>
                     <h3>Online<br>Exam Details</h3>
                     <section>
-                        @include('enquiry.detail_staps_edit.stap_4')
+                        @include('enquiry.detail_staps_edit.stap_4_new_ui')
                     </section>
                     <h3>Applying<br>Details</h3>
                     <section>
@@ -71,22 +71,15 @@ Enquiry Detail
 
 
 @section('js')
-
-<script>
-    //alert("sdfsdf");
-</script>
-
-@yield('child_js')
-
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/file-upload/file-upload-with-preview.min.css"') }}">
-<script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
-<script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
+    @yield('child_js')
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-step/jquery.steps.css') }}">
+    <script src="{{ asset('plugins/jquery-step/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-step/custom-jquery.steps.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('plugins/ocr/js/mrz-worker.bundle-min-wrapped.js')}}"></script>
+    <script src="{{ asset('plugins/ocr/js/demo.bundle-min.js')}}"></script>
 
 <style>
     hr {
@@ -555,57 +548,6 @@ div.progress.visible {
 
     })(jQuery);
 
-  </script>
-  <script>
-    $('#lfm').filemanager('image', {prefix: route_prefix});
-    $('#lfm1').filemanager('image', {prefix: route_prefix});
-    $('#diploma_file').filemanager('image', {prefix: route_prefix});
-    $('#master_file').filemanager('image', {prefix: route_prefix});
-    $('#bachelor_file').filemanager('image', {prefix: route_prefix});
-    $('#phd_file').filemanager('image', {prefix: route_prefix});
-    $('#transcript_file').filemanager('image', {prefix: route_prefix});
-    $('#experience_file').filemanager('image', {prefix: route_prefix});
-    $('#resume_file').filemanager('image', {prefix: route_prefix});
-    $('#lor_file').filemanager('image', {prefix: route_prefix});
-
-</script>
-<script>
-    var lfm = function(id, type, options) {
-      let button = document.getElementById(id);
-
-      button.addEventListener('click', function () {
-        var route_prefix = (options && options.prefix) ? options.prefix : '/filemanager';
-        var target_input = document.getElementById(button.getAttribute('data-input'));
-        var target_preview = document.getElementById(button.getAttribute('data-preview'));
-
-        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
-        window.SetUrl = function (items) {
-          var file_path = items.map(function (item) {
-            return item.url;
-          }).join(',');
-
-          // set the value of the desired input to image url
-          target_input.value = "Storage/";
-          target_input.dispatchEvent(new Event('change'));
-
-          // clear previous preview
-          target_preview.innerHtml = '';
-
-          // set or change the preview image src
-          items.forEach(function (item) {
-            let img = document.createElement('img')
-            img.setAttribute('style', 'height: 5rem')
-            img.setAttribute('src', item.thumb_url)
-            target_preview.appendChild(img);
-          });
-
-          // trigger change event
-          target_preview.dispatchEvent(new Event('change'));
-        };
-      });
-    };
-
-    lfm('lfm2', 'file', {prefix: route_prefix});
   </script>
 <script>
 
