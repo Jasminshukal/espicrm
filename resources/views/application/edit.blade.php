@@ -90,7 +90,7 @@ Edit Application
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="status">Apply Through</label>
-                                    <input type="text" name="associated_with" id="status" class="form-control" value="{{ $Application->associated_with }}" required>
+                                    <input type="text" name="associated_with" id="status" class="form-control" value="{{ $Application->associated_with ?? "" }}" @isset($Application->associated_with) readonly @else required @endisset>
                                 </div>
                             </div>
 
@@ -123,8 +123,9 @@ Edit Application
         <div class="card">
                 <div class="card-header">Application Status</div>
                 <div class="card-body">
-                    <h3> Application Process is {{ number_format($process,2) }}% done. </h3>
+                    <h3> Application Start Process is {{ number_format($process,2) }}% done. </h3>
                     <div class="progress mb-4 progress-bar-stack br-30">
+                        {{-- <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ $pending }}%" aria-valuenow="{{ $pending }}" aria-valuemin="0" aria-valuemax="100"></div> --}}
                         <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ $process }}%" aria-valuenow="{{ $process }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <hr>

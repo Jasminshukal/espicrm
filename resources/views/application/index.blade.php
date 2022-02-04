@@ -66,6 +66,8 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
+                $('.bs-tooltip').tooltip();
+
                 this.api().columns().every(function () {
                     var column = this;
                     var input = document.createElement("input");

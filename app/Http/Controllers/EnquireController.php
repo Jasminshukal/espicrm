@@ -153,7 +153,7 @@ class EnquireController extends Controller
         // $date="731101";
         // echo $newdate=date('Y-m-d',strtotime($date));
         // die;
-        $user=User::role('Counsellor')->get();
+        $user=User::role('Counsellor')->where('company_id',\Auth::user()->company_id)->get();
 
         $university=University::all();
         $course=Course::all();

@@ -60,7 +60,8 @@ class ApplicationController extends Controller
                         $colum_row="";
                         if($date->Enquiry->reference_code)
                         {
-                            $colum_row.='<span class="badge badge-pill badge-info">#';
+                            $agent_name=$date->Enquiry->reference_name ?? "Not Set Yet";
+                            $colum_row.='<span class="badge badge-pill badge-info bs-tooltip" title="'.$date->Enquiry->reference_name.'">#';
                             $colum_row.=$date->Enquiry->reference_code;
                         }
                         else
@@ -110,7 +111,7 @@ class ApplicationController extends Controller
         $university=University::all();
         $course=Course::all();
         $intake=Intact::all();
-        $processor=\App\Models\User::role('Processor')->get();
+        $processor=\App\Models\User::role('Processor')->where('company_id',\Auth::user()->company_id)->get();
         return view('application.add',compact('enquiry','university','course','intake','processor'));
     }
 
@@ -187,9 +188,21 @@ class ApplicationController extends Controller
         //dd($Application->FollowUp);
         // dd(count($status));
         // dd(count($remarkRow));
-        $process=0;
-        $process=count($remarkRow)/count($status)*100;
-        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark','process'));
+        $pending=$process=0;
+        $CalculateRemarkRow=ApplicationRemark::where('application_id',$Application->id)->where('completed_date',"!=",NULL)->get();
+        if(count($CalculateRemarkRow)>0)
+        {
+            $process=count($CalculateRemarkRow)/count($status)*100;
+        }
+
+        $CalculateRemarkpending=ApplicationRemark::where('application_id',$Application->id)->get();
+        // dd($CalculateRemarkpending);
+        if(count($CalculateRemarkpending)>0)
+        {
+            $pending=(count($CalculateRemarkpending)-count($CalculateRemarkRow))/count($status)*100;
+        }
+
+        return view('application.edit',compact('university','country','course','intact','status','Application','documents','processor','remark','process','pending'));
     }
 
     /**
@@ -207,10 +220,7 @@ class ApplicationController extends Controller
         ]);
 
         $application_list=Application::find($application);
-        if($application_list->associated_with!="")
-        {
-            $application_list->associated_with=$request->associated_with;
-        }
+        $application_list->associated_with=$request->associated_with;
         if($application_list->processor_id!="")
         {
             $application_list->processor_id=$request->processor_id;

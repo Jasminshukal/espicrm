@@ -100,7 +100,7 @@
                 </div>
                 <div class="form-group" style="display: none;" id="planning_date_input">
                     <label for="name">Planning Date</label>
-                    <input type="date" name="planning_date" id="planning_date_plan_jess" class="form-control" value="0">
+                    <input type="date" name="planning_date" id="planning_date_plan_jess" class="form-control" min="{{ date('Y-m-d') }}" value="0">
                 </div>
             </div>
             <div class="modal-footer">
@@ -194,10 +194,14 @@
                 </div>`;
 
             });
+            @php
+            $current = \Carbon\Carbon::now();
+            $trialExpires = $current->subYears(2)->format('Y-m-d');
+            @endphp
             return form+`<div class="col-md-6">
                     <div class="form-group">
                         <label for="name">Exam Date</label>
-                        <input type="date" id="exam_date_model_popup_jess" name="exam_date" class="form-control" value="0" required>
+                        <input type="date" id="exam_date_model_popup_jess" name="exam_date" class="form-control" min="{{ $trialExpires }}" max="{{ date('Y-m-d') }}" value="0" required>
                     </div>
                 </div>`;
         }
@@ -255,7 +259,18 @@ $.each($("#list_content :input"), function() {
                     .then(data => {
                         if(data.status==1)
                         {
-                            location.reload(true);
+                            var member=window.location.href;
+                            var last2 = member.slice(-2);
+                            if(last2 != '/3')
+                            {
+                                // alert(last2);
+                                // window.location.href += "/3";
+                                window.location.replace(window.location.href += "/3");
+                            }
+                            else
+                            {
+                                window.location.replace(window.location.href);
+                            }
                         }
                         $.each(data.errors, function($key,$value) {
                             alert($value);
