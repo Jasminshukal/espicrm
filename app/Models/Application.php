@@ -50,7 +50,7 @@ class Application extends Model
 
     public function LastFollowUp()
     {
-        return $this->FollowUpRow()->orderby('id','desc');
+        return $this->FollowUpRow()->orderby('id','asc');
     }
 
     public function FollowUpRow() {
