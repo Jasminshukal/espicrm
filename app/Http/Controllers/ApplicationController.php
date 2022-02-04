@@ -48,7 +48,7 @@ class ApplicationController extends Controller
             {
                 $data->where('processor_id',\Auth::user()->id);
             }
-
+            $data->orderby('id','desc');
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('admin/Application/ApplicationFollowUp/'.$user->id);
