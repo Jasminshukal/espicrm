@@ -120,7 +120,6 @@ $(document).ready(function() {
                 {data: 'counsellor_name', name: 'counsellor_name'},
                 {data: 'preferred_country', name: 'preferred_country'},
                 {data: 'status', name: 'status'},
-                {data: 'date', name: 'date',orderable: false, searchable: false},
                 {data: 'is_enrolled', name: 'is_enrolled',orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
@@ -422,7 +421,6 @@ Enquires index
                 <th>Counsellor Name</th>
                 <th>Preferred Country</th>
                 <th>Status</th>
-                <th>Date</th>
                 <th>Enrolled</th>
                 <th with="350px;">Action</th>
             </tr>

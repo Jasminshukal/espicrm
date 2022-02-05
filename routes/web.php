@@ -127,26 +127,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
 
-    Route::get("/Profile", function(){
+    Route::get("/", function(){
         return view('user.profile');
-    });
-
-    Route::get('/syncSop',function(){
-        $courseRow=\App\Models\Course::all();
-        foreach($courseRow as $course)
-        {
-
-            $data=[
-                "course_id"=>$course->id,
-                "documents"=>'sop',
-                "type"=>'pdf',
-                "status"=>"active",
-                "company_id"=>Auth::user()->company_id,
-            ];
-            \App\Models\CourseRequirement::insert($data);
-            echo "inserted <br>";
-        }
-            return "123";
     });
 
     Route::get('email-test', function(){

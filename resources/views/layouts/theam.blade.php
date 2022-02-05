@@ -31,13 +31,12 @@
             <ul class="navbar-item flex-row navbar-dropdown search-ul">
                 <li class="nav-item dropdown language-dropdown more-dropdown">
                     <div class="dropdown  custom-dropdown-icon">
-                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/img/ca.png') }}" class="flag-width" alt="flag">
+                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
-                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/de.png') }}" class="flag-width" alt="flag"> German</a>
-                            <a class="dropdown-item" data-img-value="jp" data-value="Japanese" href="javascript:void(0);"><img src="{{ asset('assets/img/jp.png') }}" class="flag-width" alt="flag"> Japanese</a>
-                            <a class="dropdown-item" data-img-value="fr" data-value="French" href="javascript:void(0);"><img src="{{ asset('assets/img/fr.png') }}" class="flag-width" alt="flag"> French</a>
-                            <a class="dropdown-item" data-img-value="ca" data-value="English" href="javascript:void(0);"><img src="{{ asset('assets/img/ca.png') }}" class="flag-width" alt="flag"> English</a>
+                            <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> English</a>
+                            <a class="dropdown-item" data-img-value="he" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> Hindi</a>
+                            <a class="dropdown-item" data-img-value="he" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> Hindi</a>
                         </div>
                     </div>
                 </li>
