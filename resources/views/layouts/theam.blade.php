@@ -35,8 +35,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
                             <a class="dropdown-item" data-img-value="de" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> English</a>
-                            <a class="dropdown-item" data-img-value="he" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> Hindi</a>
-                            <a class="dropdown-item" data-img-value="he" data-value="German" href="javascript:void(0);"><img src="{{ asset('assets/img/flag-inr.svg') }}" class="flag-width" alt="flag"> Hindi</a>
                         </div>
                     </div>
                 </li>
