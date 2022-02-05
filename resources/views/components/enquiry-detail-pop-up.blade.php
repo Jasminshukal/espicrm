@@ -1,7 +1,4 @@
 <div class="card">
-    <div class="card-header">
-      Student Detail
-    </div>
     <div class="card-body">
         <h5 class="card-title">Basic Information</h5>
         <p class="card-text">(As indicated on your Enquiry)</p>
@@ -112,6 +109,26 @@
             </tbody>
         </table>
 
+        <h5 class="card-title">Online Exam</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">Type Exam</th>
+                    <th scope="row">exam_pattern</th>
+                    <th scope="row">To Work From</th>
+                    <th scope="row">Work Profile</th>
+                </tr>
+                @foreach ($message->ExamDetail as $exam_detail)
+                    <tr>
+                        <td scope="row">{{ $exam_detail }} </td>
+                        <td scope="row">{{ $exam_detail->type_exam ?? 'not set yet' }}</td>
+                        <td scope="row">{{ $message->details->data->to_work_from[$loop->index] ?? 'not set yet' }}</td>
+                        <td scope="row">{{ $message->details->data->work_profile[$loop->index] ?? 'not set yet' }}</td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+        </table>
         <h5 class="card-title">Work Information</h5>
         <table class="table table-bordered">
             <tbody>

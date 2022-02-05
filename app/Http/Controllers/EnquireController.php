@@ -44,12 +44,17 @@ class EnquireController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor')->where('status','!=','Coaching')->where('status','!=','Failed');
+            $data = Enquiry::orderBy("updated_at","desc")->select('*')->with('City','State','Country','Counsellor')->where('status','!=','Failed');
 
             if(in_array("counsellor",\Auth::user()->roles->pluck('name')->toArray()))
             {
                 $data->whereIn('id',AssignCounsellor::where('counsellors_id',\Auth::user()->id)->pluck('enquiry_id'));
             }
+            else
+            {
+                $data->where('status','!=','Coaching');
+            }
+
             return Datatables::of($data)
                     ->addColumn('details_url', function($enq) {
                         return $enq->name;
@@ -99,6 +104,7 @@ class EnquireController extends Controller
                     })
                     ->addColumn('enq', function($row){
                         $date="<br>".\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('d/m/Y');
+                        $date="";
                         if($data=$this->existdetail($row->id))
                            {
                             return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>'.$date;

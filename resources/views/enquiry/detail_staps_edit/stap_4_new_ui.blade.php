@@ -263,8 +263,6 @@ $.each($("#list_content :input"), function() {
                             var last2 = member.slice(-2);
                             if(last2 != '/3')
                             {
-                                // alert(last2);
-                                // window.location.href += "/3";
                                 window.location.replace(window.location.href += "/3");
                             }
                             else

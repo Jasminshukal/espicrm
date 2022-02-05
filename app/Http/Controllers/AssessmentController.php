@@ -192,9 +192,9 @@ class AssessmentController extends Controller
             //add a maniple assessment function
 
             //but for now we have add only one
-            $enquiry=Enquiry::find($AddAssessment->enquiry_id);
-            $enquiry->status="assign";
-            $enquiry->save();
+            // $enquiry=Enquiry::find($AddAssessment->enquiry_id);
+            // $enquiry->status="assign";
+            // $enquiry->save();
             $assessment=assessment::insert($data);
                 //A Trigger to display in student detail
                 EnqActivity("Add New Assessment",$data[0]['enquiry_id']);

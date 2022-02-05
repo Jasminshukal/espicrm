@@ -249,6 +249,8 @@ Edit Application
     </div>
 </div>
 
+
+@if(count($documents)>0)
 <div class="col-md-12 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -256,16 +258,15 @@ Edit Application
                 <div class="card-header">Documents</div>
                 <div class="card-body">
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                        {{-- <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
-                        </div>
+                        </div> --}}
                     @endif
-
-                    @foreach ($documents as $item)
+                    @forelse ($documents as $item)
                         <div class="card component-card_6 mb-2">
                             <div class="card-body ">
                                 <div class="">
@@ -275,7 +276,9 @@ Edit Application
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+
+                    @endforelse
 
                 </div>
             </div>
@@ -283,10 +286,22 @@ Edit Application
         </div>
     </div>
 </div>
+@endif
+<div class="col-md-12 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+        <div class="card">
+                <div class="card-header">Student Detail</div>
+                <div class="card-body">
 
-{{-- <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#ChangeStatusModel">
-    Launch modal
-  </button> --}}
+                    <x-EnquiryDetailPopUp type="error" :message="$Application->enquiry" class="mt-4"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
   <form action="{{ route('Application.StatusRemark',$Application->id) }}" method="POST">
     @csrf
