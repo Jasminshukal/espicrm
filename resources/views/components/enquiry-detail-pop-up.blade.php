@@ -114,16 +114,33 @@
             <tbody>
                 <tr>
                     <th scope="row">Type Exam</th>
-                    <th scope="row">exam_pattern</th>
-                    <th scope="row">To Work From</th>
-                    <th scope="row">Work Profile</th>
+                    <th scope="row">Marks</th>
+                    <th scope="row">Status</th>
+                    <th scope="row">Exam/Plan</th>
                 </tr>
                 @foreach ($message->ExamDetail as $exam_detail)
                     <tr>
-                        <td scope="row">{{ $exam_detail }} </td>
                         <td scope="row">{{ $exam_detail->type_exam ?? 'not set yet' }}</td>
-                        <td scope="row">{{ $message->details->data->to_work_from[$loop->index] ?? 'not set yet' }}</td>
-                        <td scope="row">{{ $message->details->data->work_profile[$loop->index] ?? 'not set yet' }}</td>
+                        <td scope="row">
+                            @if ($exam_detail->status!="planning")
+                            @php
+                                $exam=json_decode($exam_detail->exam_pattern_value);
+                                $i=0;
+                            @endphp
+                                @foreach(json_decode($exam_detail->exam_pattern) as $item_pet)
+                                                        <a href="#" class="badge badge-success">{{ str_replace("_"," ",ucfirst($item_pet)) }} : {{ $exam[$i] ?? "-" }}</a>
+                                                        @php
+                                                          $i++;
+                                                        @endphp
+                                @endforeach
+
+                                @else
+                                    <a href="#" class="badge badge-info">Not attempted</a>
+                                @endif
+                        </td>
+
+                        <td scope="row">{{ $exam_detail->status ?? 'not set yet' }}</td>
+                        <td scope="row">{{ date('d/m/Y',strtotime($exam_detail->exam_date)) ?? 'not set yet' }}</td>
                     </tr>
                 @endforeach
 

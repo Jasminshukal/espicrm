@@ -54,7 +54,7 @@
                 "data":           null,
                 "defaultContent": ''
                 },
-                {data: 'enquiry.name', name: 'enquiry.name', orderable: false, searchable: false},
+                {data: 'detail_enquiry', name: 'detail_enquiry', orderable: false, searchable: false},
                 {data: 'university.name', name: 'university.name', orderable: false, searchable: false},
                 { data: 'course.name', name: 'course.name' , orderable: false, searchable: false},
                 { data: 'university.country.name', name: 'university.country.name' , orderable: false, searchable: false },

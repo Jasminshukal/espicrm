@@ -104,12 +104,12 @@ class Enquiry extends Model
 
     public function Activity()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->orderBy('id','desc');
     }
 
     public function FollowUp()
     {
-        return $this->hasMany(FollowUp::class);
+        return $this->hasMany(FollowUp::class)->orderBy('id','desc');
     }
 
     public function getStatusAttribute($value)
@@ -119,12 +119,12 @@ class Enquiry extends Model
 
     public function Transaction()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class)->orderBy('id','desc');
     }
 
     public function ExamDetail()
     {
-        return $this->hasMany(EnquiryOnlineExam::class);
+        return $this->hasMany(EnquiryOnlineExam::class)->orderBy('id','desc');
     }
 
 }

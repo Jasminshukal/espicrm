@@ -15,7 +15,7 @@
             </div>
             <div id="withoutSpacingAccordionTwo{{ $item->id }}" class="collapse" aria-labelledby="headingTwo2" data-parent="#withoutSpacing">
                 <div class="card-body">
-                    <div class="mt-container  mx-auto">
+                    <div class="pl-5 mx-auto">
                         <div class="timeline-line">
                             @foreach ($item->Remarks as $remarks)
 
@@ -24,7 +24,7 @@
                                 <div class="t-dot t-dot-primary">
                                 </div>
                                 <div class="t-text">
-                                    <p> {{ $remarks->status->status }} | {{ $remarks->remark ?? "Remark not set"}}</p>
+                                    <p> {{ $remarks->status->status }} | {{ $remarks->remark ?? "Remark not set"}} | Start Date : {{ $remarks->start_date ?? "Not started yet"}} | Completed Date : {{ $remarks->completed_date ?? "Not Complited yet"}}</p>
                                     <p class="t-meta-time">{{ $remarks->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>

@@ -214,7 +214,7 @@ if(! function_exists('EnqActivity'))
 {
 function EnqActivity($mgs,$EnqId)
 {
-    return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId]);
+    return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId,'added_by'=>\Auth::user()->id]);
 }
 }
 

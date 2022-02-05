@@ -56,6 +56,10 @@ class ApplicationController extends Controller
                     ->addColumn('processor_id', function($user) {
                         return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
                     })
+                    ->addColumn('detail_enquiry', function($row) {
+                        return '<a href="'.route('detail.nav',$row->enquiry->id).'" style="color:blue;" >'.$row->enquiry->name.'</a>';
+                        //return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
+                    })
                     ->addColumn('agent_detail', function($date) {
                         $colum_row="";
                         if($date->Enquiry->reference_code)
@@ -95,7 +99,7 @@ class ApplicationController extends Controller
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
-                    ->rawColumns(['action','processor_id','agent_detail','last_follow_up'])
+                    ->rawColumns(['action','processor_id','agent_detail','last_follow_up','detail_enquiry'])
                     ->make(true);
         }
         return view('application.index');
@@ -226,7 +230,7 @@ class ApplicationController extends Controller
             $application_list->processor_id=$request->processor_id;
         }
         $application_list->save();
-        EnqActivity("Update Status Application",$application_list->enquiry_id);
+        EnqActivity("Update Status Application.Associated With:".$request->associated_with,$application_list->enquiry_id);
         return redirect(route('Application.index'))->with('success','Application status change successfully!');;
     }
 
@@ -271,6 +275,7 @@ class ApplicationController extends Controller
         $enquiry->status="applied";
         $enquiry->save();
         $requirement=CourseRequirement::where('course_id',$Ass->course_id)->get();
+
         if($request->isMethod('post'))
         {
 
@@ -310,7 +315,7 @@ class ApplicationController extends Controller
                 $document->save();
             }
 
-            EnqActivity("Apply Application",$Application->enquiry_id);
+            EnqActivity("Send Application To Processor. | Application : ".$Application->application_id ,$Application->enquiry_id);
             return redirect(route('Application.index'))->with('success','Application');
         }
 
@@ -339,6 +344,10 @@ class ApplicationController extends Controller
             $ApplicationRemark->user_id=\Auth::user()->id;
             $ApplicationRemark->company_id=\Auth::user()->company_id;
             $ApplicationRemark->save();
+            //EnqActivity("Done Application. Status :".$request->status_id,$Application->enquiry_id);
+            $Application=Application::find($application_id);
+            $status_name=ApplicationStatus::find($request->status_id)->status;
+            EnqActivity("Complied Process on Application Status. | Application : ".$Application->application_id." | Status : ".$status_name,$Application->Enquiry->id);
         }
         else
         {
@@ -351,7 +360,10 @@ class ApplicationController extends Controller
             $newStatus->user_id=\Auth::user()->id;
             $newStatus->company_id=\Auth::user()->company_id;
             $newStatus->save();
-
+            $Application=Application::find($application_id);
+            $status_name=ApplicationStatus::find($request->status_id)->status;
+            EnqActivity("Complied Process on Application Status. | Application : ".$Application->application_id." | Status : ".$status_name,$Application->Enquiry->id);
+           // EnqActivity("Process Application. Status :".$status_id,$Application->enquiry_id);
         }
         return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Added Remark successfully.");
     }
@@ -366,6 +378,11 @@ class ApplicationController extends Controller
         $ApplicationRemark->user_id=\Auth::user()->id;
         $ApplicationRemark->company_id=\Auth::user()->company_id;
         $ApplicationRemark->save();
+
+        $Application=Application::find($application_id);
+        $status_name=ApplicationStatus::find($status_id)->status;
+        EnqActivity("Process on Application Status. | Application : ".$Application->application_id." | Status : ".$status_name,$Application->Enquiry->id);
+        // EnqActivity("Process Application. Status :".$status_id,\App\Models\Application::find('application_id')->Enquiry->id);
         return redirect()->route('Application.edit',['Application'=>$application_id])->withInfo("Start Work on Remark successfully.");
     }
 }

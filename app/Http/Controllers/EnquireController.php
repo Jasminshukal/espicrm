@@ -103,8 +103,7 @@ class EnquireController extends Controller
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
                     ->addColumn('enq', function($row){
-                        $date="<br>".\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('d/m/Y');
-                        $date="";
+                        $date="<br>".\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('d/m/Y h:i A');
                         if($data=$this->existdetail($row->id))
                            {
                             return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>'.$date;

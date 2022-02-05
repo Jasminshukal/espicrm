@@ -131,6 +131,24 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         return view('user.profile');
     });
 
+    Route::get('/syncSop',function(){
+        $courseRow=\App\Models\Course::all();
+        foreach($courseRow as $course)
+        {
+
+            $data=[
+                "course_id"=>$course->id,
+                "documents"=>'sop',
+                "type"=>'pdf',
+                "status"=>"active",
+                "company_id"=>Auth::user()->company_id,
+            ];
+            \App\Models\CourseRequirement::insert($data);
+            echo "inserted <br>";
+        }
+            return "123";
+    });
+
     Route::get('email-test', function(){
         $details = App\Models\Enquiry::find(1);
         dispatch(new App\Jobs\WelcomeEmailJob($details));

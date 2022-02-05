@@ -197,7 +197,7 @@ class AssessmentController extends Controller
             // $enquiry->save();
             $assessment=assessment::insert($data);
                 //A Trigger to display in student detail
-                EnqActivity("Add New Assessment",$data[0]['enquiry_id']);
+                EnqActivity("Add New Assessment.",$data[0]['enquiry_id']);
                 // Add Mail to studant
                 // $enquiry=Enquiry::find($data[0]['enquiry_id']);
                 // Mail::to($enquiry->email)->send(new AddAssessments($enquiry));

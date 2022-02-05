@@ -68,8 +68,8 @@ Enquiry Detail
     </form>
 </div>
 
-@yield('child_model')
 @endsection
+@yield('child_model')
 
 
 

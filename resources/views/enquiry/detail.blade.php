@@ -14,7 +14,7 @@ Enquiry Detail
 <div class="col-lg-6">
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Student Remarks!</h4>
-        <p>{{ $enquiry->remarks }}</p>
+        <p>{{ $enquiry->remarks ?? "-" }}</p>
     </div>
 </div>
 <div class="col-lg-12 layout-spacing">
