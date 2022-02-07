@@ -57,7 +57,7 @@ class EnquireController extends Controller
 
             return Datatables::of($data)
                     ->addColumn('details_url', function($enq) {
-                        return $enq->name;
+                        return url("admin/inquiry/FollowUp/".$enq->id);
                     })
                     ->addColumn('counsellor_name', function($user) {
                         $user_names="";
