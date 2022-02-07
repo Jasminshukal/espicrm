@@ -15,6 +15,7 @@ use App\Models\Intact;
 use App\Models\University;
 use App\Models\ApplicationStatus;
 use App\Models\ApplicationRemark;
+use App\Models\EnquiryDetail;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Mail;
@@ -275,7 +276,11 @@ class ApplicationController extends Controller
         $enquiry->status="applied";
         $enquiry->save();
         $requirement=CourseRequirement::where('course_id',$Ass->course_id)->get();
-
+        $Detail=EnquiryDetail::where('enquiry_id',$Ass->enquiry_id)->first();
+        if($Detail->is_conform==0)
+        {
+            return redirect()->back()->withError("Need verify student details then you can apply.");
+        }
         if($request->isMethod('post'))
         {
 
