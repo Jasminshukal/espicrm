@@ -115,6 +115,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
+    Route::get('conform_document/{Enquire}',[EnquiryDetailController::class,'conform_document'])->name('detail.conform_document');
 
     Route::post('document/store/{mode?}', [DocumentController::class,'store'])->name('document.store');
     Route::get('document/delete/{Document}/{mode?}', [DocumentController::class,'remove'])->name('document.delete');

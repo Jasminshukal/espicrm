@@ -8,7 +8,7 @@
             <tbody>
                 <tr>
                     <th>Email</th>
-                    <td>{{ $enquiry->email }}</td>
+                    <td>{{ $enquiry->email }} </td>
                 </tr>
                 <tr>
                     <th>First Language</th>

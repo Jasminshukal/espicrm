@@ -54,6 +54,14 @@ class EnquiryDetailController extends Controller
             abort(401, 'Page not found');
         }
         $enquiry->Details->data=$enquiry->Details->data;
+
         return view('enquiry.detail_ui.index',compact('enquiry','active'));
+    }
+
+    public function conform_document($id,Request $request)
+    {
+        EnquiryDetail::where('enquiry_id', $id)
+      ->update(['is_conform' => 1 , 'approve_by' =>\Auth::user()->id]);
+       return redirect()->back()->withInfo("Successfully Verify Enquiry Detail.");
     }
 }
