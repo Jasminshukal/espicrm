@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enquiry;
 use App\Models\EnquiryDetail;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class EnquiryDetailController extends Controller
@@ -62,6 +63,10 @@ class EnquiryDetailController extends Controller
     {
         EnquiryDetail::where('enquiry_id', $id)
       ->update(['is_conform' => 1 , 'approve_by' =>\Auth::user()->id]);
+      Document::where('enquiry_id', $id)
+      ->update(['status' => 'approved' , 'reviewer' =>\Auth::user()->id]);
+    //   $enquiry->Documents
+
        return redirect()->back()->withInfo("Successfully Verify Enquiry Detail.");
     }
 }
