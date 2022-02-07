@@ -42,6 +42,8 @@ class EnquiryDetailController extends Controller
         $EnquiryDetail=EnquiryDetail::where('enquiry_id',$id)->first();
         $EnquiryDetail->data = json_encode($request->all());
         $EnquiryDetail->remark = $request->remark;
+        $EnquiryDetail->is_conform = null;
+        $EnquiryDetail->approve_by = null;
         $EnquiryDetail->save();
         return redirect(route('Enquires.index'));
     }
