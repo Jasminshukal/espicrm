@@ -32,7 +32,7 @@ class AssessmentController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = assessment::select('*')->where('status', '!=', 'approved')
+            $data = assessment::select('assessments.*')->where('assessments.status', '!=', 'approved')
             ->groupBy('enquiry_id')
             ->with('University','Course','User','Enquiry','University.Country');
 
@@ -45,6 +45,18 @@ class AssessmentController extends Controller
                     ->addIndexColumn()
                     ->addColumn('status', function($row){
                             return ucfirst($row->status);
+                    })
+                    ->addColumn('enquiry_list', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->name;
+                    })
+                    ->addColumn('enquiry_id', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->enquiry_id;
+                    })
+                    ->addColumn('phone', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->phone;
+                    })
+                    ->addColumn('email', function (assessment $assesmenet) {
+                        return $assesmenet->Enquiry->email;
                     })
                     ->addColumn('date', function($model) {
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
@@ -126,6 +138,7 @@ class AssessmentController extends Controller
 
                     })
                     ->rawColumns(['action','agent_detail'])
+                    ->startsWithSearch()
                     ->make(true);
         }
         return view('assessment.index');

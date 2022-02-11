@@ -18,6 +18,7 @@ class CompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('company_id', '1');
+         \Log::debug(json_encode($model->getTable()));
+        $builder->where($model->getTable().'.company_id',\Auth::user()->company_id);
     }
 }

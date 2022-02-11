@@ -41,23 +41,32 @@
                 },
             ajax: "{{ route('assessments.index') }}",
             columns: [
-                { data: 'enquiry.enquiry_id', name: 'Enquiry.enquiry_id',orderable:'false',searchable: false },
-                { data: 'enquiry.name', name: 'Enquiry.name',orderable: true,searchable: false},
-                { data: 'enquiry.phone', name: 'university.country.name',orderable: false,searchable: false},
-                { data: 'enquiry.email', name: 'university.name', orderable: false,searchable: false},
-                { data: 'agent_detail', name: 'agent_detail',orderable:'false', searchable: true },
+                { data: 'enquiry_id', name: 'Enquiry.enquiry_id' },
+                { data: 'enquiry_list', name: 'Enquiry.name'},
+                { data: 'phone', name: 'Enquiry.phone'},
+                { data: 'email', name: 'Enquiry.email'},
+                { data: 'agent_detail', name: 'agent_detail' },
                 { data: 'action', name: 'action', orderable: false, searchable: true},
             ],
             initComplete: function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var input = document.createElement("input");
-                $(input).appendTo($(column.footer()).empty())
-                .on('change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                    column.search(val ? val : '', true, false).draw();
+                this.api().columns().every(function () {
+                    var column = this;
+                    var title = "";
+
+                    var input = '<input type="text" class="form-control" placeholder="'+title+'" />';
+                    if(this.index() != "4" && this.index() != "5")
+                    {
+                        $(input).appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? val : '', true, false).draw();
+                        });
+                    }
+                    else
+                    {
+                        $(column.footer()).empty();
+                    }
                 });
-            });
             }
         });
 
@@ -125,11 +134,21 @@ Application
                 <th>Email</th>
                 <th>Agent Detail</th>
                 <th width="100px">Action</th>
-
             </tr>
         </thead>
         <tbody>
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Enquiry Id</th>
+                <th>Student Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Agent Detail</th>
+                <th width="100px">Action</th>
+            </tr>
+        </tfoot>
+
     </table>
 
 </div>

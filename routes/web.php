@@ -151,7 +151,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::post('OnlineExam/store',[OnlineExamController::class,'store'])->name('OnlineExam.store');
     Route::get('OnlineExam/{id}',[OnlineExamController::class,'remove'])->name('OnlineExam.remove');
-    // OnlineExam.remove
+
+
 });
 
 
