@@ -103,7 +103,8 @@ class EnquireController extends Controller
                         return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
                     })
                     ->addColumn('enq', function($row){
-                        $date="<br>".\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('d/m/Y h:i A');
+                        $icon='<svg style="width: 17px; height: 17px; vertical-align: text-top; color: #1abc9c; fill: #ddf5f0; stroke-width: 0.5px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> ';
+                        $date="<br> ".$icon.\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('d/m/Y');
                         if($data=$this->existdetail($row->id))
                            {
                             return '<a href="'.route('detail.nav',$row->id).'" style="color:blue;" >'.$row->name.'</a>'.$date;

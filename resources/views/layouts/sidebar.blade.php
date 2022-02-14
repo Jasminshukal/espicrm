@@ -27,6 +27,11 @@
                     <a href="{{ route('Asset.index') }}"> Assets </a>
                 </li>
                 @endcan
+                @can(["reports"])
+                <li>
+                    <a href="{{ route('Report.index') }}"> Reports </a>
+                </li>
+                @endcan
             </ul>
         </div>
         @endcan

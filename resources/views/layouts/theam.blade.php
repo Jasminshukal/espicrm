@@ -143,7 +143,7 @@
                             <div class="media mx-auto">
                                 <img src="{{ asset('assets/img/90x90.jpg') }}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
-                                    <h5>{{ Auth::user()->name ?? "Admin" }}</h5>
+                                    <h5>{{ Auth::user()->name ?? "Not set Name" }}</h5>
                                     <p>{{ Auth::user()->roles->pluck('name')[0] ?? '' }}</p>
                                 </div>
                             </div>

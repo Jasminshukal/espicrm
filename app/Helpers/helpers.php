@@ -212,16 +212,8 @@ if (! function_exists('bootstrap_input_6')) {
 
 if(! function_exists('EnqActivity'))
 {
-function EnqActivity($mgs,$EnqId)
-{
-    return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId,'added_by'=>\Auth::user()->id]);
-}
-}
-
-if(! function_exists('data_from_json'))
-{
-function data_from_json($string)
-{
-    return json_decode($string,true);
-}
+    function EnqActivity($mgs,$EnqId)
+    {
+        return Activity::create(['string'=>$mgs,'enquiry_id' => $EnqId,'added_by'=>\Auth::user()->id]);
+    }
 }

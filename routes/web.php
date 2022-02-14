@@ -23,6 +23,7 @@ use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\OnlineExamController;
+use App\Http\Controllers\ReportController;
 use App\Models\ApplicationFollowUps;
 use App\Models\ApplicationStatus;
 
@@ -87,7 +88,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post("EnquiryDetail/update/{id?}",[EnquiryDetailController::class,'update'])->name('EnquiryDetail.update');
     Route::resource('permissions',PermissionController::class);
     Route::get('assessments/{id}/{status}/change_status', [AssessmentController::class,'status_change'])->name('assessment.status');
-    Route::get('AssessmentController/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
+    Route::get('assessments/Add/{Enquiry}', [AssessmentController::class,'create'])->name('Assessment.Add');
     Route::get('AssessmentController/Remove/{Enquiry}', [AssessmentController::class,'destroy'])->name('Assessment.Remove');
     Route::post('EmailNotifyAssessment/{Enquiry}', [AssessmentController::class,'EmailNotifyAssessment'])->name('Assessment.EmailNotifyAssessment');
     Route::get('ApplyApplication/{Assessment}', [ApplicationController::class,'ApplyApplication'])->name('Assessment.Apply');
@@ -114,7 +115,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
+    Route::get('enquire/detail/{Enquire}/{Active?}',[EnquiryDetailController::class,'detail'])->name('detail.nav');
     Route::get('conform_document/{Enquire}',[EnquiryDetailController::class,'conform_document'])->name('detail.conform_document');
 
     Route::post('document/store/{mode?}', [DocumentController::class,'store'])->name('document.store');
@@ -128,9 +129,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
 
-    Route::get("/", function(){
-        return view('user.profile');
-    });
+    // Route::get("/", function(){
+    //     return view('user.profile');
+    // });
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
 
     Route::get('email-test', function(){
         $details = App\Models\Enquiry::find(1);
@@ -152,7 +154,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('OnlineExam/store',[OnlineExamController::class,'store'])->name('OnlineExam.store');
     Route::get('OnlineExam/{id}',[OnlineExamController::class,'remove'])->name('OnlineExam.remove');
 
-
+    Route::get('Report',[ReportController::class,'index'])->name('Report.index');
 });
 
 
