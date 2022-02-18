@@ -191,6 +191,10 @@ class UniversityController extends Controller
     public function update(EditUniversity $request,$university)
     {
         $validated = $request->validated();
+        if($request->has('description'))
+        {
+            $validated['email']=$request->email;
+        }
         $validated['description']=$request->description;
         $validated['intake_year']=$request->intake_year;
         $validated['intake_month']=$request->intake_month;
@@ -270,7 +274,7 @@ class UniversityController extends Controller
             UniversityCampus::insert($data);
         }
 
-        return redirect(route('University.index'))->with("success","University");
+        return redirect(route('University.index'))->with("University")->withInfo(ucfirst($request->name).' University Updated Successfully.');
     }
 
     /**

@@ -38,7 +38,7 @@ class AssessmentController extends Controller
 
             if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
-                $data->where('added_by_id',\Auth::user()->id);
+                $data->where('assessments.added_by_id',\Auth::user()->id);
             }
 
             return Datatables::of($data)

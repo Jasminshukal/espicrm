@@ -38,18 +38,17 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Application::select('*')->with('University','Course','Enquiry','University.country','LastFollowUp');
+            $data = Application::select('applications.*')->with('University','Course','Enquiry','University.country','LastFollowUp');
 
             if(\Auth::user()->roles->pluck('name')->first()=="counsellor")
             {
-                $data->where('added_by_id',\Auth::user()->id);
+                $data->where('applications.added_by_id',\Auth::user()->id);
             }
 
             if(\Auth::user()->roles->pluck('name')->first()=="Processor")
             {
-                $data->where('processor_id',\Auth::user()->id);
+                $data->where('applications.processor_id',\Auth::user()->id);
             }
-            $data->orderby('id','desc');
             return Datatables::of($data)
                     ->addColumn('details_url', function($user) {
                         return url('admin/Application/ApplicationFollowUp/'.$user->id);
@@ -57,9 +56,17 @@ class ApplicationController extends Controller
                     ->addColumn('processor_id', function($user) {
                         return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
                     })
-                    ->addColumn('detail_enquiry', function($row) {
-                        return '<a href="'.route('detail.nav',$row->enquiry->id).'" style="color:blue;" >'.$row->enquiry->name.'</a>';
-                        //return \App\Models\User::find($user->processor_id)->name ?? '<span class="badge badge-pill badge-danger">Not Set Yet</span>';
+                    ->addColumn('detail_enquiry', function (Application $application) {
+                        return $application->Enquiry->name;
+                    })
+                    ->addColumn('university_detail', function(Application $application) {
+                        return $application->University->name;
+                    })
+                    ->addColumn('course_detail', function(Application $application) {
+                        return $application->Course->name;
+                    })
+                    ->addColumn('country_detail', function(Application $application) {
+                        return $application->University->Country->name;
                     })
                     ->addColumn('agent_detail', function($date) {
                         $colum_row="";
@@ -97,8 +104,8 @@ class ApplicationController extends Controller
                         }
                             return $btn;
                     })
-                    ->addColumn('date', function($model) {
-                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('d/m/Y H:i:s');
+                    ->addColumn('date', function(Application $application) {
+                        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $application->created_at)->format('d/m/Y H:i:s');
                     })
                     ->rawColumns(['action','processor_id','agent_detail','last_follow_up','detail_enquiry'])
                     ->make(true);
