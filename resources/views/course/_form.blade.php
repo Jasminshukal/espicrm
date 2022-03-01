@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
+        <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" >
     </div>
 </div>
 
@@ -18,14 +18,14 @@
 
     <div class="form-group">
         <label for="default_assign_emp">Default Assign Emp</label>
-        <input type="default_assign_emp" value="{{old('default_assign_emp')}}" name="default_assign_emp" id="default_assign_emp" class="form-control" placeholder="This Feature Comming" readonly required>
+        <input type="default_assign_emp" value="{{old('default_assign_emp')}}" name="default_assign_emp" id="default_assign_emp" class="form-control" placeholder="This Feature Comming" readonly >
     </div>
 </div>
 <div class="col-md-6">
 
     <div class="form-group">
         <label for="course_level">Level</label>
-        <select name="course_level" id="course_level" class="level form-control" required>
+        <select name="course_level" id="course_level" class="level form-control" >
             <option value="under-graduate">Under Graduate</option>
             <option value="diploma">Diploma</option>
             <option value="advance-diploma">Advance Diploma</option>
@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <label for="status">Status</label>
-        <select name="status" id="status" class="form-control" required>
+        <select name="status" id="status" class="form-control" >
             <option value="active" selected>Active</option>
             <option value="de-active">De-Active</option>
         </select>
