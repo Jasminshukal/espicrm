@@ -189,7 +189,7 @@ class EnquireController extends Controller
         $intake=Intact::all();
         $page="Enquiry";
         $title="Add New Enquiry";
-        //$user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
+        $user=User::where('company_id','1')->whereNotIn('id',[\Auth::user()->id])->get();
         return view('enquiry.add',compact('user','university','course','intake','page','title'));
     }
 
@@ -201,6 +201,7 @@ class EnquireController extends Controller
      */
     public function store(AddEnquireRequest $request)
     {
+
         $validated = $request->validated();
         $validated['enquiry_id'] ="ESPI_".$this->generateUniqueCode();
         $validated['name']=$request->first_name .' '.$request->middle_name.' '.$request->last_name;
@@ -217,6 +218,7 @@ class EnquireController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
         $validated["alternate"]=$request->alternate;
+
         if($request->coaching=='yes')
         {
             $validated["status"]='coaching';

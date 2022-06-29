@@ -24,8 +24,9 @@
                                 <div class="t-dot t-dot-primary">
                                 </div>
                                 <div class="t-text">
-                                    <p> {{ $remarks->status->status }} | {{ $remarks->remark ?? "Remark not set"}} | Start Date : {{ $remarks->start_date ?? "Not started yet"}} | Completed Date : {{ $remarks->completed_date ?? "Not Complited yet"}}</p>
-                                    <p class="t-meta-time">{{ $remarks->created_at->diffForHumans() }}</p>
+                                    <p> {{ $remarks->status }}  {{ $remarks->remark ?? "Remark not set"}}  </p>
+                                    <p>Start Date : {{ $remarks->start_date ?? "Not started yet"}}  Completed Date : {{ $remarks->completed_date ?? "Not Complited yet"}}</p>
+                                    <p class="t-meta-time">{{ $remarks->created_at->diffForHumans() }} </p>
                                 </div>
                             </div>
                             @endforeach

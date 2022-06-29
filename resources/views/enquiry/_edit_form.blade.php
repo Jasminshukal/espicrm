@@ -21,8 +21,8 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="email" class="mandatory">Middle Name</label>
-        <input type="text" name="middle_name" id="middle_name" value="{{$enquiry->middle_name}}" class="@error('middle_name') is-invalid @enderror form-control" required>
+        <label for="email">Middle Name</label>
+        <input type="text" name="middle_name" id="middle_name" value="{{$enquiry->middle_name}}" class="@error('middle_name') is-invalid @enderror form-control">
     </div>
     @error('middle_name')
     <div class="alert alert-danger">{{ $message }}</div>
@@ -39,8 +39,8 @@
 
 <div class="col-md-3">
     <div class="form-group">
-        <label for="phone" class="mandatory">Passport No</label>
-        <input type="text" value="{{$enquiry->passport_no}}" name="passport_no" id="passport_no" class="form-control" required>
+        <label for="phone" >Passport No</label>
+        <input type="text" value="{{$enquiry->passport_no}}" name="passport_no" id="passport_no" class="form-control">
     </div>
 </div>
 

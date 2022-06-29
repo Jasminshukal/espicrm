@@ -39,6 +39,10 @@ class FrontendController extends Controller
         $validated["middle_name"]=$request->middle_name;
         $validated["last_name"]=$request->last_name;
         $validated["alternate"]=$request->alternate;
+        
+        // $validated["company_id"]=$request->company_id;
+        
+        
         if($request->coaching=='yes')
         {
             $validated["status"]='coaching';

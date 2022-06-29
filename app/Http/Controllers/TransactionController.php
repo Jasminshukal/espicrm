@@ -54,7 +54,7 @@ class TransactionController extends Controller
         $latestid  =Transaction::select('*')->where('transactions.id',$id)->first();
         // $transaction = Transaction::with('Enquiry')->get();
         //dd($transaction);
-                        print_r($latestid);die;
+                       // print_r($latestid);die;
          return view('enquiry/receipt',compact('transaction','latestid'));
 
     }

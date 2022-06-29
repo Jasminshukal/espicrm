@@ -303,7 +303,7 @@
                 </table><br><br><br><br>
                 <div class="RS row"  >
                     <div class=" rupe"   ><h1>Rs. </h1></div>
-                    <input type="text" value="<?php  echo $total  ?>" style="width: 245px;border: 1px solid #e42427;padding: 0 20px;font-weight: 700;font-size: 30px;" >
+                    <input type="text" value="<?php  echo $transaction->price  ?>" style="width: 245px;border: 1px solid #e42427;padding: 0 20px;font-weight: 700;font-size: 30px;" >
                 </div>
                 <div style="position: absolute;margin-top: 53px;margin-left: 50px;color: #e42427;font-weight: 700;">NON REFUNDABLE</div>
                 <br/>

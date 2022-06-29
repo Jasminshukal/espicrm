@@ -96,7 +96,8 @@
                                             <div class="form-group">
                                                 <label for="price" class="">Payment Paid</label>
                                                 <input type="number" name="price" id="value2" 
-                                                    class="@error('price') is-invalid @enderror form-control" >
+                                                    class="@error('price') is-invalid @enderror form-control" disabled>
+                                                     <input type="text" name="price" id="value24"  hidden> 
                                             </div>
                                             @error('price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -105,8 +106,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="pending_price" class="">Payment Pending Amount</label>
-                                                <input type="number" name="pending_price" id="sum" value="{{ $transaction->pending_price }}"
-                                                    class="@error('pending_price') is-invalid @enderror form-control" >
+                                                <input type="number" name="pending_price" id="sum" 
+                                                    class="@error('pending_price') is-invalid @enderror form-control"  >
                                             </div>
                                             @error('pending_price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -145,7 +146,7 @@
                     <div class="card">
                         <div class="card-header" id="faqhead1">
                             <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#faq1"
-                            aria-expanded="true" aria-controls="faq1">Bank Payment Mode</a>
+                            aria-expanded="true" aria-controls="faq1">Cheque Payment Mode</a>
                         </div>
 
                         <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">
@@ -383,6 +384,7 @@ $(document).ready(function(){
                var value2 = parseFloat($('#upi_amount').val()) || 0;
                var value3 = parseFloat($('#cash_amount').val()) || 0;
                $('#value2').val(value1 + value2 + value3);
+               $('#value24').val(value1 + value2 + value3);
             });
          });
     </script>  

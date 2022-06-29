@@ -425,7 +425,7 @@ Enquires index
                     <div class="card">
                         <div class="card-header" id="faqhead1">
                             <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#faq1"
-                            aria-expanded="true" aria-controls="faq1">Bank Payment Mode</a>
+                            aria-expanded="true" aria-controls="faq1">Cheque Payment Mode</a>
                         </div>
 
                         <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">

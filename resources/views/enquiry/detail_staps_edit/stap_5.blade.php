@@ -29,8 +29,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">Refusal Country</label>
-                    <input type="text" value="{{ $last->refusal_country }}" name="refusal_country" class="form-control">
+                    <label for="name"  class="mandatory">Refusal Country</label>
+                    <input type="text" value="{{ $last->refusal_country }}" name="refusal_country" class="form-control" required>
                 </div>
             </div>
             <div class="col-md-6">

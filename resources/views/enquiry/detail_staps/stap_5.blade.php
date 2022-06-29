@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">Refusal Country</label>
+                    <label for="name" class="mandatory" required>Refusal Country</label>
                     <input type="text" name="refusal_country" class="form-control">
                 </div>
             </div>
