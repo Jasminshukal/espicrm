@@ -30,9 +30,16 @@
         <label for="selectlevel">Select Level</label>
         <select name="level[]" onchange="get_course(this)" class="level form-control" id="selectlevel">
             <option value="">Select Level</option>
-            @foreach (get_level() as $key => $value)
+            <option value="under-graduate">Under Graduate</option>
+            <option value="diploma">Diploma</option>
+            <option value="advance-diploma">Advance Diploma</option>
+            <option value="bachelor">Bachelor</option>
+            <option value="post-graduate-diploma">Post Graduate Diploma</option>
+            <option value="post-graduate">Post Graduate</option>
+            <option value="master">Master</option>
+            {{-- @foreach (get_level() as $key => $value)
                 <option value="{{ $key }}">{{ $value }}</option>
-            @endforeach
+            @endforeach --}}
         </select>
     </div>
 </div>
@@ -57,6 +64,8 @@
         <select name="intact_year_id[]" class="form-control" id="selectyear">
             <option value="1">2021</option>
             <option value="2">2022</option>
+            <option value="3">2023</option>
+            <option value="4">2024</option>
         </select>
     </div>
 </div>

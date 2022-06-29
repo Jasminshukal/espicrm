@@ -344,9 +344,9 @@ Enquires index
                                 @csrf
                                 <div class="row">
 
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="package_name" class="mandatory">Package  Name</label>
+                                                <label for="package_name" class="">Package  Name</label>
                                                     <select  id="package_name"  name="package_name"  class="@error('package_name') is-invalid @enderror form-control" required>
                                                     <option value="select">select</option>
                                                         @foreach ($Package as $key=>$item)
@@ -358,10 +358,10 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="package_price" class="mandatory">Package  price</label>
-                                                    <select  id="package_price"  name="package_price" class="@error('package_price') is-invalid @enderror form-control" required>
+                                                <label for="package_price" class="">Package  price</label>
+                                                    <select  id="value1"  name="package_price" class="@error('package_price') is-invalid @enderror form-control" required>
                                                     <option value="select">select</option>
                                                         @foreach ($Package as $key=>$item)
                                                             <option value="{{ $item ->price}}">{{ $item->price}}</option>
@@ -372,19 +372,29 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="price" class="mandatory">Price</label>
-                                                <input type="number" name="price" id="price" value="{{ old('price') }}"
-                                                    class="@error('price') is-invalid @enderror form-control" required>
+                                                <label for="price" class="">Payment Paid</label>
+                                                <input type="number" name="price" id="value2" value="{{ old('price') }}"
+                                                    class="@error('price') is-invalid @enderror form-control" disabled>
                                             </div>
                                             @error('price')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="payment_title" class="mandatory">Perpose Of Payment</label>
+                                                <label for="pending_price" class="">Payment Pending Amount</label>
+                                                <input type="number" name="pending_price" id="sum" value="{{ old('pending_price') }}"
+                                                    class="@error('pending_price') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('pending_price')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="payment_title" class="">Purpose Of Payment</label>
                                                     <select name="title" id="payment_title" class="@error('payment_title') is-invalid @enderror form-control" required>
                                                         @foreach (config('espi.payment_title') as $key=>$item)
                                                             <option value="{{ $item }}">{{ $item }}</option>
@@ -395,23 +405,36 @@ Enquires index
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-12">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="payment_mode" class="mandatory" id="payment_mode">Payment Mode</label>
+                                                <label for="payment_mode" class="" id="payment_mode">Payment Mode</label>
                                                     <select name="payment_mode" id="payment" class="@error('payment_mode') is-invalid @enderror form-control" required>
-                                                        @foreach (config('espi.payment_mode') as $key=>$item)
-                                                            <option value="{{ $item }}">{{ $item }}</option>
-                                                        @endforeach
+                                                        <option value="Case Payment ">Cash Payment </option>
+                                                        <option value="Online Payment ">Online Payment </option>
+                                                        <option value="Check Payment ">Cheque Payment </option>
                                                     </select>
                                             </div>
                                             @error('status')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
-                                        <div class="col-md-12">
+                                        </div> --}}
+<!-- new -->
+<div id="main" style="WIDTH:100%;">
+  <div class="container">
+<div class="accordion" id="faq">
+                    <div class="card">
+                        <div class="card-header" id="faqhead1">
+                            <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#faq1"
+                            aria-expanded="true" aria-controls="faq1">Bank Payment Mode</a>
+                        </div>
+
+                        <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;">Bank Payment Mode</label> -->
                                             <div class="form-group">
-                                                <label for="bank_name" class="mandatory">Bank Name</label>
-                                                <input type="text" name="bank_name" id="price" value="{{ old('bank_name') }}"
+                                                <label for="bank_name" class="">Cheque Bank Name</label>
+                                                <input type="text" name="bank_name"  value="{{ old('bank_name') }}"
                                                     class="@error('bank_name') is-invalid @enderror form-control" >
                                             </div>
                                             @error('bank_name')
@@ -420,8 +443,8 @@ Enquires index
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="check_number" class="mandatory">Check  Number</label>
-                                                <input type="number" name="check_number" id="price" value="{{ old('check_number') }}"
+                                                <label for="check_number" class="">Cheque  Number</label>
+                                                <input type="number" name="check_number"  value="{{ old('check_number') }}"
                                                     class="@error('check_number') is-invalid @enderror form-control" >
                                             </div>
                                             @error('check_number')
@@ -430,8 +453,8 @@ Enquires index
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="check_number" class="mandatory">Check  Date</label>
-                                                <input type="date" name="check_date" id="price" value="{{ old('check_date') }}"
+                                                <label for="check_number" class="">Cheque  Date</label>
+                                                <input type="date" name="check_date"  value="{{ old('check_date') }}"
                                                     class="@error('check_date') is-invalid @enderror form-control" >
                                             </div>
                                             @error('check_date')
@@ -440,7 +463,171 @@ Enquires index
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="note" class="mandatory">Note</label>
+                                                <label for="check_number" class="">Cheque  Amount</label>
+                                                <input type="number" name="check_amount" id="check_amount" value="{{ old('check_amount') }}"
+                                                    class="@error('check_amount') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('check_amount')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>       
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqhead2">
+                            <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq2"
+                            aria-expanded="true" aria-controls="faq2">UPI Payment Mode</a>
+                        </div>
+
+                        <div id="faq2" class="collapse" aria-labelledby="faqhead2" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;">UPI Payment Mode</label> -->
+                                            <div class="form-group">
+                                                <label for="upi_type" class="">UPI Payment Type</label>
+                                                <input type="text" name="upi_type" id="upi_type" value="{{ old('upi_type') }}"
+                                                    class="@error('upi_type') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('upi_type')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="upi_id" class="">UPI Id</label>
+                                                <input type="text" name="upi_id" id="upi_id" value="{{ old('upi_id') }}"
+                                                    class="@error('upi_id') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('upi_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="upi_amount" class="">UPI Amount</label>
+                                                <input type="number" name="upi_amount" id="upi_amount" value="{{ old('upi_amount') }}"
+                                                    class="@error('upi_amount') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('upi_amount')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>      
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="faqhead3">
+                            <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq3"
+                            aria-expanded="true" aria-controls="faq3">Cash Payment Mode</a>
+                        </div>
+
+                        <div id="faq3" class="collapse" aria-labelledby="faqhead3" data-parent="#faq">
+                            <div class="card-body">
+                            <div class="col-md-12">
+                                            <!-- <label style="font-weight: 800;"></label> -->
+                                            <div class="form-group">
+                                                <label for="cash_mode" class="">Cash Payment Type</label>
+                                                <select name="cash_mode" id="cash_mode" class="@error('cash_mode') is-invalid @enderror form-control" required>
+                                                    <option value="Case Payment ">Yes</option>
+                                                    <option value="No ">No </option>
+                                                </select>
+                                            </div>
+                                            @error('cash_mode')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="cash_amount" class="">Cash Amount</label>
+                                                <input type="number" name="cash_amount" id="cash_amount" value="{{ old('cash_amount') }}"
+                                                class="@error('cash_amount') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('cash_amount')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="cash_date" class="">Cash Payment Date</label>
+                                                <input type="date" name="cash_date" id="cash_date" value="{{ old('cash_date') }}"
+                                                    class="@error('cash_date') is-invalid @enderror form-control" >
+                                            </div>
+                                            @error('cash_date')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>       
+                        </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </div>
+  <style>
+    #main {
+  margin: 50px 0;
+}
+
+#main #faq .card {
+  margin-bottom: 30px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+  -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+          box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main #faq .card .card-header .btn-header-link {
+  color: #fff;
+  display: block;
+  text-align: left;
+  background: #e5e5e5;
+  color: #222;
+  padding: 20px;
+}
+
+#main #faq .card .card-header .btn-header-link:after {
+  content: "\f107";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  float: right;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed {
+  background: #2196f3;
+  color: #fff;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed:after {
+  content: "\f106";
+}
+
+#main #faq .card .collapsing {
+  background: #e5e5e5;
+  line-height: 30px;
+}
+
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  background: #e5e5e5;
+  line-height: 30px;
+  color: #222;
+}
+  </style>
+<!-- end -->
+                                        
+                                        
+                                         
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="note" class="">Note</label>
                                                 <textarea name="note" id="note" class="form-control"></textarea>
                                             </div>
                                             @error('note')
@@ -473,10 +660,10 @@ Enquires index
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="price" class="mandatory"> Name</label>
+                                            <label for="price" class=""> Name</label>
                                             {{-- <input type="text" name="name" id="name" value="{{ old('name') }}"
                                                 class="@error('name') is-invalid @enderror form-control" required> --}}
-                                                <select name="card_number" id="card_number" class="@error('card_number') is-invalid @enderror form-control" required>
+                                                <select name="name" id="name" class="@error('card_number') is-invalid @enderror form-control" required>
                                                     @foreach ( $Transaction as  $item)
                                                     <option value="select">select</option>
                                                         <option value="{{ $item -> name }}">{{ $item -> name }}</option>
@@ -489,7 +676,7 @@ Enquires index
                                     </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="price" class="mandatory">Card Number</label>
+                                                <label for="price" class="">Card Number</label>
                                                 {{-- <input type="number" name="card_number" id="card_number" value="{{ old('card_number') }}"
                                                     class="@error('card_number') is-invalid @enderror form-control" required> --}}
                                                     <select name="card_number" id="card_number" class="@error('card_number') is-invalid @enderror form-control" required>
@@ -657,8 +844,52 @@ Enquires index
         return false;
 
     }
-</script>
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+            $('#check_amount, #upi_amount, #cash_amount').keyup(function(){
+               var value1 = parseFloat($('#check_amount').val()) || 0;
+               var value2 = parseFloat($('#upi_amount').val()) || 0;
+               var value3 = parseFloat($('#cash_amount').val()) || 0;
+               $('#value2').val(value1 + value2 + value3);
+            });
+         });
+    </script>  
+<script >
+// $(document).ready(function(){
+//             $('#value1, #value2').keyup(function(){
+//                var value1 = parseFloat($('#value1').val()) || 0;
+//                var value2 = parseFloat($('#value2').val()) || 0;
+//                $('#sum').val(value1 - value2);
+//             });
+//          });
+//         $(document).on("change keyup blur", "#Payment_price", function(e) {
+//   var amd = $('#package_price').val();
+//   var disc = $('#Payment_price').val();
+//   if (disc != '' && amd != '') {
+//     $('#pending_price').val((parseInt(amd)) - (parseInt(disc)));
+//   }else{
+//     $('#pending_price').val(parseInt(amd));
+//   }
+// });
+    </script>
+{{-- <script>
+    $(function() {
+    $('#payment_mode').change(function(){
+      $('#check_date').hide();  
+
+      $('#' + $(this).val()).show();
+      if($(this).val()=="Case Payment ")
+      {
+          $('#check_date').show();
+
+      }
+    });
+  });
+      </script> --}}
 {{-- <script type="text/javascript">
 $(document).ready(function() {
     $('#payment').on('change', function() {

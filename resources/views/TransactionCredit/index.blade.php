@@ -39,13 +39,14 @@
             oLanguage: {
                     sEmptyTable: "No Card Found Yet"
                 },
-            ajax: "{{ route('card.index') }}",
+            ajax: "{{ route('package.index') }}",
             columns: [
-                {data: 'name', name: 'name'},
-                {data: 'card_number', name: 'card_number'},
-                {data: 'date', name: 'date'},
-                {data: 'note', name: 'note'},
-
+                { data: 'name', name: 'name' },
+                    { data: 'price', name: 'price' },
+                    { data: 'start_date', name: 'start_date' },
+                    { data: 'date', name: 'date' },
+                    { data: 'status', name: 'status' },
+                    { data:'note',name:'note'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             initComplete: function () {
@@ -96,8 +97,10 @@
                 ajax: data.details_url,
                 columns: [
                     { data: 'name', name: 'name' },
-                    { data: 'card_number', name: 'card_number' },
+                    { data: 'price', name: 'price' },
+                    { data: 'start_date', name: 'start_date' },
                     { data: 'date', name: 'date' },
+                    { data: 'status', name: 'status' },
                     { data:'note',name:'note'},
                 ]
             })
@@ -115,14 +118,16 @@ Application
 
 @section('content')
 <div class="col-md-12">
-    <h1>Credit  Card </h1>
-    <a href="{{ route('card.create') }}" title="Add Credit Card" class="btn btn-info">Add  Credit Card</a>
+    <h1>Package </h1>
+    <a href="{{ route('package.create') }}" title="Add User" class="btn btn-info">Add  Package</a>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Card Number</th>
+                <th>Price</th>
+                <th>Start Date</th>
                 <th>Expiration Date</th>
+                <th>status</th>
                 <th>Note</th>
                     <th width="100px">Action</th>
             </tr>

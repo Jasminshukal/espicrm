@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\Card\EditCard;
 use DataTables;
 use App\Models\Card;
 use Illuminate\Http\Request;
@@ -21,20 +23,20 @@ class CardController extends Controller
                     ->addColumn('action', function($row){
                         $btn = "";
                         $btn = '<a href="'.route('card.edit',$row->id).'" title="Edit" class="edit btn btn-primary btn-sm">Edit</a>';
-                        $btn = '<a href="'.route('card.destroy',$row->id).'" title="Delete" class="edit btn btn-danger btn-sm">Delete</a>';
+                        // $btn = '<a href="'.route('card.destroy',$row->id).'" title="Delete" class="edit btn btn-danger btn-sm">Delete</a>';
 
                         return $btn;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
                 }
-        return view('Card.index');
+        return view('card.index');
     }
     public function create()
     {
       //  $title = 'Create user';
         //$roles = Role::pluck('name', 'id');
-        return view('Card.add');
+        return view('card.add');
     }
     public function store (Request $request)
     {
@@ -54,14 +56,24 @@ class CardController extends Controller
         $transaction->save();
         return redirect()->back()->withInfo('Add  Credit Card SuccessFully.');
     }
+    public function edit(Card $Card)
+    {
+        $title = "Card Details";
+        $roles = Role::pluck('name', 'id');
 
-    public function destroy($id) {
-        $Card = Card::findOrFail($id);
-        $Card->delete();
-        return redirect('Card.index');
-     }
-     public function show($id)
-     {
-         //
-     }
+        return view('card.edit', compact('Card','title', 'roles'));
+    }
+    public function update(EditCard $request, Card $Card)
+    {
+
+        $Card->name=$request->name;
+        $Card->card_number=$request->card_number;
+        $Card->date=$request->date;
+        $Card->note=$request->note;
+        $Card->company_id=\Auth::user()->company_id;
+        $Card->save();
+
+// print_r($Card);die;
+        return redirect()->route('card.index');
+    }
 }

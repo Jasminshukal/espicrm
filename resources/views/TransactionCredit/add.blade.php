@@ -1,7 +1,7 @@
 @extends('layouts.theam')
 
 @section('title')
-Edit Card
+Add Package
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
@@ -9,7 +9,7 @@ Edit Card
     <div class="row justify-content-center">
         <div class="col-md-12 col-xs-12">
         <div class="card">
-                <div class="card-header">{{ __('Edit Card') }}</div>
+                <div class="card-header">{{ __('Add Package') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -20,11 +20,10 @@ Edit Card
                             </ul>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('card.update',$Card->id) }}">
+                        <form method="POST" action="{{ route('package.store') }}">
                         @csrf
-                        @method("patch")
                         <div class="row">
-                            @include('card._edit_form')
+                            @include('package._add_form')
                             <div class="col-md-12 text-center">
 
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
@@ -107,5 +106,5 @@ Edit Card
         };
         new Notification(noteTitle, noteOptions);
     });
-</script>
 
+</script>

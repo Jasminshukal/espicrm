@@ -27,6 +27,7 @@ use App\Http\Controllers\OnlineExamController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\TaskController;
 use App\Models\ApplicationFollowUps;
 use App\Models\ApplicationStatus;
 
@@ -53,14 +54,19 @@ Route::get('optimize', function () {
     return redirect('home');
 });
 
+Route::get('/clear-cache', function() {
+     \Artisan::call('cache:clear');
+    return redirect('home');
+
+});
 
 
 Route::get("ocr",[HomeController::class,"ocr"]);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); 
+Route::get('/home', [HomeController::class,'search'])->name('search');
 Route::post('/save-token', [UserController::class, 'saveToken'])->name('save-token');
 
 Route::post('import_parse', [UniversityController::class,"parseImport"])->name('import_parse');
@@ -135,8 +141,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('Transactions', TransactionController::class);
     Route::post('Transactions/Add/{Enquire}',[TransactionController::class,'add'])->name('Transaction.Add');
     Route::get('enquiry/{id}/receipt',[TransactionController::class,'receipt'])->name('Transaction.receipt');
+    // Route::get('Transaction/{id}/edit',[TransactionController::class,'edit'])->name('Transaction.edit');
+    // Route::get('Transaction/{id}/editreceipt',[TransactionController::class,'editreceipt'])->name('Transaction.editreceipt');
+    // Route::post('Transaction/{id}/edit',[TransactionController::class,'update'])->name('Transaction.update');
+    // Route::post('Transaction/{id}/editreceipt',[TransactionController::class,'update'])->name('Transaction.update');
+    // Route::post('FollowUp/store/{Enquire}',[FollowUpController::class,'store'])->name('FollowUp.store');
 
-
+    Route::resource('TransactionCredit', TransactionCredit::class);
+    // Route::get('TransactionCredit/{id}/edit',[TransactionCreditController::class,'edit'])->name('TransactionCreditController.edit');
     Route::post('TransactionCredit/Add/{Enquire}',[TransactionCreditController::class,'add'])->name('TransactionCredit.Add');
     // Route::get('enquiry.index',[TransactionCreditController::class,'get'])->name('TransactionCredit.get');
 
@@ -144,13 +156,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('package',[PackageController::class,'index'])->name('package.index');
 
     Route::resource('card',CardController::class);
-    Route::get('card',[CardController::class,'index'])->name('card.index');
-    Route::get('card/{id}', [CardController::class,'destroy'])->name('card.destroy');
+    Route::resource('task',TaskController::class);
+    // Route::get('task',[TaskController::class,'index'])->name('task.index');
+    Route::get('/task/{task}', [TaskController::class,'destroy'])->name('task.destroy');
+    // Route::post('/tasks/{id}', 'TaskController@destroy')->name('task.destroy');
+    // Route::get('card',[CardController::class,'index'])->name('card.index');
+    // Route::get('card/{id}', [CardController::class,'destroy'])->name('card.destroy');
 
     // Route::get("/", function(){
     //     return view('user.profile');
     // });
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
+    // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
 
     Route::get('email-test', function(){
         $details = App\Models\Enquiry::find(1);
@@ -187,15 +203,18 @@ Route::get('demo',function(){
 });
 
 
-Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
-Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
 
-Route::get('card',[App\Http\Controllers\CardController::class,'index'])->name('card.index');
+// Route::get('card',[App\Http\Controllers\CardController::class,'index'])->name('card.index');
 
 
 
 Route::get('/', function () {
     return 'First sub domain';
 })->domain('/{branch_name}.'.env('APP_URL'));
+
+
+Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/{branch_name}/joinespi',[FrontendController::class, 'joinespi'])->name('join_espi');
+Route::post('/{branch_name}/joinespi',[FrontendController::class, 'joinespistore'])->name('join_espi_store');
+
 

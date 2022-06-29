@@ -1,7 +1,7 @@
 @extends('layouts.theam')
 
 @section('title')
-Edit Card
+Add Tasks
 @endsection
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
@@ -9,7 +9,7 @@ Edit Card
     <div class="row justify-content-center">
         <div class="col-md-12 col-xs-12">
         <div class="card">
-                <div class="card-header">{{ __('Edit Card') }}</div>
+                <div class="card-header">{{ __('Add Task') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -20,22 +20,19 @@ Edit Card
                             </ul>
                         </div>
                         @endif
-                        <form method="POST" action="{{ route('card.update',$Card->id) }}">
-                        @csrf
-                        @method("patch")
-                        <div class="row">
-                            @include('card._edit_form')
-                            <div class="col-md-12 text-center">
+                        <form method="POST" action="{{ route('task.store') }}" enctype="multipart/form-data">
 
+                        @csrf
+                        <div class="row">
+                            @include('task._add_form')
+                            <div class="col-md-12 text-center">
                                 <input type="submit" class="btn btn-primary" value="{{ __('enquire.submit_btn') }}">
-                                <input type="button" class="btn btn-danger" value="{{ __('enquire.cancel_btn_btn') }}">
+                                <input type="button" class="btn btn-danger" value="{{ __('enquire.cancel_btn_btn') }}" onclick="window.location='{{ URL::route('task.index'); }}'">
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -107,5 +104,5 @@ Edit Card
         };
         new Notification(noteTitle, noteOptions);
     });
-</script>
 
+</script>
